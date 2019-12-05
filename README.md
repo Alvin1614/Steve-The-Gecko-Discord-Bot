@@ -4,6 +4,8 @@
 Steve The Gecko (STG) is a discord bot that was created for fun. The main feature of the bot is to have a virtual dog that you turn into.
 You can then have jobs, buy houses etc. Join the discord to play: https://discord.gg/A6GZWuX
 
+Yes I know it is not all "properly" coded such as all the global variables, but I was lazy so...
+
 Features:
 - Moderating features like clearing messages (no mute/ban yet)
 - Echo command to have a bot say a message in any channel
