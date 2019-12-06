@@ -10,6 +10,7 @@ Features:
 - Moderating features like clearing messages (no mute/ban yet)
 - Echo command to have a bot say a message in any channel
 - Dming
+- Conversation responses that can have cooldown timers
 - Sending received dm's to a channel
 - Gecko Game - number guessing game that has rewards for getting to a certain number
 - Survival Game - text based game where you make decisions when you run into people/animals. Save your ammo, gather food and survive longer for a higher score.
