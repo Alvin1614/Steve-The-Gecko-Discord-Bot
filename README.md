@@ -14,4 +14,4 @@ Features:
 - Sending received dm's to a channel
 - Gecko Game - number guessing game that has rewards for getting to a certain number
 - Survival Game - text based game where you make decisions when you run into people/animals. Save your ammo, gather food and survive longer for a higher score.
-- Doggo Game - just join the discord to play this one :)
+- Doggo Game - virtual dog you can do things with, just join the discord to play this one :)
