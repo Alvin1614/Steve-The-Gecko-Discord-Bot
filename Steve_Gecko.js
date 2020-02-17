@@ -2,9 +2,9 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
-db.run('CREATE TABLE IF NOT EXISTS users(userid TEXT NOT NULL, username TEXT NOT NULL, dmchannelid TEXT NOT NULL, cmdchannelid TEXT NOT NULL, cmdpassenter INTEGER NOT NULL, cmdnumber INTEGER NOT NULL, commandnumber INTEGER NOT NULL, commandtext TEXT NOT NULL, chatid INTEGER NOT NULL, chatnum INTEGER NOT NULL, sgscore INTEGER NOT NULL, sghighscore INTEGER NOT NULL, rpsbotscore INTEGER NOT NULL, rpsuserscore INTEGER NOT NULL, rpsgame INTEGER NOT NULL, doggocreate INTEGER NOT NULL, doggocreatedtime INTEGER NOT NULL, doggoname TEXT NOT NULL, currentdoggo TEXT NOT NULL, breed TEXT NOT NULL, money INTEGER NOT NULL, foodnum INTEGER NOT NULL, energynum INTEGER NOT NULL, poopcooldown INTEGER NOT NULL, jobcooldown INTEGER NOT NULL, breedcooldown INTEGER NOT NULL, statsupdatetime INTEGER NOT NULL, sleeping INTEGER NOT NULL, sleeptime INTEGER NOT NULL, doggosex TEXT NOT NULL, foodservings INTEGER NOT NULL, applytime INTEGER NOT NULL, appliedjob TEXT NOT NULL, currentjob TEXT NOT NULL, working INTEGER NOT NULL, workstarttime INTEGER NOT NULL, workendtime INTEGER NOT NULL, status TEXT NOT NULL, quit INTEGER NOT NULL, playnum INTEGER NOT NULL, sleepstatgain INTEGER NOT NULL, sleepstatlose INTEGER NOT NULL, foodstatlose INTEGER NOT NULL, playstatlose INTEGER NOT NULL, playstatgain INTEGER NOT NULL, bed TEXT NOT NULL, doggotime INTEGER NOT NULL, playtime INTEGER NOT NULL, totalservings INTEGER NOT NULL, totalworkhours INTEGER NOT NULL, totalplaytime INTEGER NOT NULL, totalmoney INTEGER NOT NULL, cgexp INTEGER NOT NULL, mdexp INTEGER NOT NULL, brdexp INTEGER NOT NULL, ddexp INTEGER NOT NULL, pdexp INTEGER NOT NULL, sdexp INTEGER NOT NULL, salary INTEGER NOT NULL, naptime INTEGER NOT NULL, lastinttime INTEGER NOT NULL, gifttime INTEGER NOT NULL, giftboxes INTEGER NOT NULL, killdog INTEGER NOT NULL, house TEXT NOT NULL, notif TEXT NOT NULL, privacy TEXT NOT NULL, device TEXT NOT NULL, playtimer INTEGER NOT NULL, worktimer INTEGER NOT NULL, sleeptimer INTEGER NOT NULL, applytimer INTEGER NOT NULL, lottery TEXT NOT NULL, lotterynumber INTEGER NOT NULL, lbpoints INTEGER NOT NULL, pregnant INTEGER NOT NULL, pregnanttime INTEGER NOT NULL, pups INTEGER NOT NULL, pupshunger INTEGER NOT NULL, bredpups INTEGER NOT NULL, achievements TEXT NOT NULL, achnum INTEGER NOT NULL)');
+db.run('CREATE TABLE IF NOT EXISTS users(userid TEXT NOT NULL, username TEXT NOT NULL, dmchannelid TEXT NOT NULL, cmdchannelid TEXT NOT NULL, cmdpassenter INTEGER NOT NULL, cmdnumber INTEGER NOT NULL, commandnumber INTEGER NOT NULL, commandtext TEXT NOT NULL, chatid INTEGER NOT NULL, chatnum TEXT NOT NULL, sgscore INTEGER NOT NULL, sghighscore INTEGER NOT NULL, rpsbotscore INTEGER NOT NULL, rpsuserscore INTEGER NOT NULL, rpsgame INTEGER NOT NULL, doggocreate INTEGER NOT NULL, doggocreatedtime INTEGER NOT NULL, doggoname TEXT NOT NULL, currentdoggo TEXT NOT NULL, breed TEXT NOT NULL, money INTEGER NOT NULL, foodnum INTEGER NOT NULL, energynum INTEGER NOT NULL, poopcooldown INTEGER NOT NULL, jobcooldown INTEGER NOT NULL, breedcooldown INTEGER NOT NULL, statsupdatetime INTEGER NOT NULL, sleeping INTEGER NOT NULL, sleeptime INTEGER NOT NULL, doggosex TEXT NOT NULL, foodservings INTEGER NOT NULL, applytime INTEGER NOT NULL, appliedjob TEXT NOT NULL, currentjob TEXT NOT NULL, working INTEGER NOT NULL, workstarttime INTEGER NOT NULL, workendtime INTEGER NOT NULL, status TEXT NOT NULL, quit INTEGER NOT NULL, playnum INTEGER NOT NULL, sleepstatgain INTEGER NOT NULL, sleepstatlose INTEGER NOT NULL, foodstatlose INTEGER NOT NULL, playstatlose INTEGER NOT NULL, playstatgain INTEGER NOT NULL, bed TEXT NOT NULL, doggotime INTEGER NOT NULL, playtime INTEGER NOT NULL, totalservings INTEGER NOT NULL, totalworkhours INTEGER NOT NULL, totalplaytime INTEGER NOT NULL, totalmoney INTEGER NOT NULL, exp TEXT NOT NULL, salary INTEGER NOT NULL, naptime INTEGER NOT NULL, lastinttime INTEGER NOT NULL, gifttime INTEGER NOT NULL, giftboxes INTEGER NOT NULL, killdog INTEGER NOT NULL, house TEXT NOT NULL, notif TEXT NOT NULL, privacy TEXT NOT NULL, device TEXT NOT NULL, playtimer INTEGER NOT NULL, worktimer INTEGER NOT NULL, sleeptimer INTEGER NOT NULL, applytimer INTEGER NOT NULL, lottery TEXT NOT NULL, lotterynumber INTEGER NOT NULL, lbpoints INTEGER NOT NULL, pregnant INTEGER NOT NULL, pregnanttime INTEGER NOT NULL, pups INTEGER NOT NULL, pupshunger INTEGER NOT NULL, bredpups INTEGER NOT NULL, achievements TEXT NOT NULL, achnum INTEGER NOT NULL, energyshots INTEGER NOT NULL, shotcd INTEGER NOT NULL, shotdailycd INTEGER NOT NULL, shotbought INTEGER NOT NULL, totalshots INTEGER NOT NULL, geckopoints INTEGER NOT NULL, totalplays INTEGER NOT NULL, totalfeeds INTEGER NOT NULL, bathnum INTEGER NOT NULL, bathstatlose INTEGER NOT NULL, notifmsgs TEXT NOT NULL, streakstart INTEGER NOT NULL)');
 db.run('CREATE TABLE IF NOT EXISTS servers(guildid TEXT NOT NULL, password INTEGER NOT NULL, passwordnum INTEGER NOT NULL, lock INTEGER NOT NULL, glevel INTEGER NOT NULL, glevelmin INTEGER NOT NULL, ggnum INTEGER NOT NULL, mute INTEGER NOT NULL, cooldowntime INTEGER NOT NULL, interval INTEGER NOT NULL, intletter TEXT NOT NULL, lockenter INTEGER NOT NULL, locknum INTEGER NOT NULL, cmdnumber INTEGER NOT NULL, talkchance INTEGER NOT NULL)');
-db.run('CREATE TABLE IF NOT EXISTS serverdata(testdata INTEGER NOT NULL, cgname TEXT NOT NULL, cgnumber INTEGER NOT NULL, cgsalary INTEGER NOT NULL, cgtime INTEGER NOT NULL, cglength TEXT NOT NULL, mdname TEXT NOT NULL, mdnumber INTEGER NOT NULL, mdsalary INTEGER NOT NULL, mdtime INTEGER NOT NULL, mdlength TEXT NOT NULL, brdname TEXT NOT NULL, brdnumber INTEGER NOT NULL, brdsalary INTEGER NOT NULL, brdtime INTEGER NOT NULL, brdlength TEXT NOT NULL, ddname TEXT NOT NULL, ddnumber INTEGER NOT NULL, ddsalary INTEGER NOT NULL, ddtime INTEGER NOT NULL, ddlength TEXT NOT NULL, pdname TEXT NOT NULL, pdnumber INTEGER NOT NULL, pdsalary INTEGER NOT NULL, pdtime INTEGER NOT NULL, pdlength TEXT NOT NULL, sdname TEXT NOT NULL, sdnumber INTEGER NOT NULL, sdsalary INTEGER NOT NULL, sdtime INTEGER NOT NULL, sdlength TEXT NOT NULL, bedsheetname TEXT NOT NULL, bedsheetcost INTEGER NOT NULL, bedsheetincrease INTEGER NOT NULL, matname TEXT NOT NULL, matcost INTEGER NOT NULL, matincrease INTEGER NOT NULL, twinname TEXT NOT NULL, twincost INTEGER NOT NULL, twinincrease INTEGER NOT NULL, fullname TEXT NOT NULL, fullcost INTEGER NOT NULL, fullincrease INTEGER NOT NULL, queenname TEXT NOT NULL, queencost INTEGER NOT NULL, queenincrease INTEGER NOT NULL, kingname TEXT NOT NULL, kingcost INTEGER NOT NULL, kingincrease INTEGER NOT NULL, box INTEGER NOT NULL, doghouse INTEGER NOT NULL, shed INTEGER NOT NULL, shack INTEGER NOT NULL, onestory INTEGER NOT NULL, twostory INTEGER NOT NULL, threestory INTEGER NOT NULL, mansion INTEGER NOT NULL, castle INTEGER NOT NULL, datatime INTEGER NOT NULL, saleprice INTEGER NOT NULL, saletime INTEGER NOT NULL, salemsgid TEXT NOT NULL, ebprice INTEGER NOT NULL, ebtime INTEGER NOT NULL, ebmsgid TEXT NOT NULL, boxprice INTEGER NOT NULL, boxtime INTEGER NOT NULL, boxmsgid TEXT NOT NULL, person TEXT NOT NULL, botstatus TEXT NOT NULL)');
+db.run('CREATE TABLE IF NOT EXISTS serverdata(testdata INTEGER NOT NULL, datatime INTEGER NOT NULL, saleprice INTEGER NOT NULL, saletime INTEGER NOT NULL, salemsgid TEXT NOT NULL, ebprice INTEGER NOT NULL, ebtime INTEGER NOT NULL, ebmsgid TEXT NOT NULL, boxprice INTEGER NOT NULL, boxtime INTEGER NOT NULL, boxmsgid TEXT NOT NULL, person TEXT NOT NULL, botstatus TEXT NOT NULL)');
 db.close();
 var botstatus = "on"
 var members = 0
@@ -14,7 +14,7 @@ var serverchannels = ""
 var chatid = 0
 var chatnum = 0
 var cmdchannelid = 0
-var version = "Steve The Gecko® v5.1.0"
+var version = "Steve The Gecko® v6.0.4"
 var guildid = "0"
 var today = new Date;
 var future = new Date;
@@ -47,9 +47,11 @@ var MetalRain = "448516707879747635"
 var permissionmsg = "```You don't have permission to do that```"
 var testdata = "1234"
 var space = " "
+var space2 = " "
 var talkchance = 0
 var talknumber = 0
 var directmessage = false
+var personset = false
 
 var lockenter = 0
 var locknum = 0
@@ -66,6 +68,8 @@ var rpsuserscore = 0
 var rpstempuscore = 0
 var rpstempbscore = 0
 var rpsgame = 0
+var arraypeeps = new Array();
+var arraypeepsparams = new Array();
 
 var interval = 1
 var intletter = "s"
@@ -102,6 +106,8 @@ var hsname2 = "no one"
 var hsname3 = "no one"
 var sgscore = 0
 var sghighscore = 0
+var geckopoints = 0
+var geckopoints2 = 0
 
 var regulardoggo = "^..^      /\n/_/\\_____/\n   /\\   /\\ \n  /  \\ /  \\"
 var poopingdoggo = "^..^      /\n/_/\\_____/\n   /\\   /\\•\n  /  \\ /  \\ •"
@@ -110,123 +116,35 @@ var eatingdoggo = "             /\n ^..^_______/\n /_/ /\\   /\\ \n|__|/  \\ /  
 var boxgift = "    \\/  \n   ____\n  |   |\n  |   |\n   ----"
 var money = 0
 var money2 = 0
-var doggocreate = 0
-var doggocreate2 = 0
 var doggoname = "none"
 var doggoname2 = "none"
-var statbar0 = "[----------]"
-var statbar1 = "[#---------]"
-var statbar2 = "[##--------]"
-var statbar3 = "[###-------]"
-var statbar4 = "[####------]"
-var statbar5 = "[#####-----]"
-var statbar6 = "[######----]"
-var statbar7 = "[#######---]"
-var statbar8 = "[########--]"
-var statbar9 = "[#########-]"
-var statbar10 = "[##########]"
-var happiness = statbar10
-var happiness2 = statbar10
-var happinessnum = 100
-var happinessnum2 = 100
-var currentdoggo = regulardoggo
-var currentdoggo2 = regulardoggo
-var food = statbar10
-var food2 = statbar10
+const statbars = ["[----------]", "[#---------]", "[##--------]", "[###-------]", "[####------]", "[#####-----]", "[######----]", "[#######---]", "[########--]", "[#########-]", "[##########]"];
 var foodnum = 100
 var foodnum2 = 100
-var energy = statbar10
-var energy2 = statbar10
 var energynum = 100
 var energynum2 = 100
-var doggosex = "female"
-var doggosex2 = "female"
 var doggowords = "her"
 var doggowords2 = "her"
 var doggonoun = "she"
 var doggonoun2 = "she"
 var doggoobject = "her"
 var doggoobject2 = "her"
-var sleeping = 0
-var sleeping2 = 0
-var sleeptime = 0
-var sleeptime2 = 0
-var statsupdatetime = 0
-var statsupdatetime2 = 0
-var realstatsupdatetime = 0
-var realstatsupdatetime2 = 0
 var statsupdate = 1
 var statsupdate2 = 1
 var status = "none"
 var status2 = "none"
-var poopcooldown = 0
-var poopcooldown2 = 0
-var breedcooldown = 0
-var breedcooldown2 = 0
-var foodservings = 0
-var foodservings2 = 0
-var applytime = 0
-var applytime2 = 0
 var currentjob = "none"
-var currentjob2 = "none"
-var jobname = "none"
-var jobname2 = "none"
-var jobnumber = 0
-var jobnumber2 = 0
-var jobsalary = 0
-var jobsalary2 = 0
-var jobtime = 0
-var jobtime2 = 0
-var jobcooldown = 0
-var jobcooldown2 = 0
-var job = "none"
-var job2 = "none"
-var appliedjob = "none"
-var appliedjob2 = "none"
-var joblength = 0
-var joblength2 = 0
-var working = 0
-var working2 = 0
-var workstarttime = 0
-var workstarttime2 = 0
-var workendtime = 0
-var workendtime2 = 0
-var workenergy = 0
-var workenergy2 = 0
-var quit = 0
-var quit2 = 0
 var playnum = 100
 var playnum2 = 100
-var wants1 = "none"
-var wants12 = "none"
-var wants2 = "none"
-var wants22 = "none"
-var wants3 = "none"
-var wants32 = "none"
-var wantsall = "none"
-var wantsall2 = "none"
-var sleepstatgain = 360000
-var sleepstatgain2 = 360000
-var sleepstatlose = 432000
-var sleepstatlose2 = 432000
-var foodstatlose = 300000
-var foodstatlose2 = 300000
-var playstatlose = 250000
-var playstatlose2 = 250000
 var playstatgain = 12000
 var playstatgain2 = 12000
-var doggotime = 0
-var doggotime2 = 0
 var bsleepstatgain = 360000
 var bsleepstatlose = 432000
 var bfoodlosestat = 300000
-var bpupfoodlosestat = 500000
+var bpupfoodlosestat = 1500000
 var bplaystatlose = 250000
 var bplaystatgain = 12000
-var applycooldown = 0
-var applycooldown2 = 0
-var bed = "none"
-var bed2 = "none"
+var bbathstatlose = 1800000
 var injurynum = 0
 var playtime = 0
 var playtime2 = 0
@@ -236,47 +154,20 @@ var totalworkhours = 0
 var totalworkhours2 = 0
 var totalplaytime = 0
 var totalplaytime2 = 0
+var totalplays = 0
+var totalplays2 = 0
 var totalmoney = 0
 var totalmoney2 = 0
-var experience = 0
-var experience2 = 0
-var expname = "none"
-var expname2 = "none"
 var salary = 0
 var salary2 = 0
-var play = statbar10
-var play2 = statbar10
-var explevel = 0
-var explevel2 = 0
 var naptime = 0
 var naptime2 = 0
-var lastinttime = 0
-var lastinttime2 = 0
 var gifttime = 0
 var gifttime2 = 0
 var giftboxes = 0
 var giftboxes2 = 0
-var giftitemnum = 0
-var giftnum = 0
-var gift = 0
-var giftmoney = 0
-var giftxp =  0
-var giftfoodservings = 0
-var nap = 1
-var nap2 = 1
-var doggocreatedtime = 0
-var doggocreatedtime2 = 0
-var age = 0
-var age2 = 0
-var agemonths = 0
-var agemonths2 = 0
-var ageyears = 0
-var ageyears2 = 0
-var agetime = 0
-var agetime2 = 0
-var killdog = 0
-var killdog2 = 0
 var foodprice = 5
+var shotprice = 50
 var saleprice = 1
 var saletime = 0
 var salemsgid = ""
@@ -290,40 +181,16 @@ var eventid = "641514186781884416"
 var notif = "ON"
 var notif2 = "ON"
 var notifnumber = 0
-var privacy = "OPEN"
-var privacy2 = "OPEN"
 var device = "PC"
 var device2 = "PC"
 var doggovalue = ""
 var doggovalue2 = ""
-var playtimer = 0
-var playtimer2 = 0
-var worktimer = 0
-var worktimer2 = 0
-var sleeptimer = 0
-var sleeptimer2 = 0
-var applytimer = 0
-var applytimer2 = 0
-var lottery = ""
-var lottery2 = ""
-var lotterynumber = 0
-var lotterynumber2 = 0
-var breed = "lab"
-var breed2 = "lab"
 var lbpoints = 0
 var lbpoints2 = 0
-var pregnant = 0
-var pregnant2 = 0
-var pregnanttime = 0
-var pregnanttime2 = 0
 var pups = 0
 var pups2 = 0
 var pupshunger = 100
 var pupshunger2 = 100
-var pupshungerbar = statbar10
-var pupshungerbar2 = statbar10
-var bredpups = 0
-var bredpups2 = 0
 var pregdays = 0
 var pregdays2 = 0
 var preghours = 0
@@ -332,115 +199,39 @@ var achievements = ""
 var achievements2 = ""
 var newanum = 0
 var achnum = 0
-achnum2 = 0
 
-var cg = "cg"
-var cgname = "crossing guard dog"
-var cgnumber = 5
-var cgsalary = 10
-var cgtime = 3600000
-var cglength = "1 hour"
-var cgexp = 0
-var cgexp2 = 0
-
-var md = "md"
-var mdname = "mail delivery dog"
-var mdnumber = 6
-var mdsalary = 15
-var mdtime = 7200000
-var mdlength = "2 hours"
-var mdexp = 0
-var mdexp2 = 0
-
-var brd = "brd"
-var brdname = "baseball retrieving dog"
-var brdnumber = 7
-var brdsalary = 20
-var brdtime = 10800000
-var brdlength = "3 hours"
-var brdexp = 0
-var brdexp2 = 0
-
-var dd = "dd"
-var ddname = "drug detection dog"
-var ddnumber = 15
-var ddsalary = 50
-var ddtime = 14400000
-var ddlength = "4 hours"
-var ddexp = 0
-var ddexp2 = 0
-
-var pd = "pd"
-var pdname = "k-9 police dog"
-var pdnumber = 12
-var pdsalary = 35
-var pdtime = 10800000
-var pdlength = "3 hours"
-var pdexp = 0
-var pdexp2 = 0
-
-var sd = "sd"
-var sdname = "sled dog"
-var sdnumber = 10
-var sdsalary = 20
-var sdtime = 21600000
-var sdlength = "6 hours"
-var sdexp = 0
-var sdexp2 = 0
-
-var bedsheetname = ""
-var bedsheetcost = 0
-var bedsheetincrease = 0
-var matname = ""
-var matcost = 0
-var matincrease = 0
-var twinname = ""
-var twincost = 0
-var twinincrease = 0
-var fullname = ""
-var fullcost = 0
-var fullincrease = 0
-var queenname = ""
-var queencost = 0
-var queenincrease = 0
-var kingname = ""
-var kingcost = 0
-var kingincrease = 0
-
-var boxcost = 0
-var doghousecost = 0
-var shedcost = 0
-var shackcost = 0
-var onestorycost = 0
-var twostorycost = 0
-var threestorycost = 0
-var mansioncost = 0
-var castlecost = 0
-
-var house = ""
-var house2 = ""
-var housename = ""
-var housename2 = ""
-var visiblehouse = ""
-var visiblehouse2 = ""
 //"          ^..^      /\n          /_/\\_____/\n             /\\   /\\ \n            /  \\ /  \\"
 var box = "   ____\n  |    |\n  |    |"
 var boxdog = "                  ^..^      /\n   ____           /_/\\_____/\n  |    |             /\\   /\\ \n  |    |            /  \\ /  \\"
 var doghouse = "    __\n   /  \\\n  /____\\\n  |    |\n  |  * |"
-var doghousedog = ""
 var shed = "  _____\n /     \\\n|       |\n|    *  |"
 var shack = "  _______\n /       \\\n|         |\n|      *  |"
 var story1 = "  __________\n /          \\\n|            |\n|         *  |"
 var story2 = "  _____________\n /             \\\n|               |\n|               |\n|            *  |"
 var story3 = "  _______________\n /               \\\n|                 |\n|                 |\n|                 |\n|              *  |"
-var mansion = ""
-var castle = ""
+var mansion = "          .-------.\n         /\`'\`'\`'\`'\`\\\n        /\`'\`'\`'\`'\`'\`\\\n       /\`'\`'\`'\`'\`'\`'\`\\\n   .--.\`|\`\` \`\` \`\` \`\`|\`  .\n  /,^, \\|   ,^^^,   |  / \\\n / |_|  \\   |___|   | /   \\\n/________\\  |   |   |/     \\\n |  __  |   '==='   /.......\\\n | (  ) |  //\`_\`\\\\  |,^, ,^,|\n | |--| |  ||(O)||  ||_| |_||\n | |__| |  || \" ||  ||_| |_||\n |      |  ||   ||  |       |\n '======'==''===''=='======='";
+
+var castle2 = "    /\\                                                        /\\\n   |  |                                                      |  |\n  /----\\                                                    /----\\\n [______]                                                  [______]\n  |    |         _____                        _____         |    |\n  |[]  |        [     ]                      [     ]        |  []|\n  |    |       [_______][ ][ ][ ][][ ][ ][ ][_______]       |    |\n  |    [ ][ ][ ]|     |  ,----------------,  |     |[ ][ ][ ]    |\n  |             |     |/'    ____..____    '\|     |             |\n   \\  []        |     |    /'    ||    '\\    |     |        []  /\n    |      []   |     |   |o     ||     o|   |     |  []       |\n    |           |  _  |   |     _||_     |   |  _  |           |\n    |   []      | (_) |   |    (_||_)    |   | (_) |       []  |\n    |           |     |   |     (||)     |   |     |           |\n    |           |     |   |      ||      |   |     |           |\n  /''           |     |   |o     ||     o|   |     |           ''\\\n [_____________[_______]--'------''------'--[_______]_____________]"
+var castle = "     >>                  >>\n     |                   |\n  _ _*_ _             _ _*_ _\n | U U U |           | U U U |\n  \\=====/             \\=====/\n  |     |             |     |\n  |     |_ _ _ _ _ _ _|     |\n  |   I | U U U U U U | I   |\n  |     |=============|     |\n  | I   |    I        |   I |\n  |     | +         + |     |\n  |     |       I     |     |\n  |_____|-------------|_____|\n /_______\\           /_______\\\n|_________|---------|_________|"
 var dogpup = "^..^_____/\n`  / \\ / \\"
 var dogandpup = "^..^      /\n/_/\\_____/\n   /\\   /\\      ^..^_____/\n  /  \\ /  \\     `  / \\ / \\"
 
-//
-//
-//
+const jobsobj = {"none": {jobabv: "none",jobname: "none", jobnumber: 0,jobsalary: 0,jobtime: 0,jobindex: 0},"cg": {jobabv: "cg",jobname: "crossing guard dog",jobnumber: 5,jobsalary: 10,jobtime: 3600000,jobindex: 0},"md": {jobabv: "md",jobname: "mail delivery dog",jobnumber: 6,jobsalary: 15,jobtime: 7200000,jobindex: 1},"brd": {jobabv: "brd",jobname: "baseball retrieving dog",jobnumber: 7,jobsalary: 20,jobtime: 10800000,jobindex: 2},"dd": {jobabv: "dd",jobname: "drug detection dog",jobnumber: 18,jobsalary: 50,jobtime: 14400000,jobindex: 3},"pd": {jobabv: "pd",jobname: "k-9 police dog",jobnumber: 12,jobsalary: 35,jobtime: 10800000,jobindex: 4},"sd": {jobabv: "sd",jobname: "sled dog",jobnumber: 10,jobsalary: 25,jobtime: 21600000,jobindex: 5}};
+
+//var {jobname, jobnumber, jobsalary, jobtime, jobindex} = jobsobj[nameOfJob];
+
+const bedobj = {"none": {"bedcost": 0,"bedincrease" : 1},"bedsheet": {"bedcost": 25,"bedincrease": 1.1,},"mat": {"bedcost": 100,"bedincrease": 1.2,},"twin": {"bedcost": 500,"bedincrease": 1.4,},"full": {"bedcost": 1250,"bedincrease": 1.6,},"queen": {"bedcost": 2000,"bedincrease": 1.75,},"king": {"bedcost": 4000,"bedincrease": 2,}};
+
+//var {bedcost, bedincrease} = bedobj[nameofBed];
+
+const houseobj = {"none": {"housecost": 0, "visiblehouse": "","housename": "none"},"box": {"housecost": 15,"visiblehouse": box, "housename": "box"},"doghouse": {"housecost": 100,"visiblehouse": doghouse, "housename": "doghouse"},"shed": {"housecost": 500,"visiblehouse": shed, "housename": "shed"},"shack": {"housecost": 1500,"visiblehouse": shack, "housename": "shack"},"onestory": {"housecost": 3000,"visiblehouse": story1, "housename": "one story"},"twostory": {"housecost": 10000,"visiblehouse": story2, "housename": "two story"},"threestory": {"housecost": 15000,"visiblehouse": story3, "housename": "three story"},"mansion": {"housecost": 50000,"visiblehouse": mansion, "housename": "mansion"},"castle": {"housecost": 100000,"visiblehouse": castle, "housename": "castle"}};
+
+//var {housecost, visiblehouse, housename} = houseobj[nameofHouse];
+
+var safercrosswalks = "Safer Crosswalk - become a level 2 crossing guard dog"
+var childsaver = "Child Saver - become a level 5 crossing guard dog"
+var carstoppingmaster = "Car Stopping Master - become a level 10 crossing guard dog"
+var elitecg = "Elite Crossing Guard Dog - become a level 20 crossing guard dog"
 
 var shipthis = "Ship This - become a level 2 mail delivery dog"
 var mailmaster = "Mail Master - become a level 5 mail delivery dog"
@@ -452,7 +243,7 @@ var majorleague = "Major League - become a level 5 baseball retrieving dog"
 var grandslam = "Grand Slam - become a level 10 baseball retrieving dog"
 var elitebrd = "Elite Baseball Retrieving Dog - become a level 20 baseball retrieving dog"
 
-var firstbust = "First Bust - become a level 2 drug detection dog"
+var veryfirstbust = "First Bust - become a level 2 drug detection dog"
 var majorbust = "Major Bust - become a level 5 drug detection dog"
 var mastersniffer = "Master Sniffer - become a level 10 drug detection dog"
 var elitedd = "Elite Drug Detection Dog- become a level 20 drug detection dog"
@@ -480,18 +271,18 @@ var imbroke = "I'm Broke - have a good person give you $10"
 var househunter = "House Hunter - buy your first house"
 var sharingcaring = "Sharing is Caring - feed someone else's dog"
 var teamplayer = "Team Player - play with someone else's dog"
-var maxachievements
+var maxachievements = 31
 
 client.on('ready' , (ready) => {
     let db = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
-    let getdatafs = (`SELECT cgname FROM serverdata WHERE testdata = ?`);
+    let getdatafs = (`SELECT * FROM serverdata WHERE testdata = ?`);
     db.get(getdatafs, [testdata], (err, row) => {
         if (err) {
             console.log(err)
         }
         if (row === undefined) {
-        let dataforserver = db.prepare('INSERT INTO serverdata VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)')
-        dataforserver.run(1234, "crossing guard", 5, 10, 3600000, "1 hour", "mail delivery dog", 6, 15, 7200000, "2 hours", "baseball retrieving dog", 7, 20, 10800000, "3 hours", "drug detection dog", 15, 50, 14400000, "4 hours", "k-9 police dog", 12, 35, 10800000, "3 hours", "sled dog", 10, 20, 21600000, "6 hours", "bedsheet", 25, 1.1, "mat", 100, 1.2, "twin", 500, 1.4, "full", 1250, 1.6, "queen", 2000, 1.75, "king", 4000, 2, 15, 100, 500, 1500, 3000, 10000, 15000, 50000, 100000, 0, 1, 0, "0", 1, 0, "0", 1, 0, "0", "none", "on")
+        let dataforserver = db.prepare('INSERT INTO serverdata VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)')
+        dataforserver.run(1234, 0, 1, 0, "0", 1, 0, "0", 1, 0, "0", "none", "on")
         dataforserver.finalize();
         db.close();
     }
@@ -520,47 +311,76 @@ let botsstartupchannel = client.channels.get("602398432744701972")
     setInterval(function(){
         ttemptoday = new Date();
         ttemptodayms = ttemptoday.getTime();
-
-        checktimer1cmd(ready)
-        checktimer2cmd(ready)
-        checktimer3cmd(ready)
-        checktimer4cmd(ready)
+        var timer1 = checktimer1cmd();
+        var timer2 = checktimer2cmd();
         }, 30000);
-function checktimer1cmd(ready) {
-        let tdb = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
-        var tempuserid = 0
-        var tempdoggoname = ""
-        var tempplaytimer = 0
-        let timeruserinfo = `SELECT userid, doggoname, playtimer FROM users`
-        tdb.all(timeruserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
-            }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    tempuserid = row.userid
-                    tempdoggoname = row.doggoname
-                    tempplaytimer = row.playtimer
-                    if ((tempplaytimer != 0) && (ttemptodayms > tempplaytimer)) {
-                        client.fetchUser(tempuserid).then((user) => {
-                            user.send("Your dog is ready to be done playing.");
-                        });
-                        tdb.run(`UPDATE users SET playtimer = ? WHERE userid = ?`, [0, tempuserid]);
-                    }
-        });
+function checktimer1cmd() {
+    let tdb = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
+    let timeruserinfo = `SELECT * FROM users`
+    tdb.all(timeruserinfo, [], (err, row) => {
+        if (err) {
+            console.log(err);
+        }
+        if (row === undefined) {
+            console.log("error");
+            return;
+        } else {
+            var i = 0;
+            do {
+                var tempuserid = row[i].userid;
+                var tempdoggoname = row[i].doggoname;
+                var tempplaytimer = row[i].playtimer;
+                var tempworktimer = row[i].worktimer;
+                var tempsleeptimer = row[i].sleeptimer;
+                var tempapplytimer = row[i].applytimer;
+                var dmdone = sendnotifs(tempuserid, tempdoggoname, tempplaytimer, tempworktimer, tempsleeptimer, tempapplytimer);
+                i ++;
+            } while (i < row.length);
+}
+});
+}
+function sendnotifs(userid, doggoname, tempplaytimer, tempworktimer, tempsleeptimer, tempapplytimer) {
+    let tdb = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
+    var dmmsg = "";
+    var anything = 0;
+    if ((tempplaytimer != 0) && (ttemptodayms > tempplaytimer)) {
+        tempplaytimer = 0;
+        anything ++;
+        dmmsg += (doggoname + " is ready to be done playing\n");
     }
-});
+    if ((tempworktimer != 0) && (ttemptodayms > tempworktimer)) {
+        tempworktimer = 0;
+        anything ++;
+        dmmsg += (doggoname + "'s shift is over\n");
+    }
+    if ((tempsleeptimer != 0) && (ttemptodayms > tempsleeptimer)) {
+        tempsleeptimer = 0;
+        anything ++;
+        dmmsg += (doggoname + " is at full energy\n");
+    }
+    if ((tempapplytimer != 0) && (ttemptodayms > tempapplytimer)) {
+        tempapplytimer = 0;
+        anything ++;
+        dmmsg += (doggoname + "'s application is ready to be checked by using `//application`\n");
+    }
+
+    if (anything > 0) {
+        tdb.run(`UPDATE users SET playtimer = ?, worktimer = ?, sleeptimer = ?, applytimer = ? WHERE userid = ?`, [tempplaytimer, tempworktimer, tempsleeptimer, tempapplytimer, userid]);
+        client.fetchUser(userid).then((user) => {
+            user.send(dmmsg);
+            return "done";
+        });
+    } else {
+        return "done";
+    }
+
 }
-function checktimer2cmd(ready) {
+function checktimer2cmd() {
     let tdb = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
     var tempuserid = 0
-    var tempdoggoname = ""
-    var tempworktimer = 0
-    let timeruserinfo = `SELECT userid, doggoname, worktimer FROM users`
-    tdb.all(timeruserinfo, [], (err, row) => {
+    var tempshotdailycd = 0
+    let shotuserinfo = `SELECT * FROM users`
+    tdb.all(shotuserinfo, [], (err, row) => {
         if (err) {
             console.log(err)
         }
@@ -570,69 +390,13 @@ function checktimer2cmd(ready) {
         } else {
             row.forEach((row) => {
                 tempuserid = row.userid
-                tempdoggoname = row.doggoname
-                tempworktimer = row.worktimer
-                if ((tempworktimer != 0) && (ttemptodayms > tempworktimer)) {
-                    client.fetchUser(tempuserid).then((user) => {
-                        user.send("Your dog's shift is over.");
-                    });
-                    tdb.run(`UPDATE users SET worktimer = ? WHERE userid = ?`, [0, tempuserid]);
-                }
-    });
-}
-});
-}
-function checktimer3cmd(ready) {
-    let tdb = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
-    var tempuserid = 0
-    var tempdoggoname = ""
-    var tempsleeptimer = 0
-    let timeruserinfo = `SELECT userid, doggoname, sleeptimer FROM users`
-    tdb.all(timeruserinfo, [], (err, row) => {
-        if (err) {
-            console.log(err)
-        }
-        if (row === undefined) {
-            console.log("error")
-            return
-        } else {
-            row.forEach((row) => {
-                tempuserid = row.userid
-                tempdoggoname = row.doggoname
-                tempsleeptimer = row.sleeptimer
-                if ((tempsleeptimer != 0) && (ttemptodayms > tempsleeptimer)) {
-                    client.fetchUser(tempuserid).then((user) => {
-                        user.send("Your dog is at full energy.");
-                    });
-                    tdb.run(`UPDATE users SET sleeptimer = ? WHERE userid = ?`, [0, tempuserid]);
-                }
-    });
-}
-});
-}
-function checktimer4cmd(ready) {
-    let tdb = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
-    var tempuserid = 0
-    var tempdoggoname = ""
-    var tempapplytimer = 0
-    let timeruserinfo = `SELECT userid, doggoname, applytimer FROM users`
-    tdb.all(timeruserinfo, [], (err, row) => {
-        if (err) {
-            console.log(err)
-        }
-        if (row === undefined) {
-            console.log("error")
-            return
-        } else {
-            row.forEach((row) => {
-                tempuserid = row.userid
-                tempdoggoname = row.doggoname
-                tempapplytimer = row.applytimer
-                if ((tempapplytimer != 0) && (ttemptodayms > tempapplytimer)) {
-                    client.fetchUser(tempuserid).then((user) => {
-                        user.send("Your dog's application is ready to be checked.");
-                    })
-                    tdb.run(`UPDATE users SET applytimer = ? WHERE userid = ?`, [0, tempuserid]);
+                tempshotdailycd = row.shotdailycd
+                if ((tempshotdailycd != 0) && (ttemptodayms > tempshotdailycd)) {
+                    tdb.run(`UPDATE users SET shotdailycd = ? WHERE userid = ?`, [(ttemptodayms + 86400000), tempuserid]);
+                    tdb.run(`UPDATE users SET shotbought = ? WHERE userid = ?`, [0, tempuserid]);
+                } else if (tempshotdailycd == 0) {
+                    tdb.run(`UPDATE users SET shotdailycd = ? WHERE userid = ?`, [(ttemptodayms + 86400000), tempuserid]);
+                    tdb.run(`UPDATE users SET shotbought = ? WHERE userid = ?`, [0, tempuserid]);
                 }
     });
 }
@@ -641,7 +405,7 @@ function checktimer4cmd(ready) {
 });
 
 client.on('message' , (message) => {    //Tells bot not to respond to self
-    if ((message.author == client.user) || (message.author.bot == 1)) {
+    if ((message.author == client.user) || (message.author.bot == true)) {
         return
     }
     let datachannel = client.channels.get("622658650640744498")
@@ -657,7 +421,7 @@ client.on('message' , (message) => {    //Tells bot not to respond to self
            console.log("error")
         } else {
             if (temptodayms > row.datatime) {
-                sdb.run(`UPDATE serverdata SET datatime = ? WHERE testdata = ?`, [(temptodayms + 10800000), 1234]);
+                sdb.run(`UPDATE serverdata SET datatime = ? WHERE testdata = ?`, [(temptodayms + 21600000), 1234]);
                 datachannel.send(version + "\n" + temptoday + "\n").then(datachannel.send( {files: ["./STG.db"]} ))
             }
         }
@@ -669,14 +433,7 @@ client.on('message' , (message) => {    //Tells bot not to respond to self
     //         const toSend = jsondata.substring(i, Math.min(jsondata.length, i + 1975));
     //         datachannel.send(toSend);
     //     }
-    //     gamedata["serverdata"].datatime = (temptodayms + 3600000)
-    //     fs.writeFileSync ("./gamedata.json", JSON.stringify(gamedata, null, 1), err => {
-    //         if (err) throw err;
-    //     });
     // }
-
-    //message.channel.send("Message recieved, " + message.author.toString()
-     //+ ": " + message.content)
 
     //let customemoji = message.guild.emojis.get("599641675832229889")
     //message.react(customemoji)
@@ -710,6 +467,9 @@ function processcommand(message) {                          //Command prompt
     let casethirdcommand = casesplitcommand[2]
     let casefourthcommand = casesplitcommand[3]
     let casefifthcommand = casesplitcommand[4]
+    var threeplus;
+    var fourplus;
+    var fiveplus;
     let twoplus = casecommand.slice(firstcommand.length + 1)
     if (secondcommand !== undefined) {
         threeplus = casecommand.slice(firstcommand.length + secondcommand.length + 2)
@@ -747,7 +507,7 @@ function processcommand(message) {                          //Command prompt
     } else {
         messagementions = false
     }
-    let serverinfo = `SELECT password, passwordnum, lock, glevel, glevelmin, ggnum, mute, cooldowntime, interval, intletter, lockenter, locknum, cmdnumber, talkchance FROM servers WHERE guildid = ?`;
+    let serverinfo = `SELECT * FROM servers WHERE guildid = ?`;
     db.get(serverinfo, [guildid], (err, row) => {
         if (err) {
             console.log(err)
@@ -781,70 +541,13 @@ function processcommand(message) {                          //Command prompt
     });
 
     function persondatacmd1(message) {
-        let sdatainfo = `SELECT testdata, cgname, cgnumber, cgsalary, cgtime, cglength, mdname, mdnumber, mdsalary, mdtime, mdlength, brdname, brdnumber, brdsalary, brdtime, brdlength, ddname, ddnumber, ddsalary, ddtime, ddlength, pdname, pdnumber, pdsalary, pdtime, pdlength, sdname, sdnumber, sdsalary, sdtime, sdlength, bedsheetname, bedsheetcost, bedsheetincrease, matname, matcost, matincrease, twinname, twincost, twinincrease, fullname, fullcost, fullincrease, queenname, queencost, queenincrease, kingname, kingcost, kingincrease, box, doghouse, shed, shack, onestory, twostory, threestory, mansion, castle, datatime, saleprice, saletime, salemsgid, ebprice, ebtime, ebmsgid, boxprice, boxtime, boxmsgid, person, botstatus FROM serverdata WHERE testdata = ?`
+        let sdatainfo = `SELECT * FROM serverdata WHERE testdata = ?`
         db.get(sdatainfo, ["1234"], (err, row) => {
             if (err) {
                 console.log(err)
                 botmessageschannel.send(err)
             }
             if (row !== undefined) {
-            cgname = row.cgname
-            cgnumber = row.cgnumber
-            cgsalary = row.cgsalary
-            cgtime = row.cgtime
-            cglength = row.cglength
-            mdname = row.mdname
-            mdnumber = row.mdnumber
-            mdsalary = row.mdsalary
-            mdtime = row.mdtime
-            mdlength = row.mdlength
-            brdname = row.brdname
-            brdnumber = row.brdnumber
-            brdsalary = row.brdsalary
-            brdtime = row.brdtime
-            brdlength = row.brdlength
-            ddname = row.ddname
-            ddnumber = row.ddnumber
-            ddsalary = row.ddsalary
-            ddtime = row.ddtime
-            ddlength = row.ddlength
-            pdname = row.pdname
-            pdnumber = row.pdnumber
-            pdsalary = row.pdsalary
-            pdtime = row.pdtime
-            pdlength = row.pdlength
-            sdname = row.sdname
-            sdnumber = row.sdnumber
-            sdsalary = row.sdsalary
-            sdtime = row.sdtime
-            sdlength = row.sdlength
-            bedsheetname = row.bedsheetname
-            bedsheetcost = row.bedsheetcost
-            bedsheetincrease = row.bedsheetincrease
-            matname = row.matname
-            matcost = row.matcost
-            matincrease = row.matincrease
-            twinname = row.twinname
-            twincost = row.twincost
-            twinincrease = row.twinincrease
-            fullname = row.fullname
-            fullcost = row.fullcost
-            fullincrease = row.fullincrease
-            queenname = row.queenname
-            queencost = row.queencost
-            queenincrease = row.queenincrease
-            kingname = row.kingname
-            kingcost = row.kingcost
-            kingincrease = row.kingincrease
-            boxcost = row.box
-            doghousecost = row.doghouse
-            shedcost = row.shed
-            shedcost = row.shack
-            onestorycost = row.onestory
-            twostorycost = row.twostory
-            threestorycost = row.threestory
-            mansioncost = row.mansion
-            castlecost = row.castle
             datatime = row.datatime
             saleprice = row.saleprice
             saletime = row.saletime
@@ -857,6 +560,14 @@ function processcommand(message) {                          //Command prompt
             boxmsgid = row.boxmsgid
             person = row.person
             botstatus = row.botstatus
+            
+            if ((!person.includes("none")) && (userid == MetalRain))
+                userid = person
+                personset = true
+            } else {
+                personset = false
+                userid = message.author.id
+                username = message.author.tag
             }
             
             persondatacmd2(message)
@@ -865,7 +576,7 @@ function processcommand(message) {                          //Command prompt
 
     function persondatacmd2(message) {
 
-        let userinfo = `SELECT userid, username, dmchannelid, cmdchannelid, cmdpassenter, cmdnumber, commandnumber, commandtext, chatid, chatnum, sgscore, sghighscore, rpsbotscore, rpsuserscore, rpsgame, doggocreate, doggocreatedtime, doggoname, currentdoggo, breed, money, foodnum, energynum, poopcooldown, jobcooldown, breedcooldown, statsupdatetime, sleeping, sleeptime, doggosex, foodservings, applytime, appliedjob, currentjob, working, workstarttime, workendtime, status, quit, playnum, sleepstatgain, sleepstatlose, foodstatlose, playstatlose, playstatgain, bed, doggotime, playtime, totalservings, totalworkhours, totalplaytime, totalmoney, cgexp, mdexp, brdexp, ddexp, pdexp, sdexp, salary, naptime, lastinttime, gifttime, giftboxes, killdog, house, notif, privacy, device, playtimer, worktimer, sleeptimer, applytimer, lottery, lotterynumber, lbpoints, pregnant, pregnanttime, pups, pupshunger, bredpups, achievements, achnum FROM users WHERE userid = ?`
+        let userinfo = `SELECT * FROM users WHERE userid = ?`
         db.get(userinfo, [userid], (err, row) => {
             if (err) {
                 console.log(err)
@@ -874,91 +585,104 @@ function processcommand(message) {                          //Command prompt
             if (row === undefined) {
                 console.log("User data added")
                 botmessageschannel.send("User data added")
-                userinfo = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-                userinfo.run(userid, username, 0, 0, 0, 0, 0, "none", 0, 0, 0, 0, 0, 0, 0, 0, todayms, "none", "regulardoggo", "lab", 10, 100, 100, 0, 0, 0, todayms, 0, 0, "none", 0, 0, "none", "none", 0, 0, 0, "none", 0, 100, bsleepstatgain, bsleepstatlose, bfoodlosestat, bplaystatlose, bplaystatgain, "none", 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, todayms, 0, 0, 0, "none", "ON", "OPEN", "PC", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, "<", 0);
+                userinfo = db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+                userinfo.run(userid, username, 0, 0, 0, 0, 0, "none", 0, 0, 0, 0, 0, 0, 0, 0, todayms, "none", "regulardoggo", "lab", 10, 100, 100, 0, 0, 0, todayms, 0, 0, "none", 0, 0, "none", "none", 0, 0, 0, "none", 0, 100, bsleepstatgain, bsleepstatlose, bfoodlosestat, bplaystatlose, bplaystatgain, "none", 0, 0, 0, 0, 0, 10, ("0,0,0,0,0,0"), 0, 0, todayms, 0, 0, 0, "none", "ON", "OPEN", "PC", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, "<", 0, 0, 0, todayms, 0, 0, 0, 0, 0, 0, bbathstatlose, "none");
                 userinfo.finalize();
-                return
+                return;
             } else {
-                dmchannelid = row.dmchannelid
-                cmdchannelid = row.cmdchannelid
-                cmdpassenter = row.cmdpassenter
-                cmdnumber = row.cmdnumber
-                commandnumber = row.commandnumber
-                commandtext = row.commandtext
-                chatid = row.chatid
-                chatnum = row.chatnum
-                sgscore = row.sgscore
-                sghighscore = row.sghighscore
-                rpsbotscore = row.rpsbotscore
-                rpsuserscore = row.rpsuserscore
-                rpsgame = row.rpsgame
-                doggocreate = row.doggocreate
-                doggocreatedtime = row.doggocreatedtime
-                doggoname = row.doggoname
-                currentdoggo = row.currentdoggo
-                breed = row.breed
-                money = row.money
-                foodnum = row.foodnum
-                energynum = row.energynum
-                poopcooldown = row.poopcooldown
-                jobcooldown = row.jobcooldown
-                breedcooldown = row.breedcooldown
-                statsupdatetime = row.statsupdatetime
-                sleeping = row.sleeping
-                sleeptime = row.sleeptime
-                doggosex = row.doggosex
-                foodservings = row.foodservings
-                applytime = row.applytime
-                appliedjob = row.appliedjob
-                currentjob = row.currentjob
-                working = row.working
-                workstarttime = row.workstarttime
-                workendtime = row.workendtime
-                status = row.status
-                quit = row.quit
-                playnum = row.playnum
-                sleepstatgain = row.sleepstatgain
-                sleepstatlose = row.sleepstatlose
-                foodstatlose = row.foodstatlose
-                playstatlose = row.playstatlose
-                playstatgain = row.playstatgain
-                bed = row.bed
-                doggotime = row.doggotime
-                playtime = row.playtime
-                totalservings = row.totalservings
-                totalworkhours = row.totalworkhours
-                totalplaytime = row.totalplaytime
-                totalmoney = row.totalmoney
-                cgexp = row.cgexp
-                mdexp = row.mdexp
-                brdexp = row.brdexp
-                ddexp = row.ddexp
-                pdexp = row.pdexp
-                sdexp = row.sdexp
-                salary = row.salary
-                naptime = row.naptime
-                lastinttime = row.lastinttime
-                gifttime = row.gifttime
-                giftboxes = row.giftboxes
-                killdog = row.killdog
-                house = row.house
-                notif = row.notif
-                privacy = row.privacy
-                device = row.device
-                playtimer = row.playtimer
-                worktimer = row.worktimer
-                sleeptimer = row.sleeptimer
-                applytimer = row.applytimer
-                lottery = row.lottery
-                lotterynumber = row.lotterynumber
-                lbpoints = row.lbpoints
-                pregnant = row.pregnant
-                pregnanttime = row.pregnanttime
-                pups = row.pups
-                pupshunger = row.pupshunger
-                bredpups = row.bredpups
-                achievements = row.achievements
-                achnum = row.achnum
+                if (personset == true) {
+                    username = row.username
+                }
+                var dmchannelid = row.dmchannelid
+                var cmdchannelid = row.cmdchannelid
+                var cmdpassenter = row.cmdpassenter
+                var cmdnumber = row.cmdnumber
+                var commandnumber = row.commandnumber
+                var commandtext = row.commandtext
+                var chatid = row.chatid
+                var chatnum = row.chatnum
+                var sgscore = row.sgscore
+                var sghighscore = row.sghighscore
+                var rpsbotscore = row.rpsbotscore
+                var rpsuserscore = row.rpsuserscore
+                var rpsgame = row.rpsgame
+                var doggocreate = row.doggocreate
+                var doggocreatedtime = row.doggocreatedtime
+                var doggoname = row.doggoname
+                var currentdoggo = row.currentdoggo
+                var breed = row.breed
+                var money = row.money
+                var foodnum = row.foodnum
+                var energynum = row.energynum
+                var poopcooldown = row.poopcooldown
+                var jobcooldown = row.jobcooldown
+                var breedcooldown = row.breedcooldown
+                var statsupdatetime = row.statsupdatetime
+                var sleeping = row.sleeping
+                var sleeptime = row.sleeptime
+                var doggosex = row.doggosex
+                var foodservings = row.foodservings
+                var applytime = row.applytime
+                var appliedjob = row.appliedjob
+                var currentjob = row.currentjob
+                var working = row.working
+                var workstarttime = row.workstarttime
+                var workendtime = row.workendtime
+                var status = row.status
+                var quit = row.quit
+                var playnum = row.playnum
+                var sleepstatgain = row.sleepstatgain
+                var sleepstatlose = row.sleepstatlose
+                var foodstatlose = row.foodstatlose
+                var playstatlose = row.playstatlose
+                var playstatgain = row.playstatgain
+                var bed = row.bed
+                var doggotime = row.doggotime
+                var playtime = row.playtime
+                var totalservings = row.totalservings
+                var totalworkhours = row.totalworkhours
+                var totalplaytime = row.totalplaytime
+                var totalmoney = row.totalmoney
+                var rawexp = row.exp
+                var exp = (rawexp.split(",").map(Number));
+                var salary = row.salary
+                var naptime = row.naptime
+                var lastinttime = row.lastinttime
+                var gifttime = row.gifttime
+                var giftboxes = row.giftboxes
+                var killdog = row.killdog
+                var house = row.house
+                var notif = row.notif
+                var privacy = row.privacy
+                var device = row.device
+                var playtimer = row.playtimer
+                var worktimer = row.worktimer
+                var sleeptimer = row.sleeptimer
+                var applytimer = row.applytimer
+                var lottery = row.lottery
+                var lotterynumber = row.lotterynumber
+                var lbpoints = row.lbpoints
+                var pregnant = row.pregnant
+                var pregnanttime = row.pregnanttime
+                var pups = row.pups
+                var pupshunger = row.pupshunger
+                var bredpups = row.bredpups
+                var achievements = row.achievements
+                var achnum = row.achnum
+                var energyshots = row.energyshots
+                var shotcd = row.shotcd
+                var shotdailycd = row.shotdailycd
+                var shotbought = row.shotbought
+                var totalshots = row.totalshots
+                var geckopoints = row.geckopoints
+                var totalplays = row.totalplays
+                var totalfeeds = row.totalfeeds
+                var bathnum = row.bathnum
+                var bathstatlose = row.bathstatlose
+                var rawnotifmsgs = row.notifmsgs
+                var notifmsgs = (rawnotifmsgs.split(","));
+                var streakstart = row.streakstart
+                console.log("playnum1: " + playnum);
             }
 
         if (firstcommand.includes("//bot")) {
@@ -968,6 +692,10 @@ function processcommand(message) {                          //Command prompt
 
         if (botstatus == "off") {
             return
+        }
+
+        if (firstcommand.includes("//doglb")) {
+            doglb(message);
         }
 
         if ((message.channel.name.includes("gecko")) && ((firstcommand.includes("//")) == false)) {
@@ -986,8 +714,8 @@ function processcommand(message) {                          //Command prompt
         }
 
         if (firstcommand.includes("//gift")) {
-            giftcmd(message)
-            return
+            giftcmd(message, firstcommand, secondcommand, casesecondcommand, thirdcommand, threeplus);
+            return;
         }
 
         if ((firstcommand == "//killdog") || (firstcommand == "//savedog")) {
@@ -995,24 +723,58 @@ function processcommand(message) {                          //Command prompt
             return
         }
 
-        if ((message.channel.name.includes("doggo")) && (firstcommand != "//clear")) {
-            doggogamecmd(message)
-            return
+        if (firstcommand.includes("//") && (firstcommand.includes("echo"))) {
+            echocmd(message, firstcommand, secondcommand, thirdcommand, casecommand, fullcommand);
+            return;
         }
 
-        if (firstcommand.includes("//") && (firstcommand.includes("echo"))) {
-            echocmd(message)
-            return
+        if (firstcommand.includes("//post")) {
+            message.delete(1);
+            if (fourthcommand === undefined) {
+                message.channel.send("```Use //post [userid] [name] [what to say]```");
+                return;
+            }
+            if (secondcommand != "me") {
+                userid2 = secondcommand;
+            } else {
+                userid2 = userid;
+            }
+            var msgtosend = fourplus;
+            dogagram(userid2, casethirdcommand, msgtosend);
+            return;
+        }
+
+        if ((message.channel.name.includes("doggo")) && (firstcommand != "//clear")) {
+            doggogamecmd(userid, message, firstcommand, secondcommand, thirdcommand, fourthcommand, fifthcommand, fullcommand, dmchannelid, cmdchannelid, cmdpassenter, cmdnumber, commandtext, chatid, chatnum, sgscore, sghighscore, rpsbotscore, rpsuserscore, rpsgame, doggocreate, doggocreatedtime, doggoname, currentdoggo, breed, money, foodnum, energynum, poopcooldown, jobcooldown, breedcooldown, statsupdatetime, sleeping, sleeptime, doggosex, foodservings, applytime, appliedjob, currentjob, working, workstarttime, workendtime, status, quit, playnum, sleepstatgain, sleepstatlose, foodstatlose, playstatlose, playstatgain, bed, doggotime, playtime, totalservings, totalworkhours, totalplaytime, totalmoney, exp, salary, naptime, lastinttime, gifttime, giftboxes, killdog, house, notif, privacy, device, playtimer, worktimer, sleeptimer, applytimer, lottery, lotterynumber, lbpoints, pregnant, pregnanttime, pups, pupshunger, bredpups, achievements, achnum, energyshots, shotcd, shotdailycd, shotbought, totalshots, geckopoints, totalplays, totalfeeds, bathnum, bathstatlose, notifmsgs, streakstart);
+            return;
+        }
+
+        if (firstcommand == "//annoy") {
+            message.delete(1);
+            var msgq = "false";
+            if (userid != MetalRain) {
+                return;
+            } else {
+                if ((secondcommand !== undefined) && (secondcommand.includes("clear"))) {
+                    annoy(secondcommand, "false", true);
+                } else {
+                    if (thirdcommand !== undefined) {
+                        msgq = thirdcommand;
+                    }
+                    annoy(secondcommand, msgq, false);
+                }
+            }
+            return;
         }
 
         if ((firstcommand == "//serverinfo") || (firstcommand == "//channelinfo")) {
-            serverinfocmd(message)
+            serverinfocmd(message, firstcommand, fullcommand, userid);
             return
         }
 
         if (firstcommand == "//ss") {
-            setstatuscmd(message)
-            return
+            setstatuscmd(message, secondcommand, fullcommand);
+            return;
         }
 
         if (firstcommand == "//getdm") {
@@ -1021,18 +783,18 @@ function processcommand(message) {                          //Command prompt
         }
 
         if (firstcommand == "//sale") {
-            salecmd(message)
-            return
+            salecmd(message, firstcommand, secondcommand, thirdcommand, fourthcommand);
+            return;
         }
 
         if (firstcommand == "//eb") {
-            earnboostcmd(message)
-            return
+            earnboostcmd(message, firstcommand, secondcommand, thirdcommand, fourthcommand);
+            return;
         }
         
         if (firstcommand == "//box") {
-            boxeventcmd(message)
-            return
+            boxeventcmd(message, firstcommand, secondcommand, thirdcommand, fourthcommand);
+            return;
         }
 
         if (message.channel.id == "626100159436161045") {
@@ -1042,7 +804,7 @@ function processcommand(message) {                          //Command prompt
 
 
         if ((message.channel.name.includes("general")) || (message.channel.name.includes("command")) || (message.channel.name.includes("test"))) {
-            talkcmd(message)
+            talkcmd(message, fullcommand, splitcommand, chatid, chatnum, userid);
         }
 
             if (firstcommand.includes("//ver")) {
@@ -1083,8 +845,7 @@ function processcommand(message) {                          //Command prompt
 
                     if (firstcommand.includes("//setpassword") && (passwordnum == 0)) {
                         message.delete(1)
-                        db.run(`UPDATE servers SET passwordnum = ? WHERE guildid = ?`, [1, guildid]);
-                        db.run(`UPDATE users SET cmdchannelid = ? WHERE userid = ?`, [(message.channel.id), userid]);
+                        db.run(`UPDATE servers SET passwordnum = ?, cmdchannelid = ? WHERE guildid = ?`, [1, (message.channel.id), guildid]);
                         message.channel.send("```Create password:```")
                         return
                     } else if ((passwordnum == 1) && (message.channel.id == cmdchannelid)) {
@@ -1196,8 +957,8 @@ function processcommand(message) {                          //Command prompt
                 if (firstcommand.includes("//clear")) {
                     message.delete(1)
                     commandnumber = parseInt(secondcommand, 10)
-                   clearcmd(message)
-                   return
+                   clearcmd(message, commandnumber);
+                   return;
                 }
 
                 if (firstcommand.includes("//mute")) {
@@ -1220,10 +981,10 @@ function processcommand(message) {                          //Command prompt
 
                 if (firstcommand.includes("//setcd")) {
                     message.delete(1)
-                    commandnumber = parseInt(secondcommand, 10)
+                    commandnumber = parseInt(secondcommand, 10);
                     commandtext = thirdcommand
-                    cooldowncmd(message)
-                    return
+                    cooldowncmd(message, commandtext, commandnumber);
+                    return;
                 }
 
                 if (firstcommand.includes("//resetcd")) {
@@ -1459,6 +1220,7 @@ function geckogamecmd(message) {
     }
     if (fullcommand == ggnum) {
         glevel += 10
+        geckopoints += 10
         message.channel.send("Correct, Steve is now level **" + glevel + ("**!"))
         ggnum = (Math.round(Math.random() * 9));
         if (glevel >= (glevelmin + 25)) {
@@ -1467,6 +1229,7 @@ function geckogamecmd(message) {
         }
         db.run(`UPDATE servers SET ggnum = ? WHERE guildid = ?`, [ggnum, guildid]);
         db.run(`UPDATE servers SET glevel = ? WHERE guildid = ?`, [glevel, guildid]);
+        db.run(`UPDATE users SET geckopoints = ? WHERE guildid = ?`, [geckopoints, guildid]);
         return
     } else if ((fullcommand != ggnum) && (isNaN(fullcommand) == false) && (fullcommand < 10) && (fullcommand >= 0)) {
         if (glevel > glevelmin) {
@@ -1983,7 +1746,7 @@ if (firstcommand.includes("!") == 0) {
 
     function helpcmd(message) {
         message.delete(1)
-        message.channel.send("```//aoc [Radius] - calculates the area of circle\n//coc [Radius] - calculates the circumference of a circle\n//sqrt [Number] - calculates the square root of a number\n//flipcoin - flips a coin\n//rolldice - rolls a die\n//adminhelp - displays admin commands (requires password)```")
+        message.channel.send("```//aoc [Radius] - calculates the area of circle\n//coc [Radius] - calculates the circumference of a circle\n//sqrt [Number] - calculates the square root of a number\n//flipcoin - flips a coin\n//rolldice - rolls a die\n//rps [odd number] - plays a rock, paper, scissors game```")
     }
 
     function mutecmd(message) {
@@ -2000,7 +1763,7 @@ if (firstcommand.includes("!") == 0) {
         db.run(`UPDATE servers SET mute = ? WHERE guildid = ?`, [0, guildid]);
     }
 
-    function clearcmd(message) {
+    function clearcmd(message, commandnumber) {
         commandnumber = parseInt(commandnumber, 10)
         commandnumber += 1
         if ((commandnumber <= 100) && (commandnumber > 0)) {
@@ -2022,7 +1785,7 @@ if (firstcommand.includes("!") == 0) {
     adminhelp = 0
     }
 
-    function cooldowncmd(message) {
+    function cooldowncmd(message, commandtext, commandnumber) {
     if (commandtext !== undefined) {
         if ((commandtext.includes("m")) || (commandtext.includes("minute"))) {
             intletter = "m"
@@ -2035,17 +1798,13 @@ if (firstcommand.includes("!") == 0) {
             letter = "second(s)"
         }
         interval = commandnumber
-        console.log(interval + intletter);
-        db.run(`UPDATE users SET cmdnumber = ? WHERE userid = ?`, [0, userid]);
-        db.run(`UPDATE users SET cmdpassenter = ? WHERE userid = ?`, [0, userid]);
-        db.run(`UPDATE users SET cmdchannelid = ? WHERE userid = ?`, [0, userid]);
-        db.run(`UPDATE servers SET interval = ? WHERE guildid = ?`, [interval, guildid]);
-        db.run(`UPDATE servers SET intletter = ? WHERE guildid = ?`, [intletter, guildid]);
-        message.channel.send("```Interval set to " + interval + " " + letter + ".```")
+        db.run(`UPDATE users SET cmdnumber = ?, cmdpassenter = ?, cmdchannelid = ? WHERE userid = ?`, [0, 0, 0, userid]);
+        db.run(`UPDATE servers SET interval = ?, intletter = ? WHERE guildid = ?`, [interval, intletter, guildid]);
+        message.channel.send("```Interval set to " + interval + " " + letter + ".```");
     } else {
-        message.channel.send("```Use //setcd [number] [seconds/minutes/hours] to set the cooldown.```")
+        message.channel.send("```Use //setcd [number] [seconds/minutes/hours] to set the cooldown.```");
     }
-    return
+    return;
     }
 
     function survivalleaderboardcmd(message) {
@@ -2079,7 +1838,7 @@ if (firstcommand.includes("!") == 0) {
             if (thirdcommand == "here") {
                 thirdcommand = guildid
             }
-            let serverinfo = `SELECT password, passwordnum, lock, glevel, glevelmin, ggnum, mute, cooldowntime, interval, intletter, lockenter, locknum, cmdnumber, talkchance FROM servers WHERE guildid = ?`;
+            let serverinfo = `SELECT * FROM servers WHERE guildid = ?`;
     db.get(serverinfo, [thirdcommand], (err, row) => {
         if (err) {
             console.log(err)
@@ -2292,12 +2051,27 @@ if (firstcommand.includes("!") == 0) {
 
     //Start doggo game///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    function doggogamecmd(message) {
+    function doggogamecmd(userid, message, firstcommand, secondcommand, thirdcommand, fourthcommand, fifthcommand, fullcommand, dmchannelid, cmdchannelid, cmdpassenter, cmdnumber, commandtext, chatid, chatnum, sgscore, sghighscore, rpsbotscore, rpsuserscore, rpsgame, doggocreate, doggocreatedtime, doggoname, currentdoggo, breed, money, foodnum, energynum, poopcooldown, jobcooldown, breedcooldown, statsupdatetime, sleeping, sleeptime, doggosex, foodservings, applytime, appliedjob, currentjob, working, workstarttime, workendtime, status, quit, playnum, sleepstatgain, sleepstatlose, foodstatlose, playstatlose, playstatgain, bed, doggotime, playtime, totalservings, totalworkhours, totalplaytime, totalmoney, exp, salary, naptime, lastinttime, gifttime, giftboxes, killdog, house, notif, privacy, device, playtimer, worktimer, sleeptimer, applytimer, lottery, lotterynumber, lbpoints, pregnant, pregnanttime, pups, pupshunger, bredpups, achievements, achnum, energyshots, shotcd, shotdailycd, shotbought, totalshots, geckopoints, totalplays, totalfeeds, bathnum, bathstatlose, notifmsgs, streakstart) {
 
+        if ((!firstcommand.includes("//")) && (!firstcommand.includes("yes")) && (!firstcommand.includes("no")) && (doggocreate != 1) && (doggocreate != 2) && (doggoname != "none")) {
+            return
+        }
+        if ((todayms - lastinttime) > 86400000) {
+            streakstart = 0;
+        }
+        if (streakstart <= 1000) {
+            db.run(`UPDATE users SET streakstart = ? WHERE userid = ?`, [todayms, userid]);
+            message.channel.send("```" + doggoname + "'s streak was restarted :(```");
+        }
+        var streaklength = (Math.floor((todayms - streakstart) / 86400000));
         number = (Math.ceil(Math.random() * 10))
         injurynum = (Math.ceil(Math.random() * 100))
         username2 = "none"
         newanum = 0
+        maxxp = false
+        fpplay = 0
+        console.log("playnum2: " + playnum);
+        
 
         if (currentdoggo == "regulardoggo") {
             currentdoggo = regulardoggo
@@ -2307,38 +2081,24 @@ if (firstcommand.includes("!") == 0) {
             sleepstatlose = (sleepstatlose * 0.8)
         }
 
+        var {bedcost, bedincrease} = bedobj[bed];
+
+        var {housecost, visiblehouse, housename} = houseobj[house];
+
         if (house == "none") {
             housename = "none"
-            visiblehouse = ""
-        } else if (house == "onestory") {
-            housename = "1 story"
-            visiblehouse = story1
-        } else if (house == "twostory") {
-            housename = "2 story"
-            visiblehouse = story2
-        } else if (house == "threestory") {
-            housename = "3 story"
-            visiblehouse = story3
-        } else if (house == "box") {
-            housename = house
-            visiblehouse = box
-        } else if (house == "doghouse") {
-            housename = house
-            visiblehouse = doghouse
-        } else if (house == "mansion") {
-            housename = house
-            visiblehouse = mansion
-        } else if (house == "castle") {
-            housename = house
-            visiblehouse = castle
+            visiblehouse = "";
         }
 
         if ((killdog == 1) && (firstcommand.includes("//"))) {
             message.channel.send("```" + doggoname + " has been destroyed.```")
             return
         }
-
         if ((saleprice != 1) && (saletime <= todayms)) {
+            if (salemsgid < 100) {
+                botmessageschannel.send("error getting sale event message")
+                return
+            }
             saleprice = 1
         const salechannel = client.channels.get(eventid);
         if (salechannel) {
@@ -2347,21 +2107,26 @@ if (firstcommand.includes("!") == 0) {
                 msgsize = messages.size
         if (msgsize >= 1) {
             salechannel.fetchMessage(salemsgid)
-            .then(messages, (err) => {
-                if (err) {
-                    botmessageschannel.send("error getting sale event message")
-                }
+            .then(messages => {
             messages.delete(1);
             db.run(`UPDATE serverdata SET saleprice = ? WHERE testdata = ?`, [1, 1234]);
             db.run(`UPDATE serverdata SET saletime = ? WHERE testdata = ?`, [0, 1234]);
             db.run(`UPDATE serverdata SET salemsgid = ? WHERE testdata = ?`, [0, 1234]);
         });
+        } else {
+            botmessageschannel.send("error getting sale event message")
         }
         });
+        } else {
+            botmessageschannel.send("error getting #events channel")
         }
         }
         if ((ebprice != 1) && (ebtime <= todayms)) {
             ebprice = 1
+        if (ebmsgid < 100) {
+            botmessageschannel.send("error getting sale event message")
+            return
+        }
         const salechannel = client.channels.get(eventid);
         if (salechannel) {
             salechannel.fetchMessages({ limit: 2 })
@@ -2369,21 +2134,26 @@ if (firstcommand.includes("!") == 0) {
                 msgsize = messages.size
         if (msgsize >= 1) {
             salechannel.fetchMessage(ebmsgid)
-            .then(messages, (err) => {
-                if (err) {
-                    botmessageschannel.send("error getting earning bonus event message")
-                }
+            .then(messages => {
             messages.delete(1);
             db.run(`UPDATE serverdata SET ebprice = ? WHERE testdata = ?`, [1, 1234]);
             db.run(`UPDATE serverdata SET ebtime = ? WHERE testdata = ?`, [0, 1234]);
             db.run(`UPDATE serverdata SET ebmsgid = ? WHERE testdata = ?`, [0, 1234]);
         });
+        } else {
+            botmessageschannel.send("error getting earning bonus event message")
         }
         });
+        } else {
+            botmessageschannel.send("error getting #events channel")
         }
         }
         if ((boxprice != 1) && (boxtime <= todayms)) {
             boxprice = 1
+        if (boxmsgid < 100) {
+            botmessageschannel.send("error getting sale event message")
+            return
+        }
         const salechannel = client.channels.get(eventid);
         if (salechannel) {
             salechannel.fetchMessages({ limit: 2 })
@@ -2391,78 +2161,42 @@ if (firstcommand.includes("!") == 0) {
                 msgsize = messages.size
         if (msgsize >= 1) {
             salechannel.fetchMessage(boxmsgid)
-            .then(messages, (err) => {
-                if (err) {
-                    botmessageschannel.send("error getting sale event message")
-                }
+            .then(messages => {
             messages.delete(1);
             db.run(`UPDATE serverdata SET boxprice = ? WHERE testdata = ?`, [1, 1234]);
             db.run(`UPDATE serverdata SET boxtime = ? WHERE testdata = ?`, [0, 1234]);
             db.run(`UPDATE serverdata SET boxmsgid = ? WHERE testdata = ?`, [0, 1234]);
         });
+        } else {
+            botmessageschannel.send("error getting box event message")
         }
         });
-        }
-        }
-        if (currentjob == "none") {
-            jobname = "none"
-            experience = 0
         } else {
-            if (currentjob == "cg") {
-                experience = cgexp
-                expname = "cgexp"
-                jobname = cgname
-                jobsalary = cgsalary
-                jobtime = cgtime
-                joblength = cglength
-                workenergy = ((jobtime / sleepstatlose) + 5)
-            } else if (currentjob == "md") {
-                experience = mdexp
-                expname = "mdexp"
-                jobname = mdname
-                jobsalary = mdsalary
-                jobtime = mdtime
-                joblength = mdlength
-                workenergy = ((jobtime / sleepstatlose) + 5)
-            } else if (currentjob == "brd") {
-                experience = brdexp
-                expname = "brdexp"
-                jobname = brdname
-                jobsalary = brdsalary
-                jobtime = brdtime
-                joblength = brdlength
-                workenergy = ((jobtime / sleepstatlose) + 5)
-            } else if (currentjob == "dd") {
-                experience = ddexp
-                expname = "ddexp"
-                jobname = ddname
-                jobsalary = ddsalary
-                jobtime = ddtime
-                joblength = ddlength
-                workenergy = ((jobtime / sleepstatlose) + 5)
-            } else if (currentjob == "pd") {
-                experience = pdexp
-                expname = "pdexp"
-                jobname = pdname
-                jobsalary = pdsalary
-                jobtime = pdtime
-                joblength = pdlength
-                workenergy = ((jobtime / sleepstatlose) + 5)
-            } else if (currentjob == "sd") {
-                experience = sdexp
-                expname = "sdexp"
-                jobname = sdname
-                jobsalary = sdsalary
-                jobtime = sdtime
-                joblength = sdlength
-                workenergy = ((jobtime / sleepstatlose) + 5)
-            }
+            botmessageschannel.send("error getting #events channel")
+        }
+        }
+
+        var {jobname, jobnumber, jobsalary, jobtime, jobindex} = jobsobj[currentjob];
+        var maxxp = false;
+        var workenergy;
+        var experience;
+
+        if (currentjob == "none") {
+            jobname = "none";
+            experience = 0;
+        } else {
+            experience = exp[jobindex];
+            workenergy = ((jobtime / sleepstatlose) + 5)
             if (pregnant == 1) {
                 jobtime = (jobtime / 2)
+                workenergy = (workenergy / 2)
+            }
+            if (experience >= 490) {
+                maxxp = true
             }
         }
 
-        explevel = ((Math.floor(experience / 10)) + 1)
+        var explevel = ((Math.floor(experience / 10)) + 1)
 
         if (doggosex == "female") {
             doggonoun = "she"
@@ -2483,13 +2217,19 @@ if (firstcommand.includes("!") == 0) {
             doggoobject = "him"
         }
 
-        agetime = (Math.round((todayms - doggocreatedtime)))
-        ageyears = (Math.floor((agetime / 51840000)))
-        agemonths = (Math.floor(((agetime - (ageyears * 51840000)) / 4320000)))
-        age = (ageyears + " years " + agemonths + " months")
+        var agetime = (Math.round((todayms - doggocreatedtime)))
+        var ageyears = (Math.floor((agetime / 51840000)))
+        var agemonths = (Math.floor(((agetime - (ageyears * 51840000)) / 4320000)))
+        var age = (ageyears + " years " + agemonths + " months")
 
         if ((todayms > gifttime) && (firstcommand.includes("//")) && (firstcommand != "//open") && (doggoname != "none") && (working == 0) && (firstcommand != "//help") && (firstcommand != "//work")) {
             message.channel.send("```" + doggoname + " has a daily gift box to open! use //open gift to open it.```")
+        }
+
+        if ((playtime != 0) && (((todayms - playtime) / 60000) > 20)) {
+            var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+            playnum = dpresult[0];
+            console.log("playnum3: " + playnum);
         }
 
         if ((todayms > naptime) && (firstcommand.includes("//")) && (naptime != 0) && (doggoname != "none") && (sleeping == 0)) {
@@ -2545,12 +2285,12 @@ if (firstcommand.includes("!") == 0) {
             db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
             db.run(`UPDATE users SET totalmoney = ? WHERE userid = ?`, [totalmoney, userid]);
             newanum = 1
-            achievementscmd(message)
+            achievementscmd(message, achievements, exp, money, giftboxes, foodservings, achnum, house, pups, newanum, doggoname, userid);
         }
 
         if ((doggocreate == 1) && (message.channel.id == cmdchannelid)) { //making dog stage 2
             message.delete(1)
-            if ((firstcommand == "none") || (firstcommand.includes("#") == true) || (isNaN(firstcommand) == false)) {
+            if ((firstcommand == "none") || (firstcommand.includes("#") == true) || (!isNaN(firstcommand))) {
                 message.channel.send("```You can't use that name, please pick a different name:```")
                 return
             }
@@ -2568,6 +2308,7 @@ if (firstcommand.includes("!") == 0) {
                 db.run(`UPDATE users SET cmdchannelid = ? WHERE userid = ?`, [0, userid]);
                 db.run(`UPDATE users SET doggotime = ? WHERE userid = ?`, [(todayms + 172800000), userid]);
                 db.run(`UPDATE users SET doggocreatedtime = ? WHERE userid = ?`, [todayms, userid]);
+                db.run(`UPDATE users SET statsupdatetime = ? WHERE userid = ?`, [todayms, userid]);
                 message.channel.send("```Congrats! " + doggoname + " is " + doggosex + " and can now go out into the world! Your body has been transformed into a dog and you can now do what dogs do.\nFor 48 hours you will have 1.5x energy earned to help you get on your feet...      or should I say paws. Use //help for help.```")
             } else {
                 message.channel.send("```Please choose male/female:```")
@@ -2580,93 +2321,26 @@ if (firstcommand.includes("!") == 0) {
             db.run(`UPDATE users SET naptime = ? WHERE userid = ?`, [(todayms + 21600000), userid]);
         }
 
-        if ((todayms >= (statsupdatetime + 900000)) || (firstcommand.includes("wake")) || (firstcommand.includes("sleep")) || (firstcommand.includes("play")) || (firstcommand.includes("eat")) || ((firstcommand.includes("feed")) && (secondcommand.includes("fam")))) { //let's the stats update code know to update the stats
-            statsupdate = 1;
-        } else {
-            statsupdate = 0;
-        }
-        if (statsupdate == 1) {
-            realstatsupdatetime = statsupdatetime
-            pupshunger -= ((Math.round((todayms - statsupdatetime) / bpupfoodlosestat)) * pups)
-            if (pupshunger < 0) {
-                pupshunger = 0
-            }
-            db.run(`UPDATE users SET pupshunger = ? WHERE userid = ?`, [pupshunger, userid]);
-            if (sleeping == 1) {
-                if (energynum < 100) {
-                    energynum += (Math.round((todayms - statsupdatetime) / sleepstatgain))
-                if (energynum < 0) {
-                    energynum = 0
-                } else if (energynum > 100) {
-                    energynum = 100
-                    }
-                }
-                if (foodnum > 0) {
-                    foodnum -= (Math.round((todayms - statsupdatetime) / (foodstatlose * 3)))
-                if (foodnum < 0) {
-                    foodnum = 0
-                    }
-                }
-                if (status != "playing") {
-                if (playnum > 0) {
-                    playnum -= (Math.round((todayms - statsupdatetime) / playstatlose))
-                if (playnum < 0) {
-                    playnum = 0
-                    }
-                }
-                }
-                statsupdatetime = todayms;
-                db.run(`UPDATE users SET statsupdatetime = ? WHERE userid = ?`, [statsupdatetime, userid]);
-                db.run(`UPDATE users SET energynum = ? WHERE userid = ?`, [energynum, userid]);
-                db.run(`UPDATE users SET foodnum = ? WHERE userid = ?`, [foodnum, userid]);
-                db.run(`UPDATE users SET playnum = ? WHERE userid = ?`, [playnum, userid]);
-            } else if (sleeping == 0) {
-                if ((todayms < naptime) || (naptime < todayms)) {
-                    if (todayms > naptime) {
-                        statsupdatetime = (todayms - (naptime - statsupdatetime))
-                    }
-                    if (energynum > 0) {
-                    energynum -= (Math.round((todayms - statsupdatetime) / sleepstatlose))
-                    if (energynum < 0) {
-                    energynum = 0
-                    } else if (energynum > 100) {
-                        energynum = 100
-                    }
-                }
-                }
-                statsupdatetime = realstatsupdatetime
-                if (foodnum > 0) {
-                    foodnum -= (Math.round((todayms - statsupdatetime) / foodstatlose))
-                    if (foodnum < 0) {
-                    foodnum = 0
-                    }
-                }
-                if (status != "playing") {
-                if (playnum > 0) {
-                    playnum -= (Math.round((todayms - statsupdatetime) / (playstatlose * 1.2)))
-                if (playnum < 0) {
-                    playnum = 0
-                    }
-                }
-                }
-                statsupdatetime = todayms;
-                db.run(`UPDATE users SET statsupdatetime = ? WHERE userid = ?`, [statsupdatetime, userid]);
-                db.run(`UPDATE users SET energynum = ? WHERE userid = ?`, [energynum, userid]);
-                db.run(`UPDATE users SET foodnum = ? WHERE userid = ?`, [foodnum, userid]);
-                db.run(`UPDATE users SET playnum = ? WHERE userid = ?`, [playnum, userid]);
-            }
-        }
+        srnotif(message, notifmsgs, userid);
+        console.log("playnum4: " + playnum);
+
+        var upresult = updatestats(firstcommand, secondcommand, statsupdatetime, sleeping, naptime, energynum, foodnum, playnum, status, sleepstatgain, sleepstatlose, foodstatlose, playstatlose, pupshunger, pups, bathnum, bathstatlose, userid);
+        statsupdatetime = upresult[0];
+        energynum = upresult[1];
+        foodnum = upresult[2];
+        playnum = upresult[3];
+        status = upresult[4];
+        pupshunger = upresult[5];
+        bathnum = upresult[6];
+        console.log("playnum5: " + playnum);
+
+        var wantsall = getwants(status, playnum, foodnum, energynum, bathnum);
 
         if ((firstcommand.includes("//sleep")) && (sleeping == 0) && (working == 0)) {
             message.delete(1)
-            status = "sleeping"
-            sleeping = 1
-            sleeptime = todayms;
-            db.run(`UPDATE users SET naptime = ? WHERE userid = ?`, [0, userid]);
-            db.run(`UPDATE users SET status = ? WHERE userid = ?`, ["sleeping", userid]);
-            db.run(`UPDATE users SET sleeping = ? WHERE userid = ?`, [1, userid]);
-            db.run(`UPDATE users SET sleeptime = ? WHERE userid = ?`, [sleeptime, userid]);
-            doneplayingcmd(message)
+            db.run(`UPDATE users SET naptime = ?, status = ?, sleeping = ?, sleeptime = ? WHERE userid = ?`, [0, "sleeping", 1, todayms, userid]);
+            var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+            playnum = dpresult[0];
             message.channel.send("```" + doggoname + " is now sleeping.```")
             if (notif == "ON") {
                 notifnumber = (todayms + Math.round((100 - energynum) * (sleepstatgain)))
@@ -2678,47 +2352,42 @@ if (firstcommand.includes("!") == 0) {
             message.channel.send("```" + doggoname + " is already sleeping.```")
             return
         } else if ((firstcommand.includes("//sleep")) && (working == 1)) {
-            message.delete(1)
-            message.channel.send("```" + doggoname + " is at work and can't sleep right now.```")
-            return
+            message.delete(1);
+            message.channel.send("```" + doggoname + " is at work and can't sleep right now.```");
+            return;
         }
         
         if ((firstcommand.includes("//wake")) && (sleeping == 1)) {
-            message.delete(1)
-            status = "awake"
-            sleeping = 0
-            sleeptime = todayms;
-            db.run(`UPDATE users SET status = ? WHERE userid = ?`, ["awake", userid]);
-            db.run(`UPDATE users SET sleeping = ? WHERE userid = ?`, [0, userid]);
-            db.run(`UPDATE users SET sleeptime = ? WHERE userid = ?`, [sleeptime, userid]);
-            message.channel.send("```" + doggoname + " is now awake.```")
+            message.delete(1);
+            db.run(`UPDATE users SET status = ?, sleeping = ?, sleeptime = ? WHERE userid = ?`, ["awake", 0, todayms, userid]);
+            message.channel.send("```" + doggoname + " is now awake.```");
             if ((notif == "ON") && (sleeptimer != 0)) {
                 db.run(`UPDATE users SET sleeptimer = ? WHERE userid = ?`, [0, userid]);
             }
-            return
+            return;
         } else if ((firstcommand.includes("//wake")) && (sleeping == 0)) {
-            message.delete(1)
-            message.channel.send("```" + doggoname + " is already awake.```")
-            return
+            message.delete(1);
+            message.channel.send("```" + doggoname + " is already awake.```");
+            return;
         }
 
         if ((firstcommand == "//set") && (secondcommand == "name")) {
-            message.delete(1)
+            message.delete(1);
             if ((casethirdcommand !== undefined) && (thirdcommand != "none") && (thirdcommand.includes("#") == false) && (isNaN(thirdcommand) == true)) {
             doggoname = casethirdcommand;
             db.run(`UPDATE users SET doggoname = ? WHERE userid = ?`, [doggoname, userid]);
-            message.channel.send("```Your dog is now named " + doggoname + ".```")
-            return
+            message.channel.send("```Your dog is now named " + doggoname + ".```");
+            return;
             } else {
                 message.channel.send("```That name doesn't work, use //set name [name] to name your dog.```")
-                return
+                return;
             }
         }
 
         if ((firstcommand == "//set") && (secondcommand == "gender")) {
-            message.delete(1)
-            message.channel.send("```As of right now, you can no longer change your gender.```")
-            return
+            message.delete(1);
+            message.channel.send("```As of right now, you can no longer change your gender.```");
+            return;
             if (thirdcommand == "female") {
                 doggosex = "female";
                 db.run(`UPDATE users SET doggosex = ? WHERE userid = ?`, ["female", userid]);
@@ -2735,195 +2404,51 @@ if (firstcommand.includes("!") == 0) {
         }
 
         if (firstcommand == "//who") {
-            message.delete(1)
+            message.delete(1);
             if (secondcommand === undefined) {
-                message.channel.send("```Specify who using //who [username/ID/dog's name]```")
-                return
+                message.channel.send("```Specify who using //who [username/ID/dog's name]```");
+                return;
             }
-            username2 = twoplus
+            username2 = twoplus;
             if (isNaN(username2) == false) {
-                doggovalue = "userid"
+                doggovalue = "userid";
             } else if (username2.includes("#")) {
-                doggovalue = "username"
+                doggovalue = "username";
             } else {
-                doggovalue = "doggoname"
+                doggovalue = "doggoname";
             }
-        let seconduserinfo = `SELECT userid, username, doggoname FROM users WHERE ` + doggovalue +` = ?`
+        let seconduserinfo = `SELECT * FROM users WHERE ` + doggovalue +` = ?`
             db.get(seconduserinfo, [username2], (err, row) => {
                 if (err) {
-                    console.log(err)
+                    console.log(err);
                 }
                 if (row === undefined) {
-                    message.channel.send("```" + username2 + " does not currently have a dog.```")
-                    return
+                    message.channel.send("```" + username2 + " does not currently have a dog.```");
+                    return;
                 }
 
-                doggoname2 = row.doggoname
-                username2 = row.username
+                doggoname2 = row.doggoname;
+                username2 = row.username;
 
                 if (doggoname2 == "none") {
-                    message.channel.send("```" + username2 + " does not currently have a dog.```")
-                    return
+                    message.channel.send("```" + username2 + " does not currently have a dog.```");
+                    return;
                 }
-                
-                message.channel.send("```" + username2 + "'s dog is named " + doggoname2 + ".```")
+                message.channel.send("```" + username2 + "'s dog is named " + doggoname2 + ".```");
             });
         }
 
-        happinessnum = 100;
-        happinessnum -= Math.round((100 - energynum) / 3)
-        happinessnum -= Math.round((100 - foodnum) / 3)
-        happinessnum -= Math.round((100 - playnum) / 3)
+        var happinessnum = 100;
+        happinessnum -= Math.round((100 - energynum) / 3);
+        happinessnum -= Math.round((100 - foodnum) / 3);
+        happinessnum -= Math.round((100 - playnum) / 3);
 
-        if (energynum >= 95) {
-            energy = statbar10
-        } else if (energynum >= 85) {
-            energy = statbar9
-        } else if (energynum >= 75) {
-            energy = statbar8
-        } else if (energynum >= 65) {
-            energy = statbar7
-        } else if (energynum >= 55) {
-            energy = statbar6
-        } else if (energynum >= 45) {
-            energy = statbar5
-        } else if (energynum >= 35) {
-            energy = statbar4
-        } else if (energynum >= 25) {
-            energy = statbar3
-        } else if (energynum >= 15) {
-            energy = statbar2
-        } else if ((energynum >= 5) && (energynum < 15)) {
-            energy = statbar1
-        } else if (energynum < 5) {
-            energy = statbar0
-        }
-
-        if (foodnum >= 95) {
-            food = statbar10
-        } else if (foodnum >= 85) {
-            food = statbar9
-        } else if (foodnum >= 75) {
-            food = statbar8
-        } else if (foodnum >= 65) {
-            food = statbar7
-        } else if (foodnum >= 55) {
-            food = statbar6
-        } else if (foodnum >= 45) {
-            food = statbar5
-        } else if (foodnum >= 35) {
-            food = statbar4
-        } else if (foodnum >= 25) {
-            food = statbar3
-        } else if (foodnum >= 15) {
-            food = statbar2
-        } else if ((foodnum >= 5) && (foodnum < 15)) {
-            food = statbar1
-        } else if (foodnum < 5) {
-            food = statbar0
-        }
-
-        if (playnum >= 95) {
-            play = statbar10
-        } else if (playnum >= 85) {
-            play = statbar9
-        } else if (playnum >= 75) {
-            play = statbar8
-        } else if (playnum >= 65) {
-            play = statbar7
-        } else if (playnum >= 55) {
-            play = statbar6
-        } else if (playnum >= 45) {
-            play = statbar5
-        } else if (playnum >= 35) {
-            play = statbar4
-        } else if (playnum >= 25) {
-            play = statbar3
-        } else if (playnum >= 15) {
-            play = statbar2
-        } else if ((playnum >= 5) && (playnum < 15)) {
-            play = statbar1
-        } else if (playnum < 5) {
-            play = statbar0
-        }
-
-        if (happinessnum >= 95) {
-            happiness = statbar10
-        } else if (happinessnum >= 85) {
-            happiness = statbar9
-        } else if (happinessnum >= 75) {
-            happiness = statbar8
-        } else if (happinessnum >= 65) {
-            happiness = statbar7
-        } else if (happinessnum >= 55) {
-            happiness = statbar6
-        } else if (happinessnum >= 45) {
-            happiness = statbar5
-        } else if (happinessnum >= 35) {
-            happiness = statbar4
-        } else if (happinessnum >= 25) {
-            happiness = statbar3
-        } else if (happinessnum >= 15) {
-            happiness = statbar2
-        } else if ((happinessnum >= 5) && (happinessnum < 15)) {
-            happiness = statbar1
-        } else if (happinessnum < 5) {
-            happiness = statbar0
-        }
-
-        if (pupshunger >= 95) {
-            pupshungerbar = statbar10
-        } else if (pupshunger >= 85) {
-            pupshungerbar = statbar9
-        } else if (pupshunger >= 75) {
-            pupshungerbar = statbar8
-        } else if (pupshunger >= 65) {
-            pupshungerbar = statbar7
-        } else if (pupshunger >= 55) {
-            pupshungerbar = statbar6
-        } else if (pupshunger >= 45) {
-            pupshungerbar = statbar5
-        } else if (pupshunger >= 35) {
-            pupshungerbar = statbar4
-        } else if (pupshunger >= 25) {
-            pupshungerbar = statbar3
-        } else if (pupshunger >= 15) {
-            pupshungerbar = statbar2
-        } else if ((pupshunger >= 5) && (pupshunger < 15)) {
-            pupshungerbar = statbar1
-        } else if (pupshunger < 5) {
-            pupshungerbar = statbar0
-        }
-        
-        wants1 = "none"
-        wants2 = "none"
-        wants3 = "none"
-        wantsall = "none"
-        if ((playnum <= 35) && (status != "playing")) {
-            wants1 = "to play"
-            wantsall = ("" + wants1 + "")
-        }
-        if (foodnum <= 35) {
-            if (wants1 != "none") {
-                wants2 = "food"
-                wantsall = ("" + wants1 + ", " + wants2 + "")
-            } else if (wants1 == "none") {
-                wants1 = "food"
-                wantsall = ("" + wants1 + "")
-            }
-        }
-        if (energynum <= 35) {
-            if (wants2 != "none") {
-                wants3 = "sleep"
-                wantsall = ("" + wants1 + ", " + wants2 + ", " + wants3 + "")
-            } else if (wants1 != "none") {
-                wants2 = "sleep"
-                wantsall = ("" + wants1 + ", " + wants2 + "")
-            } else if (wants3 == "none") {
-                wants1 = "sleep"
-                wantsall = ("" + wants1 + "")
-            }
-        }
+        var barsresult = getstatbars(happinessnum, foodnum, energynum, playnum, pupshunger);
+        var happiness = barsresult[0];
+        var food = barsresult[1];
+        var energy = barsresult[2];
+        var play = barsresult[3];
+        var pupshungerbar = barsresult[4];
 
         if ((energynum <= 15) && (energynum > 0) && (sleeping == 0) && (firstcommand != "//sleep") && (firstcommand.includes("//"))) {
             message.channel.send("```" + doggoname + "'s energy is low, consider letting " + doggoobject + " sleep.```")
@@ -2935,12 +2460,12 @@ if (firstcommand.includes("!") == 0) {
             message.channel.send("```" + doggoname + "'s family is hungry, you should feed them.```")
         }
 
-        if ((firstcommand.includes("//poop")) || (firstcommand.includes("//breed")) || (firstcommand.includes("//work")) || (firstcommand.includes("//play")) || (firstcommand.includes("//buy")) || (firstcommand.includes("//sell")) || (firstcommand.includes("//appl")) || (firstcommand.includes("//feed")) || (firstcommand.includes("//open"))) {
-        if ((energynum <= 0) && (firstcommand != "//open") && (secondcommand != "food")) {
+        if ((firstcommand.includes("//poop")) || (firstcommand.includes("//breed")) || (firstcommand.includes("//work")) || (firstcommand.includes("//play")) || (firstcommand.includes("//buy")) || (firstcommand.includes("//sell")) || (firstcommand.includes("//appl")) || (firstcommand.includes("//feed")) || (firstcommand.includes("//open")) || (firstcommand.includes("//bath"))) {
+        if ((energynum <= 0) && (!firstcommand.includes("open")) && (secondcommand != "food")) {
             message.channel.send("```" + doggoname + " has no energy, let " + doggoobject + " sleep.```")
             stopcode = 1
         }
-        if ((foodnum <= 0) && (firstcommand != "//open") && (secondcommand != "food")) {
+        if ((foodnum <= 0) && (!firstcommand.includes("open")) && (secondcommand != "food")) {
             message.channel.send("```" + doggoname + " is starving, buy some food and/or feed " + doggoobject + ".```")
             stopcode = 1
         }
@@ -2972,15 +2497,15 @@ if (firstcommand.includes("!") == 0) {
             return
         } else if ((firstcommand == "//help") && (secondcommand.includes("dog"))) {
             message.delete(1)
-            message.channel.send("```Doggo Help:\n\nYour dog loses food and energy  when awake, you gain energy and lose less food if your dog is sleeping. If you leave your dog awake for six hours or right after their job shift is over, they will take a nap. When they start napping they no longer lose energy, but everything else is normal. Don't forget to let your dog sleep and feed them! Happiness is dependent on food, energy, and how much your dog wants to play. You can start playing by yourself or with another peron's dog, once you do something else such as eat or sleep, your play number goes up based on how long you were playing for. You can also view other dog's stats, jobs, inventory etc. by doing //[command] [username/ID/dog's name]\n\n//doggo - shows your current dog and some info about them\n//set name [name] - names your dog\n//set gender [male/female] - sets the gender of your dog\n//sleep - makes your dog sleep\n//wake - wakes up your dog\n//eat {2} - makes your dog eat one serving of food\n//feed {2} [username/ID/dog's name] - feeds someone else's dog one serving of food\n//stats - shows detailed stats about your dog\n//inventory - shows the inventory of your dog```")
+            message.channel.send("```Doggo Help:\n\nYour dog loses food and energy  when awake, you gain energy and lose less food if your dog is sleeping. If you leave your dog awake for six hours or right after their job shift is over, they will take a nap. When they start napping they no longer lose energy, but everything else is normal. Don't forget to let your dog sleep and feed them! Happiness is dependent on food, energy, and how much your dog wants to play. You can start playing by yourself or with another peron's dog, once you do something else such as eat or sleep, your play number goes up based on how long you were playing for. You can also view other dog's stats, jobs, inventory etc. by doing //[command] [username/ID/dog's name]\n\n//doggo - shows your current dog and some info about them\n//set name [name] - names your dog\n//set gender [male/female] - sets the gender of your dog\n//sleep - makes your dog sleep\n//wake - wakes up your dog\n//eat {2} - makes your dog eat one serving of food\n//drink - drinks an energy shot\n//play {username/ID/dog's name}\n//stop play - makes your dog stop playing, this can also be accomplished by eating, sleeping etc.\n//bath - makes your dog go to the groomer and take a bath, costs $25\n//feed {2} {username/ID/dog's name} - feeds someone else's dog one serving of food\n//stats - shows detailed stats about your dog\n//inventory - shows the inventory of your dog\n//all dogs - shows all the dog's names and their status```")
             return
         } else if ((firstcommand == "//help") && (secondcommand.includes("buy"))) {
             message.delete(1)
-            message.channel.send("```Buy/Sell Help:\n\nBuying food helps keep your dog full, each food serving gives you 50 points of hunger and 5 energy. Beds increase the rate you gain energy.\n\n//buy food [amount or blank for 1] - buys servings of food for your dog ($" + (5 * saleprice) + " each)\n//buy bed [type] - buys a bed\n\nAvailabe beds:\n- bed sheet -    1.1x energy   ($" + (25 * saleprice) + ")       [bedsheet]\n- mat -          1.2x energy   ($" + (100 * saleprice) + ")      [mat]\n- twin -         1.4x energy   ($" + (500 * saleprice) + ")      [twin]\n- full -         1.6x energy   ($" + ((1250 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [full]\n- queen -        1.75x energy  ($" + ((2000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [queen]\n- king -         2.0x energy   ($" + ((4000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [king]\n\nHouses are a way to show off your money, as of right now they do not have any benefit.\n//buy house [type]\n\nAvailable houses:\n- box -          ($" + (15 * saleprice) + ")        [box]\n- doghouse       ($" + (100 * saleprice) + ")       [doghouse]\n- shed -         ($" + (500 * saleprice) + ")       [shed]\n- shack -        ($" + ((1500 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")     [shack]\n- one story -    ($" + ((3000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")     [onestory]\n- two story -    ($" + ((10000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [twostory]\n- three story -  ($" + ((15000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [threestory]\n- mansion -      ($" + ((50000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [mansion]\n- castle -       ($" + ((100000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")   [castle]```")
+            message.channel.send("```Buy/Sell Help:\n\nBuying food helps keep your dog full, each food serving gives you 50 points of hunger and 5 energy. Energy shots add 15 points of energy instantly, but you can only use 1 every hour and only can buy 10 a day. Beds increase the rate you gain energy.\n\n//buy food [amount or blank for 1] - buys servings of food for your dog ($" + (foodprice * saleprice) + " each)\n//buy shot {number} - buys energy shots for your dog ($" + (shotprice * saleprice) + " each)\n//buy bed [type] - buys a bed\n//sell bed - sells your current bed for 50% cost\n\nAvailabe beds:\n- bed sheet -    1.1x energy   ($" + (25 * saleprice) + ")       [bedsheet]\n- mat -          1.2x energy   ($" + (100 * saleprice) + ")      [mat]\n- twin -         1.4x energy   ($" + (500 * saleprice) + ")      [twin]\n- full -         1.6x energy   ($" + ((1250 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [full]\n- queen -        1.75x energy  ($" + ((2000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [queen]\n- king -         2.0x energy   ($" + ((4000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [king]\n\nHouses are a way to show off your money, as of right now they do not have any benefit.\n//buy house [type]\n//sell house - sells your house for 50% cost\n\nAvailable houses:\n- box -          ($" + (15 * saleprice) + ")        [box]\n- doghouse       ($" + (100 * saleprice) + ")       [doghouse]\n- shed -         ($" + (500 * saleprice) + ")       [shed]\n- shack -        ($" + ((1500 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")     [shack]\n- one story -    ($" + ((3000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")     [onestory]\n- two story -    ($" + ((10000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [twostory]\n- three story -  ($" + ((15000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [threestory]\n- mansion -      ($" + ((50000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")    [mansion]\n- castle -       ($" + ((100000 * saleprice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + ")   [castle]```")
             return
         } else if ((firstcommand == "//help") && (secondcommand.includes("other"))) {
             message.delete(1)
-            message.channel.send("```Other Help:\n\nEvery 24 hours you can open your daily gift, you can also receive them from an anonymous person. The overall leaderboard is calculated based on your place in the other 4 leaderboards. You get 10 points for first, 9 points for second etc.\n\nCurrent possible rewards from gifts:\nFood servings:  3-9\nMoney:          $50-$150\nJob XP:         1-3\n//open gift {all} - opens your gift boxes\n//who [username/ID/dog's name] - tells you who's dog is whoevers if you forget\n//lb {overall/money/work/play/food}- shows the leaderboard standings```")
+            message.channel.send("```Other Help:\n\nEvery 24 hours you can open your daily gift, you can also receive them from an anonymous person. The overall leaderboard is calculated based on your place in the other 4 leaderboards. You get 10 points for first, 9 points for second etc.\n\nCurrent possible rewards from gifts:\nFood servings:  3-9\nMoney:          $50-$150\nJob XP:         1-3\n//open gift {all} - opens your gift boxes\n//who [username/ID/dog's name] - tells you who's dog is whoevers if you forget\n//lb {overall/money/work/play/food}- shows the leaderboard standings\n//achievements - shows your achievements you have earned```")
             return
         } else if (((firstcommand == "//help") && ((secondcommand == "faq"))) || (firstcommand == "//faq")) {
             message.delete(1)
@@ -3061,21 +2586,33 @@ if (firstcommand.includes("!") == 0) {
             }
             if (device == "PC") {
                 if (currentjob != "none") {
-                    message.channel.send("```" + doggoname + ":\n\n" + currentdoggo + "\n\nAge:         " + age + "\nGender:      " + doggosex + "\nStatus:      " + status + "\nHappiness:   " + happiness + "  (" + happinessnum + "/100)\nHunger:      " + food + "  (" + foodnum + "/100)\nEnergy:      " + energy + "  (" + energynum + "/100)\nPlay Number: " + play + "  (" + playnum + "/100)\nWants:       " + wantsall + "\nMoney:       $" + (money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         Level "+ explevel + " " + jobname + " ($" + salary + "/hour)```")
+                    message.channel.send("```" + doggoname + ":\n\n" + currentdoggo + "\n\nAge:         " + age + " (" + streaklength + " day streak)\nGender:      " + doggosex + "\nStatus:      " + status + "\nHappiness:   " + happiness + "  (" + happinessnum + "/100)\nHunger:      " + food + "  (" + foodnum + "/100)\nEnergy:      " + energy + "  (" + energynum + "/100)\nPlay Number: " + play + "  (" + playnum + "/100)\nWants:       " + wantsall + "\nMoney:       $" + (money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         Level "+ explevel + " " + jobname + " ($" + salary + "/hour)```")
                 } else {
-                    message.channel.send("```" + doggoname + ":\n\n" + currentdoggo + "\n\nAge:         " + age + "\nGender:      " + doggosex + "\nStatus:      " + status + "\nHappiness:   " + happiness + "  (" + happinessnum + "/100)\nHunger:      " + food + "  (" + foodnum + "/100)\nEnergy:      " + energy + "  (" + energynum + "/100)\nPlay Number: " + play + "  (" + playnum + "/100)\nWants:       " + wantsall + "\nMoney:       $" + (money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         none```")
+                    message.channel.send("```" + doggoname + ":\n\n" + currentdoggo + "\n\nAge:         " + age + " (" + streaklength + " day streak)\nGender:      " + doggosex + "\nStatus:      " + status + "\nHappiness:   " + happiness + "  (" + happinessnum + "/100)\nHunger:      " + food + "  (" + foodnum + "/100)\nEnergy:      " + energy + "  (" + energynum + "/100)\nPlay Number: " + play + "  (" + playnum + "/100)\nWants:       " + wantsall + "\nMoney:       $" + (money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         none```")
                 }
             } else if (device == "MOBILE") {
                 if (currentjob != "none") {
-                    message.channel.send("```" + doggoname + ":\n\n" + currentdoggo + "\n\nAge:         " + age + "\nGender:      " + doggosex + "\nStatus:      " + status + "\n\nHappiness:  " + happiness + "(" + happinessnum + "/100)\n\nHunger:     " + food + "(" + foodnum + "/100)\n\nEnergy:     " + energy + "(" + energynum + "/100)\n\nPlay Number:" + play + "(" + playnum + "/100)\n\nWants:       " + wantsall + "\nMoney:       $" + (money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         Level "+ explevel + " " + jobname + " ($" + salary + "/hour)```")
+                    message.channel.send("```" + doggoname + ":\n\n" + currentdoggo + "\n\nAge:         " + age + " (" + streaklength + " day streak)\nGender:      " + doggosex + "\nStatus:      " + status + "\n\nHappiness:  " + happiness + "(" + happinessnum + "/100)\n\nHunger:     " + food + "(" + foodnum + "/100)\n\nEnergy:     " + energy + "(" + energynum + "/100)\n\nPlay Number:" + play + "(" + playnum + "/100)\n\nWants:       " + wantsall + "\nMoney:       $" + (money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         Level "+ explevel + " " + jobname + " ($" + salary + "/hour)```")
                 } else {
-                    message.channel.send("```" + doggoname + ":\n\n" + currentdoggo + "\n\nAge:         " + age + "\nGender:      " + doggosex + "\nStatus:      " + status + "\n\nHappiness:  " + happiness + "(" + happinessnum + "/100)\n\nHunger:     " + food + "(" + foodnum + "/100)\n\nEnergy:     " + energy + "(" + energynum + "/100)\n\nPlay Number:" + play + "(" + playnum + "/100)\n\nWants:       " + wantsall + "\nMoney:       $" + (money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         none```")
+                    message.channel.send("```" + doggoname + ":\n\n" + currentdoggo + "\n\nAge:         " + age + " (" + streaklength + " day streak)\nGender:      " + doggosex + "\nStatus:      " + status + "\n\nHappiness:  " + happiness + "(" + happinessnum + "/100)\n\nHunger:     " + food + "(" + foodnum + "/100)\n\nEnergy:     " + energy + "(" + energynum + "/100)\n\nPlay Number:" + play + "(" + playnum + "/100)\n\nWants:       " + wantsall + "\nMoney:       $" + (money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         none```")
                 }
             }
-            achievementscmd(message)
+            achievementscmd(message, achievements, exp, money, giftboxes, foodservings, achnum, house, pups, 0, doggoname, userid);
             return
         } else if ((firstcommand.includes("//dog")) && (secondcommand !== undefined)) {
-            otherdogcmd(message)
+            otherdogcmd(message, doggoname, userid, playnum, foodservings, notif, playtimer, exp);
+            return;
+        }
+
+        if (firstcommand.includes("//ach")) {
+            message.delete(1)
+            getachievementscmd(message, achievements, doggoname);
+            return
+        }
+
+        if ((firstcommand.includes("//all")) && (secondcommand != undefined) && (secondcommand.includes("dog"))) {
+            message.delete(1)
+            alldogscmd(message)
             return
         }
 
@@ -3154,97 +2691,46 @@ if (firstcommand.includes("!") == 0) {
 
         if ((firstcommand.includes("//stat")) && (secondcommand === undefined)) {
             message.delete(1)
-            message.channel.send("```" + doggoname + "'s Stats:\n\nHappiness:   " + happiness + "  (" + happinessnum + "/100)\nHunger:      " + food + "  (" + foodnum + "/100)\nEnergy:      " + energy + "  (" + energynum + "/100)\nPlay Number: " + play + "  (" + playnum + "/100)\n\nEnergy Gain Rate:      +1 / " + (Math.round((sleepstatgain / 60000) * 100) / 100) + " min      (" + (Math.ceil(((sleepstatgain / 60000) * 100) / 60)) + " hours to fill energy bar)\nEnergy Lose Rate:      -1 / " + (Math.round((sleepstatlose / 60000) * 100) / 100) + " min    (" + (Math.ceil(((sleepstatlose / 60000) * 100) / 60)) + " hours to deplete energy bar)\nFood Lose Rate Asleep: -1 / " + (Math.round(((foodstatlose * 3) / 60000) * 100) / 100) + " min     (" + (Math.round((((foodstatlose * 3) / 60000) * 100) / 60)) + " hours to deplete food bar)\nFood Lose Rate Awake:  -1 / " + (Math.round((foodstatlose / 60000) * 100) / 100) + " min      (" + (Math.round(((foodstatlose / 60000) * 100) / 60)) + " hours to deplete food bar)\nPlay Lose Rate Asleep: -1 / " + (Math.round((playstatlose / 60000) * 100) / 100) + " min   (" + (Math.round(((playstatlose / 60000) * 100) / 60)) + " hours to deplete play number)\nPlay Lose Rate Awake:  -1 / " + (Math.round(((playstatlose * 1.2) / 60000) * 100) / 100) + " min      (" + (Math.round(((playstatlose / 60000) * 100) / 60)) + " hours to deplete play number)\nPlay Gain Rate:        +1 / " + (Math.round((playstatgain / 60000) * 100) / 100) + " min    (" + (Math.round((playstatgain / 60000) * 100)) + " minutes to fill play number)\n\nTotal income:                    $" + (totalmoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal hours worked:              " + (totalworkhours.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal minutes played:            " + (totalplaytime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal servings of food eaten:    " + (totalservings.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "```")
-            achievementscmd(message)
+            message.channel.send("```" + doggoname + "'s Stats:\n\nHappiness:   " + happiness + "  (" + happinessnum + "/100)\nHunger:      " + food + "  (" + foodnum + "/100)\nEnergy:      " + energy + "  (" + energynum + "/100)\nPlay Number: " + play + "  (" + playnum + "/100)\n\nEnergy Gain Rate:      +1 / " + (Math.round((sleepstatgain / 60000) * 100) / 100) + " min      (" + (Math.ceil(((sleepstatgain / 60000) * 100) / 60)) + " hours to fill energy bar)\nEnergy Lose Rate:      -1 / " + (Math.round((sleepstatlose / 60000) * 100) / 100) + " min    (" + (Math.ceil(((sleepstatlose / 60000) * 100) / 60)) + " hours to deplete energy bar)\nFood Lose Rate Asleep: -1 / " + (Math.round(((foodstatlose * 3) / 60000) * 100) / 100) + " min     (" + (Math.round((((foodstatlose * 3) / 60000) * 100) / 60)) + " hours to deplete food bar)\nFood Lose Rate Awake:  -1 / " + (Math.round((foodstatlose / 60000) * 100) / 100) + " min      (" + (Math.round(((foodstatlose / 60000) * 100) / 60)) + " hours to deplete food bar)\nPlay Lose Rate Asleep: -1 / " + (Math.round((playstatlose / 60000) * 100) / 100) + " min   (" + (Math.round(((playstatlose / 60000) * 100) / 60)) + " hours to deplete play number)\nPlay Lose Rate Awake:  -1 / " + (Math.round(((playstatlose * 1.2) / 60000) * 100) / 100) + " min      (" + (Math.round(((playstatlose / 60000) * 100) / 60)) + " hours to deplete play number)\nPlay Gain Rate:        +1 / " + (Math.round((playstatgain / 60000) * 100) / 100) + " min    (" + (Math.round((playstatgain / 60000) * 100)) + " minutes to fill play number)\n\nTotal income:                    $" + (totalmoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal hours worked:              " + (totalworkhours.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal minutes played:            " + (totalplaytime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal servings of food eaten:    " + (totalservings.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal energy shots drank:        " + (totalshots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "```")
+            achievementscmd(message, achievements, exp, money, giftboxes, foodservings, achnum, house, pups, 0, doggoname, userid);
             return
         } else if ((firstcommand.includes("//stat")) && (secondcommand !== undefined)) {
-            otherdogcmd(message)
-            return
+            otherdogcmd(message, doggoname, userid, playnum, foodservings, notif, playtimer, exp);
+            return;
+        }
+
+        if ((firstcommand.includes("//stop")) && (secondcommand !== undefined) && (secondcommand.includes("play"))) {
+            message.delete(1)
+            var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+            playnum = dpresult[0];
+            return;
         }
 
         if ((firstcommand == "//my") && ((secondcommand == "jobs") || (secondcommand == "job")) && (thirdcommand === undefined)) {
             message.delete(1)
-            var cgs = 0
-            var mds = 0
-            var brds = 0
-            var dds = 0
-            var pds = 0
-            var sds = 0
-            var cgsn = (((Math.floor(cgexp/10) + 1).toString().length))
-            if (cgsn == 3) {
-                cgs = "  "
-            } else if (cgsn == 2) {
-                cgs = "   "
-            } else if (cgsn = 1) {
-                cgs = "    "
-            }
-            var mdsn = (((Math.floor(mdexp/10) + 1).toString().length))
-            if (mdsn == 3) {
-                mds = "  "
-            } else if (mdsn == 2) {
-                mds = "   "
-            } else if (mdsn = 1) {
-                mds = "    "
-            }
-            var brdsn = (((Math.floor(brdexp/10) + 1).toString().length))
-            if (brdsn == 3) {
-                brds = "  "
-            } else if (brdsn == 2) {
-                brds = "   "
-            } else if (brdsn = 1) {
-                brds = "    "
-            }
-            var ddsn = (((Math.floor(ddexp/10) + 1).toString().length))
-            if (ddsn == 3) {
-                dds = "  "
-            } else if (ddsn == 2) {
-                dds = "   "
-            } else if (ddsn = 1) {
-                dds = "    "
-            }
-            var pdsn = (((Math.floor(pdexp/10) + 1).toString().length))
-            if (pdsn == 3) {
-                pds = "  "
-            } else if (pdsn == 2) {
-                pds = "   "
-            } else if (pdsn = 1) {
-                pds = "    "
-            }
-            var sdsn = (((Math.floor(sdexp/10) + 1).toString().length))
-            if (sdsn == 3) {
-                sds = "  "
-            } else if (sdsn == 2) {
-                sds = "   "
-            } else if (sdsn = 1) {
-                sds = "    "
-            }
-            message.channel.send("```" + doggoname + "'s Jobs:\n\nCrossing Guard Dog:          Level " + (Math.floor(cgexp/10) + 1) + cgs + "(" + cgexp + " XP)\nMail Delivery Dog:           Level " + (Math.floor(mdexp/10) + 1) + mds + "(" + mdexp + " XP)\nBaseball Retrieving Dog:     Level " + (Math.floor(brdexp/10) + 1) + brds + "(" + brdexp + " XP)\nDrug Detection Dog:          Level " + (Math.floor(ddexp/10) + 1) + dds + "(" + ddexp + " XP)\nK-9 Police Dog:              Level " + (Math.floor(pdexp/10) + 1) + pds + "(" + pdexp + " XP)\nSled Dog:                    Level " + (Math.floor(sdexp/10) + 1) + sds +"(" + sdexp + " XP)```")
-            achievementscmd(message)
+            var toSend = myjobslist(doggoname, exp);
+            message.channel.send(toSend);
+            achievementscmd(message, achievements, exp, money, giftboxes, foodservings, achnum, house, pups, 0, doggoname, userid);
         } else if ((firstcommand == "//my") && ((secondcommand == "jobs") || (secondcommand == "job")) && (thirdcommand !== undefined)) {
-            otherdogcmd(message)
-            return
+            otherdogcmd(message, doggoname, userid, playnum, foodservings, notif, playtimer, exp);
+            return;
         }
 
-        if ((firstcommand.includes("//my")) && (secondcommand.includes("fam")) && (thirdcommand === undefined)) {
+        if ((firstcommand.includes("//my")) && (secondcommand != undefined) && (secondcommand.includes("fam")) && (thirdcommand === undefined)) {
             message.delete(1)
             if (pups > 0) {
                 message.channel.send("```" + doggoname + "'s Family:\n\n" + dogandpup + "  x" + pups + "\n\nPuppies' hunger:   " + pupshungerbar + "  (" + pupshunger + "/100)" + "```")
             } else if (pups <= 0) {
                 message.channel.send("```" + doggoname + "'s Family:\n\n" + regulardoggo + "```")
             }
-            achievementscmd(message)
+            achievementscmd(message, achievements, exp, money, giftboxes, foodservings, achnum, house, pups, 0, doggoname, userid)
             return
-        } else if ((firstcommand.includes("//my")) && (secondcommand.includes("fam")) && (thirdcommand !== undefined)) {
-            otherdogcmd(message)
-            return
+        } else if ((firstcommand.includes("//my")) && (secondcommand != undefined) && (secondcommand.includes("fam")) && (thirdcommand !== undefined)) {
+            otherdogcmd(message, doggoname, userid, playnum, foodservings, notif, playtimer, exp);
+            return;
         }
 
-        if ((firstcommand.includes("//lb")) || (firstcommand.includes("//ulb"))) {
-            dogleaderboardcmd(message)
-            return
-        }
-
-        if ((firstcommand.includes("//buy")) && (secondcommand.includes("food"))) {
+        if ((firstcommand.includes("//buy")) && (secondcommand != undefined) && (secondcommand.includes("food"))) {
             message.delete(1)
             if (thirdcommand === undefined) {
                 commandnumber = 1
@@ -3256,55 +2742,47 @@ if (firstcommand.includes("!") == 0) {
                 foodservings += commandnumber;
                 db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
                 db.run(`UPDATE users SET foodservings = ? WHERE userid = ?`, [foodservings, userid]);
-                doneplayingcmd(message)
+                var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+                playnum = dpresult[0];
                 if (working == 0) {
                     message.channel.send("```" + doggoname + " bought " + commandnumber + " serving(s) of food for $" + (Math.round(((commandnumber * foodprice) * saleprice))) + ".```")
+                    return
                 } else if (working == 1) {
                     message.channel.send("```" + doggoname + " bought " + commandnumber + " serving(s) of food for $" + (Math.round(((commandnumber * foodprice) * saleprice))) + " while on break at work.```")
+                    return
                 }
                 
             } else {
                 message.channel.send("```" + doggoname + " needs $" + (Math.round((((commandnumber * foodprice) * saleprice) - money))) + " more to buy " + commandnumber + " servings of food.```")
             }
         }
-        if ((firstcommand.includes("//buy")) && (secondcommand.includes("house"))) {
+        if ((firstcommand.includes("//buy")) && (secondcommand != undefined) && (secondcommand.includes("house"))) {
             message.delete(1)
             if (house != "none") {
                 message.channel.send("```Please use //sell house to sell your current house before buying a new one.```")
                 return
             }
+            house = thirdcommand;
+            var {housecost, visiblehouse, housename} = houseobj[house];
             if (thirdcommand !== undefined) {
-                house = thirdcommand
-                let houseuserinfo = `SELECT ` + house + ` FROM serverdata WHERE testdata = ?`
-                db.get(houseuserinfo, [testdata], (err, row) => {
-                if (err) {
-                    console.log(err)
-                }
-                if (row === undefined) {
-                    message.channel.send("```Please specify which house you want by using //buy house [type] or use //help buy to see what house you can buy.```")
-                    return
-                } else {
-                if (money >= Math.round(((row[house]) * saleprice))) {
-                    money -= Math.round(((row[house]) * saleprice))
-                    house = thirdcommand
+                if (money >= Math.round((housecost * saleprice))) {
+                    money -= Math.round((housecost * saleprice))
                     db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
                     db.run(`UPDATE users SET house = ? WHERE userid = ?`, [house, userid]);
-                    doneplayingcmd(message)
-                    message.channel.send("```" + doggoname + " bought the " + house + " for $" + (Math.round(((row[house]) * saleprice))) + ".```")
+                    var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+                    playnum = dpresult[0];
+                    message.channel.send("```" + doggoname + " bought the " + housename + " for $" + (Math.round((housecost * saleprice))) + ".```")
                     newanum = 2
-                    achievementscmd(message)
+                    achievementscmd(message, achievements, exp, money, giftboxes, foodservings, achnum, house, pups, newanum, doggoname, userid);
                 } else {
-                    doneplayingcmd(message)
-                    message.channel.send("```" + doggoname + " needs $" + (((row[house]) * saleprice) - money) + " more to buy the " + thirdcommand + ".```")
+                    message.channel.send("```" + doggoname + " needs $" + ((housecost * saleprice) - money) + " more to buy the " + housename + ".```")
                 }
-            }
-        });
             } else if (thirdcommand === undefined) {
                 message.channel.send("```Please specify which house you want by using //buy house [type] or use //help buy to see what house you can buy.```")
                 return
             }
         }
-        if ((firstcommand.includes("//buy")) && (secondcommand.includes("crate"))) {
+        if ((firstcommand.includes("//buy")) && (secondcommand != undefined) && (secondcommand.includes("crate"))) {
             message.delete(1)
             if (money >= 20) {
                 message.channel.send("```You bought a crate.```")
@@ -3312,7 +2790,7 @@ if (firstcommand.includes("!") == 0) {
                 message.channel.send("```" + doggoname + " needs $" + (20 - money) + " more to but a loot crate.```")
             }
         }
-        if ((firstcommand.includes("//buy")) && (secondcommand.includes("bed"))) {
+        if ((firstcommand.includes("//buy")) && (secondcommand != undefined) && (secondcommand.includes("bed"))) {
             message.delete(1)
             if (bed != "none") {
                 message.channel.send("```Please use //sell bed to sell your current bed before buying a new one.```")
@@ -3320,61 +2798,86 @@ if (firstcommand.includes("!") == 0) {
             }
             if (thirdcommand !== undefined) {
                 bed = (thirdcommand + "name, " + thirdcommand + "cost, " + thirdcommand + "increase")
-                let beduserinfo = `SELECT ` + bed + ` FROM serverdata WHERE testdata = ?`
-                db.get(beduserinfo, [testdata], (err, row) => {
-                if (err) {
-                    console.log(err)
-                }
-                if (row === undefined) {
+                var {bedcost, bedincrease} = bedobj[bed];
+                if (bedobj[bed] === undefined) {
                     message.channel.send("```Please specify which bed you want by using //buy bed [type] or use //help buy to see what beds you can buy.```")
                     return
                 } else {
-                    bedcost = (thirdcommand + "cost")
-                    bedincrease = (thirdcommand + "increase")
-                if (money >= Math.round(((row[bedcost]) * saleprice))) {
-                    money -= Math.round(((row[bedcost]) * saleprice))
+                if (money >= Math.round((bedcost * saleprice))) {
+                    money -= Math.round((bedcost * saleprice))
                     bed = thirdcommand
-                    sleepstatgain = Math.round((360000 * ((1/(row[bedincrease])))));
+                    sleepstatgain = Math.round((360000 * ((1/bedincrease))));
                     db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
                     db.run(`UPDATE users SET bed = ? WHERE userid = ?`, [bed, userid]);
                     db.run(`UPDATE users SET sleepstatgain = ? WHERE userid = ?`, [sleepstatgain, userid]);
-                    doneplayingcmd(message)
-                    message.channel.send("```" + doggoname + " bought the " + bed + " for $" + (Math.round(((row[bedcost]) * saleprice))) + ".```")
+                    var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+                    playnum = dpresult[0];
+                    message.channel.send("```" + doggoname + " bought the " + bed + " for $" + (Math.round(bedcost * saleprice)) + ".```")
                 } else {
-                    doneplayingcmd(message)
-                    message.channel.send("```" + doggoname + " needs $" + (((row[bedcost]) * saleprice) - money) + " more to buy the " + (bed) + ".```")
+                    message.channel.send("```" + doggoname + " needs $" + ((bedcost * saleprice) - money) + " more to buy the " + bed + ".```")
                 }
                 }
-            });
             } else if (thirdcommand === undefined) {
                 message.channel.send("```Please specify which bed you want by using //buy bed [type] or use //help buy to see what beds you can buy.```")
                 return
             }
         }
+        if ((firstcommand.includes("//buy")) && (secondcommand !== undefined) && (secondcommand.includes("shot"))) {
+            message.delete(1)
+            if (thirdcommand === undefined) {
+                commandnumber = 1
+            } else {
+                if (isNaN(thirdcommand) == true) {
+                    message.channel.send("```Use //buy shot {number} to buy energy shots.```")
+                    return
+                }
+                commandnumber = parseInt(thirdcommand, 10)
+            }
+        if ((shotbought + commandnumber) > 10) {
+            if (shotbought == 10) {
+                message.channel.send("```" + doggoname + " can't buy any more energy shots today.```")
+                return
+            } else {
+                message.channel.send("```" + doggoname + " can only buy " + (10 - shotbought) + " more energy shot(s) today.```")
+                return
+            }
+        }
+        if (money >= Math.round(((commandnumber * shotprice) * saleprice))) {
+            money -= (Math.round(((commandnumber * shotprice) * saleprice)))
+            energyshots += commandnumber;
+            shotbought += commandnumber
+            db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
+            db.run(`UPDATE users SET shotbought = ? WHERE userid = ?`, [shotbought, userid]);
+            db.run(`UPDATE users SET energyshots = ? WHERE userid = ?`, [energyshots, userid]);
+            var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+            playnum = dpresult[0];
+            if (working == 0) {
+                message.channel.send("```" + doggoname + " bought " + commandnumber + " energy shot(s) for $" + (Math.round(((commandnumber * shotprice) * saleprice))) + ".```")
+                return
+            } else if (working == 1) {
+                message.channel.send("```" + doggoname + " bought " + commandnumber + " energy shot(s) for $" + (Math.round(((commandnumber * shotprice) * saleprice))) + " while on break at work.```")
+                return
+            }
+            
+        } else {
+            message.channel.send("```" + doggoname + " needs $" + (Math.round((((commandnumber * shotprice) * saleprice) - money))) + " more to buy " + commandnumber + " energy shots.```")
+            return
+        }
+        }
         if ((firstcommand == "//sell") && (secondcommand == "bed")) {
             message.delete(1)
             if (bed != "none") {
                 commandtext = bed
-                bed = (commandtext + "cost")
-                let beduserinfo = `SELECT ` + bed + ` FROM serverdata WHERE testdata = ?`
-                db.get(beduserinfo, [testdata], (err, row) => {
-                if (err) {
-                    console.log(err)
-                }
-                if (row === undefined) {
-                    console.log("error")
-                    return
-                } else {
-                money += ((row[bed]) / 2)
-                totalmoney += ((row[bed]) / 2)
+                var {bedcost, bedincrease} = bedobj[bed];
+                money += (bedcost / 2)
+                totalmoney += (bedcost / 2)
                 db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
                 db.run(`UPDATE users SET totalmoney = ? WHERE userid = ?`, [totalmoney, userid]);
                 db.run(`UPDATE users SET bed = ? WHERE userid = ?`, ["none", userid]);
                 db.run(`UPDATE users SET sleepstatgain = ? WHERE userid = ?`, [bsleepstatgain, userid]);
-                doneplayingcmd(message)
-                message.channel.send("```" + doggoname + " sold the " + commandtext + " for $" + ((row[bed]) / 2) + ".```")
-                }
-            });
+                var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+                playnum = dpresult[0];
+                message.channel.send("```" + doggoname + " sold the " + commandtext + " for $" + (bedcost / 2) + ".```")
             } else if (bed == "none") {
                 message.channel.send("```" + doggoname + " doesn't have a bed.```")
             }
@@ -3384,36 +2887,27 @@ if (firstcommand.includes("!") == 0) {
             message.delete(1)
             if (house != "none") {
                 commandtext = house
-                let houseuserinfo = `SELECT ` + house + ` FROM serverdata WHERE testdata = ?`
-                db.get(houseuserinfo, [testdata], (err, row) => {
-                if (err) {
-                    console.log(err)
-                }
-                if (row === undefined) {
-                    console.log("error")
-                    return
-                } else {
-                money += ((row[house]) / 2)
-                totalmoney += ((row[house]) / 2)
+                var {housecost, visiblehouse, housename} = houseobj[house];
+                money += (housecost / 2)
+                totalmoney += (housecost / 2)
                 db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
                 db.run(`UPDATE users SET totalmoney = ? WHERE userid = ?`, [totalmoney, userid]);
                 db.run(`UPDATE users SET house = ? WHERE userid = ?`, ["none", userid]);
-                doneplayingcmd(message)
-                message.channel.send("```" + doggoname + " sold the " + commandtext + " for $" + ((row[house]) / 2) + ".```")
-            }
-        });
+                var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+                playnum = dpresult[0];
+                message.channel.send("```" + doggoname + " sold the " + housename + " for $" + (housecost / 2) + ".```")
             } else if (bed == "none") {
                 message.channel.send("```" + doggoname + " doesn't have a house.```")
             }
             return
         }
-        if ((firstcommand.includes("//sell")) && (secondcommand.includes("pup"))) {
+        if ((firstcommand.includes("//sell")) && (secondcommand != undefined) && (secondcommand.includes("pup"))) {
             message.delete(1)
             if (thirdcommand === undefined) {
                 commandnumber = 1
             } else {
                 if (isNaN(thirdcommand) == true) {
-                    message.channel.send("```Use //sell puppies {amount} to feed your puppies.```")
+                    message.channel.send("```Use //sell puppies {amount} to sell your bred puppies.```")
                     return
                 }
                 commandnumber = parseInt(thirdcommand, 10)
@@ -3429,8 +2923,10 @@ if (firstcommand.includes("!") == 0) {
                 bredpups -= commandnumber
                 pups -= commandnumber
                 money += (commandnumber * 750)
+                totalmoney += (commandnumber * 750)
                 db.run(`UPDATE users SET bredpups = ? WHERE userid = ?`, [bredpups, userid]);
                 db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
+                db.run(`UPDATE users SET totalmoney = ? WHERE userid = ?`, [totalmoney, userid]);
                 db.run(`UPDATE users SET pups = ? WHERE userid = ?`, [pups, userid]);
                 if (commandnumber > 1) {
                     message.channel.send("```" + doggoname + " sold " + commandnumber + " puppies for $" + ((commandnumber * 750).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "```")
@@ -3469,15 +2965,16 @@ if (firstcommand.includes("!") == 0) {
                 db.run(`UPDATE users SET energynum = ? WHERE userid = ?`, [energynum, userid]);
                 db.run(`UPDATE users SET foodnum = ? WHERE userid = ?`, [foodnum, userid]);
                 if (working == 1) {
-                    message.channel.send("```" + eatingdoggo + "\n\n" + doggoname + " ate " + commandnumber + " serving of food on " + doggowords + " lunch break.```")
+                    message.channel.send("```" + eatingdoggo + "\n\n" + doggoname + " ate " + commandnumber + " serving(s) of food on " + doggowords + " lunch break.```")
                     return
                 } else {
-                    doneplayingcmd(message)
-                    message.channel.send("```" + eatingdoggo + "\n\n" + doggoname + " ate " + commandnumber + " serving of food.```")
+                    var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+                    playnum = dpresult[0];
+                    message.channel.send("```" + eatingdoggo + "\n\n" + doggoname + " ate " + commandnumber + " serving(s) of food.```")
                     return
                 }
             } else if (foodservings <= 0) {
-                message.channel.send("```" + doggoname + " doesn't have " + commandnumber + " servings of food.```")
+                message.channel.send("```" + doggoname + " doesn't have " + commandnumber + " serving(s) of food.```")
                 return
             }
         });
@@ -3486,11 +2983,39 @@ if (firstcommand.includes("!") == 0) {
             message.channel.send("```" + doggoname + " is sleeping, wake " + doggoobject + " up to do things.```")
             return
         }
-
-        if ((firstcommand == "//feed") && ((secondcommand.includes("fam")) == false)) {
-            otherdogcmd(message)
+        if (firstcommand.includes("//drink")) {
+            message.delete(1)
+            if (sleeping == 1) {
+                message.channel.send("```" + doggoname + " is sleeping, wake " + doggoobject + " up to do things.```")
+                return
+            }
+            if (energyshots == 0) {
+                message.channel.send("```" + doggoname + " doesn't have 1 energy shot.```")
+                return
+            }
+            if (todayms < shotcd) {
+                message.channel.send("```" + doggoname + " can't drink an energy shot for another " + (Math.floor((shotcd - todayms) / 60000)) + " minutes.```")
+                return
+            }
+            energyshots -= 1
+            shotcd = (todayms + 3600000)
+            energynum += 15
+            if (energynum > 100) {
+                energynum = 100
+            }
+            totalshots += 1
+            db.run(`UPDATE users SET energyshots = ? WHERE userid = ?`, [energyshots, userid]);
+            db.run(`UPDATE users SET shotcd = ? WHERE userid = ?`, [shotcd, userid]);
+            db.run(`UPDATE users SET energynum = ? WHERE userid = ?`, [energynum, userid]);
+            db.run(`UPDATE users SET totalshots = ? WHERE userid = ?`, [totalshots, userid]);
+            message.channel.send("```" + doggoname + " drank an energy shot.```")
             return
-        } else if ((firstcommand.includes("//feed")) && (secondcommand.includes("fam"))) {
+        }
+
+        if ((firstcommand == "//feed") && (secondcommand != undefined) && (!secondcommand.includes("fam"))) {
+            otherdogcmd(message, doggoname, userid, playnum, foodservings, notif, playtimer, exp);
+            return;
+        } else if ((firstcommand.includes("//feed")) && (secondcommand != undefined) && (secondcommand.includes("fam"))) {
             message.delete(1)
             let db = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
             if (pups < 1) {
@@ -3528,68 +3053,20 @@ if (firstcommand.includes("!") == 0) {
         }
         if ((firstcommand.includes("//apply")) && (secondcommand !== undefined) && (currentjob == "none") && (appliedjob == "none")) {
             message.delete(1)
-            job = secondcommand
-            if ((job == "cg") || (job == "md") || (job == "brd") || (job == "dd") || (job == "pd") || (job == "sd")) {
-                if (job == "cg") {
-                    experience = cgexp
-                    expname = "cgexp"
-                    jobname = cgname
-                    jobsalary = cgsalary
-                    jobtime = cgtime
-                    joblength = cglength
-                    workenergy = ((jobtime / bsleepstatlose) + 5)
-                } else if (job == "md") {
-                    experience = mdexp
-                    expname = "mdexp"
-                    jobname = mdname
-                    jobsalary = mdsalary
-                    jobtime = mdtime
-                    joblength = mdlength
-                    workenergy = ((jobtime / bsleepstatlose) + 5)
-                } else if (job == "brd") {
-                    experience = brdexp
-                    expname = "brdexp"
-                    jobname = brdname
-                    jobsalary = brdsalary
-                    jobtime = brdtime
-                    joblength = brdlength
-                    workenergy = ((jobtime / bsleepstatlose) + 5)
-                } else if (job == "dd") {
-                    experience = ddexp
-                    expname = "ddexp"
-                    jobname = ddname
-                    jobsalary = ddsalary
-                    jobtime = ddtime
-                    joblength = ddlength
-                    workenergy = ((jobtime / bsleepstatlose) + 5)
-                } else if (job == "pd") {
-                    experience = pdexp
-                    expname = "pdexp"
-                    jobname = pdname
-                    jobsalary = pdsalary
-                    jobtime = pdtime
-                    joblength = pdlength
-                    workenergy = ((jobtime / bsleepstatlose) + 5)
-                } else if (job == "sd") {
-                    experience = sdexp
-                    expname = "sdexp"
-                    jobname = sdname
-                    jobsalary = sdsalary
-                    jobtime = sdtime
-                    joblength = sdlength
-                    workenergy = ((jobtime / bsleepstatlose) + 5)
-                }
+            var job = secondcommand;
+                var {jobname, jobnumber, jobsalary, jobtime, jobindex} = jobsobj[job];
+                if (jobsobj[job] !== undefined) {
                 applytime = (todayms + 1800000);
                 db.run(`UPDATE users SET applytime = ? WHERE userid = ?`, [applytime, userid]);
                 db.run(`UPDATE users SET appliedjob = ? WHERE userid = ?`, [job, userid]);
-                doneplayingcmd(message)
+                doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0)
                 message.channel.send("```" + doggoname + " applied for " + jobname + ", check back in 30 minutes to see if your application is accepted or not using //application.```")
                 if (notif == "ON") {
                     notifnumber =  (todayms + 1800000)
                     db.run(`UPDATE users SET applytimer = ? WHERE userid = ?`, [notifnumber, userid]);
                 }
-            } else  {
-                message.channel.send("```That is not a available job, you can use //jobs to find the list of available jobs.```")
+            } else {
+                message.channel.send("```That is not a available job, you can use //jobs to find the list of available jobs.```");
             }
         } else if (firstcommand.includes("//apply") && (secondcommand === undefined)) {
             message.delete(1)
@@ -3601,65 +3078,18 @@ if (firstcommand.includes("!") == 0) {
             message.delete(1)
             message.channel.send("```" + doggoname + " has already applied for a job, you can use //application to check it.```")
         }
-        if (firstcommand.includes("//application")) {
+        if (firstcommand.includes("//appli")) {
             message.delete(1)
-            if (appliedjob != "none") {
-                if (appliedjob == "cg") {
-                    experience = cgexp
-                    expname = "cgexp"
-                    jobname = cgname
-                    jobsalary = cgsalary
-                    jobtime = cgtime
-                    joblength = cglength
-                    workenergy = ((jobtime / bsleepstatlose) + 5)
-                } else if (appliedjob == "md") {
-                    experience = mdexp
-                    expname = "mdexp"
-                    jobname = mdname
-                    jobsalary = mdsalary
-                    jobtime = mdtime
-                    joblength = mdlength
-                    workenergy = ((jobtime / sleepstatlose) + 5)
-                } else if (appliedjob == "brd") {
-                    experience = brdexp
-                    expname = "brdexp"
-                    jobname = brdname
-                    jobsalary = brdsalary
-                    jobtime = brdtime
-                    joblength = brdlength
-                    workenergy = ((jobtime / sleepstatlose) + 5)
-                } else if (appliedjob == "dd") {
-                    experience = ddexp
-                    expname = "ddexp"
-                    jobname = ddname
-                    jobsalary = ddsalary
-                    jobtime = ddtime
-                    joblength = ddlength
-                    workenergy = ((jobtime / sleepstatlose) + 5)
-                } else if (appliedjob == "pd") {
-                    experience = pdexp
-                    expname = "pdexp"
-                    jobname = pdname
-                    jobsalary = pdsalary
-                    jobtime = pdtime
-                    joblength = pdlength
-                    workenergy = ((jobtime / sleepstatlose) + 5)
-                } else if (appliedjob == "sd") {
-                    experience = sdexp
-                    expname = "sdexp"
-                    jobname = sdname
-                    jobsalary = sdsalary
-                    jobtime = sdtime
-                    joblength = sdlength
-                    workenergy = ((jobtime / sleepstatlose) + 5)
-                }
-            }
+            var {jobname, jobnumber, jobsalary, jobtime, jobindex} = jobsobj[appliedjob];
             if ((todayms >= applytime) && (appliedjob != "none")) {
-                doneplayingcmd(message)
+                var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+                playnum = dpresult[0];
                 if ((Math.random() * 25) >= jobnumber) {
                     db.run(`UPDATE users SET currentjob = ? WHERE userid = ?`, [appliedjob, userid]);
                     db.run(`UPDATE users SET appliedjob = ? WHERE userid = ?`, ["none", userid]);
-                    message.channel.send("```Congrats! " + doggoname + " now has a job as a " + jobname + ".\nJob details:\n\nSalary = $" + jobsalary + "/hour\nShift length = " + joblength + "```")
+                    message.channel.send("```Congrats! " + doggoname + " now has a job as a " + jobname + ".\nJob details:\n\nSalary = $" + jobsalary + "/hour\nShift length = " + (Math.round(jobtime / 3600000)) + "```")
+                    var msgtosend = ("I just got a job working as a " + jobname + "!");
+                    dogagram(userid, doggoname, msgtosend);
                 } else {
                     db.run(`UPDATE users SET appliedjob = ? WHERE userid = ?`, ["none", userid]);
                     message.channel.send("```Sorry, " + doggoname + "'s application was not accepted.```")
@@ -3668,7 +3098,6 @@ if (firstcommand.includes("!") == 0) {
                     db.run(`UPDATE users SET applytimer = ? WHERE userid = ?`, [0, userid]);
                 }
             } else if (todayms <= applytime) {
-                doneplayingcmd(message)
                 message.channel.send("```" + doggoname + " still has " + Math.round(((applytime - todayms) / 60000)) + " minutes before " + doggowords + " application is processed.```")
             } else if (appliedjob == "none") {
                 message.channel.send("```" + doggoname + " doesn't have any application awaiting processing currently.```")
@@ -3678,7 +3107,8 @@ if (firstcommand.includes("!") == 0) {
         if ((firstcommand == "//quit") && (secondcommand == "job") && ((currentjob != "none")) || (quit == 1)) {
             message.delete(1)
             if (quit == 0) {
-                doneplayingcmd(message)
+                var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+                playnum = dpresult[0];
                 quit = 1;
                 db.run(`UPDATE users SET quit = ? WHERE userid = ?`, [1, userid]);
                 message.channel.send("```Are you sure you want to quit your job? (yes/no)```")
@@ -3709,16 +3139,26 @@ if (firstcommand.includes("!") == 0) {
         }
 
             if ((firstcommand == ("//go")) && (secondcommand == "home") && (working == 1) && (todayms >= workendtime)) {
-                message.delete(1)
-                experience += 1
-                salary = ((jobsalary) + (Math.floor(experience / 10)) * (0.1 * jobsalary))
+                var tempsalary = 0
+                message.delete(1);
+                if (maxxp == false) {
+                if (pregnant == 1) {
+                    experience += 0.5
+                } else if (pregnant == 0) {
+                    experience += 1
+                }
+                }
+                tempsalary = salary
+                salary = ((jobsalary) + (Math.floor(experience / 10)) * (0.1 * jobsalary));
                 money += (Math.round((salary * (jobtime / 3600000)) * ebprice))
                 totalmoney += (Math.round((salary * (jobtime / 3600000)) * ebprice))
                 status = "awake"
                 working = 0;
                 totalworkhours += (jobtime / 3600000)
+                exp[jobindex] = experience;
+                var expstr = exp.toString();
                 db.run(`UPDATE users SET salary = ? WHERE userid = ?`, [salary, userid]);
-                db.run(`UPDATE users SET ` + expname +` = ? WHERE userid = ?`, [experience, userid]);
+                db.run(`UPDATE users SET exp = ? WHERE userid = ?`, [expstr, userid]);
                 db.run(`UPDATE users SET money = ? WHERE userid = ?`, [(Math.round(money)), userid]);
                 db.run(`UPDATE users SET totalmoney = ? WHERE userid = ?`, [(Math.round(totalmoney)), userid]);
                 db.run(`UPDATE users SET status = ? WHERE userid = ?`, ["awake", userid]);
@@ -3728,8 +3168,10 @@ if (firstcommand.includes("!") == 0) {
                 if ((notif == "ON") && (worktimer != 0)) {
                     db.run(`UPDATE users SET worktimer = ? WHERE userid = ?`, [0, userid]);
                 }
-                if ((experience > 0) && (experience % 10 == 0)) {
-                    message.channel.send("```Congrats! " + doggoname + " was promoted at work and now earns $" + salary + "/hour.```")
+                if ((experience > 0) && (salary > tempsalary) && (tempsalary != 0)) {
+                    message.channel.send("```Congrats! " + doggoname + " was promoted at work and now earns $" + salary + "/hour.```");
+                    var msgtosend = ("Great day at work, got promoted to $" + salary + "/hour!")
+                    dogagram(userid, doggoname, msgtosend);
                 }
                 return
             } else if ((firstcommand == ("//go")) && (secondcommand == "home") && (working == 0)) {
@@ -3753,7 +3195,8 @@ if (firstcommand.includes("!") == 0) {
             if (firstcommand.includes("//work")) {
             message.delete(1)
             if ((working == 0) && (sleeping == 0) && (energynum > workenergy) && (currentjob != "none")) {
-                doneplayingcmd(message)
+                var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+                playnum = dpresult[0];
                 status = "working"
                 working = 1
                 workstarttime = todayms
@@ -3779,11 +3222,30 @@ if (firstcommand.includes("!") == 0) {
 
         if ((firstcommand.includes("//inv")) && (secondcommand === undefined)) {
             message.delete(1)
-            message.channel.send("```" + doggoname + "'s Inventory:\n\nMoney:           $" + money + "\nFood servings:   " + foodservings + "\nHouse:           " + housename + "\nBed:             " + bed + "\nGift Boxes:      " + giftboxes + "```")
-            achievementscmd(message)
+            if (todayms > gifttime) {
+                giftboxes += boxprice
+            }
+            message.channel.send("```" + doggoname + "'s Inventory:\n\nMoney:           $" + (money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nFood servings:   " + (foodservings.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nEnergy shots:    " + (energyshots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nHouse:           " + housename + "\nBed:             " + bed + "\nGift Boxes:      " + giftboxes + "```")
+            achievementscmd(message, achievements, exp, money, giftboxes, foodservings, achnum, house, pups, 0, doggoname, userid);
             return
         } else if ((firstcommand.includes("//inv")) && (secondcommand !== undefined)) {
-            otherdogcmd(message)
+            otherdogcmd(message, doggoname, userid, playnum, foodservings, notif, playtimer, exp);
+            return;
+        }
+
+        if (firstcommand.includes("//bath")) {
+            message.delete(1)
+            if (money < 25) {
+                message.channel.send("```" + doggoname + " needs $" + (25 - money) + " to go get a bath at the dog groomer.```")
+                return
+            }
+            var dpresult = doneplayingcmd(message, doggoname, "none", playnum, 0, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+            playnum = dpresult[0];
+            message.channel.send("```" + regulardoggo + "\n\n" + doggoname + " got a bath at the dog groomer for $25.```")
+            bathnum = 100
+            money -= 25
+            db.run(`UPDATE users SET bathnum = ? WHERE userid = ?`, [bathnum, userid]);
+            db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
             return
         }
 
@@ -3807,7 +3269,9 @@ if (firstcommand.includes("!") == 0) {
                 if (doggosex.toString().startsWith("male")) {
                     breedcooldown = (todayms + 172800000)
                     money += 500
+                    totalmoney += 500
                     db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
+                    db.run(`UPDATE users SET totalmoney = ? WHERE userid = ?`, [totalmoney, userid]);
                     db.run(`UPDATE users SET breedcooldown = ? WHERE userid = ?`, [breedcooldown, userid]);
                     message.channel.send("```" + breedingdoggo + "\n\n" + doggoname + " served as a mate for another owner's dog and got paid $500.```")
                     return
@@ -3832,10 +3296,14 @@ if (firstcommand.includes("!") == 0) {
                     var breedcddays = 0
                     var breedcdhours = 0
                     var breedcdminutes = 0
+                    var sub1 = 0
+                    var sub2 = 0
                     breedtime = (breedcooldown - todayms)
                     breedcddays = (Math.floor((breedtime) / 86400000))
-                    breedcdhours = (Math.floor((((breedtime) - (breedcddays * 86400000)) / 3600000)))
-                    breedcdminutes = (Math.floor(((breedtime) - (breedcddays * 86400000) - (breedcdhours * 3600000)) / 60000))
+                    sub1 = (Math.floor((breedtime) / 86400000))
+                    breedcdhours = (Math.floor((((breedtime) - (sub1)) / 3600000)))
+                    sub2 = (Math.floor((((breedtime) - (sub1)) / 3600000)))
+                    breedcdminutes = (Math.floor(((breedtime) - (sub1) - (sub2)) / 60000))
                     if (breedcddays > 0) {
                         message.channel.send("```" + doggoname + " can't breed for another " + breedcddays + " day(s) " + breedcdminutes + " hour(s) " + breedcdminutes + " minute(s).```")
                         return
@@ -3857,8 +3325,7 @@ if (firstcommand.includes("!") == 0) {
                 message.channel.send("```" + doggoname + " is already playing.```")
                 return
             }
-            db.run(`UPDATE users SET status = ? WHERE userid = ?`, ["playing", userid]);
-            db.run(`UPDATE users SET playtime = ? WHERE userid = ?`, [todayms, userid]);
+            db.run(`UPDATE users SET status = ?, playtime = ? WHERE userid = ?`, ["playing", todayms, userid]);
             if (number <= 3) {
                  message.channel.send("```" + doggoname + " is playing around at the dog park.```")
             } else if ((number > 3) && (number < 7)) {
@@ -3875,22 +3342,20 @@ if (firstcommand.includes("!") == 0) {
             message.channel.send("```" + doggoname + " can't play at work.```")
             return
         } else if ((firstcommand.includes("//play")) && (secondcommand !== undefined)) {
-            otherdogcmd(message)
-            return
+            otherdogcmd(message, doggoname, userid, playnum, foodservings, notif, playtimer, exp);
+            return;
         }
-        if ((firstcommand == "//open") && (secondcommand.includes("gift"))) {
+        if ((firstcommand.includes("//open")) && (secondcommand != undefined) && (secondcommand.includes("gift"))) {
             message.delete(1).then(() => {
-            if (todayms > gifttime) {
-                opengiftcmd(message)
-            } else if (giftboxes > 0) {
-                opengiftcmd(message)
+            if ((todayms > gifttime) || (giftboxes > 0)) {
+                opengiftcmd(message, thirdcommand, money, totalmoney, giftboxes, foodservings, experience, exp, currentjob, jobindex, doggoname, playnum, playstatgain, playtime, totalplaytime, maxxp, playtimer, userid);
             } else {
                 message.channel.send("```" + doggoname + " doesn't have any gift boxes to open :(```")
             }
-            return
+            return;
         });
         }
-        if ((firstcommand.includes("//adopt")) && (secondcommand.includes("pup"))) {
+        if ((firstcommand.includes("//adopt")) && (secondcommand != undefined) && (secondcommand.includes("pup"))) {
             var someword = ""
             message.delete(1)
             if (thirdcommand === undefined) {
@@ -3993,39 +3458,182 @@ if (firstcommand.includes("!") == 0) {
         return
     }
 
-    function talkcmd(message) {
+    function talkcmd(message, fullcommand, splitcommand, chatid, chatnum, userid) {
+    //[you asked question][type of response][which question we asked]
 
-    talknumber = (Math.ceil(Math.random() * 100))
+    var negative = false;
+    var hello = false;
+    var steve = false;
+    var night = false;
+    var where = false;
+    var who = false;
+    var when = false;
+    var time = false;
+    var timenum = 0;
+    var time = false;
+    var tired = false;
+    var tirednum = 0;
+    var bad = false;
+    var badnum = 0;
+    var good = false;
+    var stop = false;
 
-    if ((message.channel.id == chatid) && (chatnum == 1)) {
+    talknumber = (Math.ceil(Math.random() * 100));
+    var hellos = ["Hi", "Hello", "Sup", "Hello there", "Bye", "Yellow", "Hey there, how are you?"];
+    var byes = ["Bye!", "Bye", "See ya", "See ya later", "See ya later!", "It's about time you left", "Bye"];
+    var nights = ["Goodnight", "Have a good night!", "Get some sleep", "Sweet dreams"];
+    var angrys = ["Shut up", "No one likes you", "Get a life", "Keep telling yourself that"];
+    var goodnewss = ["That is good to hear!", "Congrats!", "Congragulations!", "Nice job!"];
+    var tireds = ["Aren't we all :(", "Can you go to sleep?", "Can you take a nap?"];
+    var nottireds = ["That's good to hear!", "Good to see you are well rested!", "That's a first"];
+    var nos = ["I didn't think so either", "Nopers", "Nope", "Are you sure?"];
+    var goodsteves = ["Aw, thank you!", "You're too nice", "You're not too bad yourself"];
+    var stops = ["STG.exe has stopped working...", "Ok, I will stop doing whatever I am doing"];
+    var whosteves = ["A bot that was named after MetalRain682237#4905's gecko named Steve.", "That is classified!"];
+
+    if (chatnum == 0) {
+        if (directmessage == false) {
+            if ((mute == 1) || (todayms < cooldowntime) || (talkchance < talknumber)) {
+                return;
+            }
+        }
+    for (i = 0; i < splitcommand.length; i ++) {
+        var word = splitcommand[i];
+        if ((word.includes("don't")) || (word.includes("don`t")) || (word.includes("dont")) || (word == ("not") || (word == ("no")))) {
+            negative = true;
+        }
+        if ((word == ("hi")) || (word == ("hey")) || (word == ("hello")) || (word == ("herro"))) {
+            hello = true;
+        }
+        if ((word == ("bot")) || (word == ("robot")) || ((word == ("ai"))) || (word.includes("stev")) || (word.includes("stg"))) {
+            steve = true;
+        }
+        if ((word.includes("night")) || ((word == ("bed")))) {
+            night = true;
+        }
+        if (word.includes("wher")) {
+            where = true;
+        }
+        if ((word.includes("who")) || (word.includes("what"))) {
+            who = true;
+        }
+        if (word.includes("when")) {
+            when = true;
+        }
+        if ((word.includes("what")) || (word.includes("time"))) {
+            timenum ++;
+            if (timenum >= 2) {
+                time = true;
+            }
+        }
+        if ((word.includes("tired")) || (word.includes("need")) || (word.includes("want")) || (word.includes("sleep"))) {
+            if (word.includes("tired")) {
+                tired = true;
+            } else {
+                tirednum ++;
+                if (tirednum >= 2) {
+                    tired = true;
+                }
+            }
+        }
+        if ((word == ("bad")) || (word == ("not")) || (word.includes("good")) || (word.includes("dislike")) || (word.includes("hate"))) {
+            if (word == ("bad")) {
+                bad = true;
+            } else {
+                badnum ++;
+                if (badnum >= 2) {
+                    bad = true;
+                }
+            }
+        }
+        if ((word.includes("good")) || (word.includes("great")) || (word.includes("love")) || (word.includes("like"))) {
+            good = true;
+        }
+        if (word.includes("stop")) {
+            stop = true;
+        }
+    }
+
+        if ((night == true) && (negative == false)) {
+            var rndnum = Math.round(Math.random() * (nights.length - 1));
+            message.channel.send(nights[rndnum]);
+            cdcmd();
+            return;
+        }
+        if (hello == true) {
+            var rndnum = Math.round(Math.random() * (hellos.length - 1));
+            message.channel.send(hellos[rndnum]);
+            if (rndnum == 6) {
+            db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [1, (message.channel.id), userid]);
+            }
+            cdcmd();
+            return;
+        }
+        if ((steve == true) && (negative == false) && (bad == true)) {
+            var rndnum = Math.round(Math.random() * (angrys.length - 1));
+            message.channel.send(angrys[rndnum]);
+            cdcmd();
+            return;
+        } else if ((steve == true) && (good == true) && (negative == false) && (bad == false)) {
+            var rndnum = Math.round(Math.random() * (goodsteves.length - 1));
+            message.channel.send(goodsteves[rndnum]);
+            cdcmd();
+            return;
+        } else if ((steve == true) && (stop == true)) {
+            var rndnum = Math.round(Math.random() * (stops.length - 1));
+            message.channel.send(stops[rndnum]);
+            cdcmd();
+            return;
+        } else if ((steve == true) && (who == true)) {
+            var rndnum = Math.round(Math.random() * (whosteves.length - 1));
+            message.channel.send(whosteves[rndnum]);
+            cdcmd();
+            return;
+        }
+        if ((tired == true) && (negative == false)) {
+            var rndnum = Math.round(Math.random() * (tireds.length - 1));
+            message.channel.send(tireds[rndnum]);
+            if (rndnum != 0) {
+            db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [2, (message.channel.id), userid]);
+            }
+            return;
+        } else if ((tired == true) && (negative == true)) {
+            var rndnum = Math.round(Math.random() * (nottireds.length - 1));
+            message.channel.send(nottireds[rndnum]);
+            cdcmd();
+            return;
+        }
+
+
+
+
+
+    } else if ((message.channel.id == chatid) && (chatnum == 1)) {
 
         if (fullcommand.includes("well")) {
                 if (number >= 6) {
-            message.channel.send("That's good to hear!")
+            message.channel.send("That's good to hear!");
             } else if (number < 6) {
-                message.channel.send("How unfortunate.")
+                message.channel.send("How unfortunate.");
                 }
-                db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [0, userid]);
-                db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [0, userid]);
-                return
+                db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [0, 0, userid]);
+                return;
         }
 
         if (fullcommand.includes("bad")) {
                 if (number >= 6) {
-            message.channel.send("Sorry to hear that :(")
+            message.channel.send("Sorry to hear that :(");
             } else if (number < 6) {
-                message.channel.send("It'll get better.")
+                message.channel.send("It'll get better.");
                 }
-                db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [0, userid]);
-                db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [0, userid]);
-                return
+                db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [0, 0, userid]);
+                return;
         }
 
         if ((fullcommand.includes("good")) || (fullcommand.includes("great"))) {
             message.channel.send("Well*")
-            db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [0, userid]);
-            db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [0, userid]);
-            return
+            db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [0, 0, userid]);
+            return;
         }
 
         if ((fullcommand.includes("fine")) || (fullcommand.includes("ok"))) {
@@ -4034,52 +3642,27 @@ if (firstcommand.includes("!") == 0) {
             } else if (number < 6) {
                 message.channel.send("Sucks to suck!")
                 }
-                db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [0, userid]);
-                db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [0, userid]);
-                return
-        }
-        if (fullcommand.includes("tired")) {
-            if (number >= 6) {
-        message.channel.send("Can you take a nap then?")
-        db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [2, userid]);
-        db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [(message.channel.id), userid]);
-        return
-        } else if (number < 6) {
-            message.channel.send("Aren't we all :(")
-            db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [0, userid]);
-            db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [0, userid]);
-            return
-            }
+                db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [0, 0, userid]);
+                return;
         }
         message.channel.send("Hmmm, that is interesting.")
-        db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [0, userid]);
-        db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [0, userid]);
-        return
+        db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [0, 0, userid]);
+        return;
     } else if ((message.channel.id == chatid) && (chatnum == 2)) {
         if ((fullcommand.includes("yes")) || (fullcommand.includes("yeah"))) {
             message.channel.send("Then go do it!")
-            db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [0, userid]);
-            db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [0, userid]);
-            return
+            db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [0, 0, userid]);
+            return;
         } else if (fullcommand.includes("no")) {
             message.channel.send("That is no bueno :(")
-            db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [0, userid]);
-            db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [0, userid]);
-            return
+            db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [0, 0, userid]);
+            return;
         } else {
             message.channel.send("I see...")
-            db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [0, userid]);
-            db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [0, userid]);
-            return
+            db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [0, 0, userid]);
+            return;
         }
     }
-
-
-    if ((mute == 1) || (todayms < cooldowntime) || (talkchance < talknumber)) {
-        return
-    }
-
-
         
         if (firstcommand.includes("no")) {
             if (number < 5) {
@@ -4089,16 +3672,8 @@ if (firstcommand.includes("!") == 0) {
                 } else if (number > 7){
                 message.channel.send("Nopers!")
                     }
-                    cdcmd(message)
+                    cdcmd()
                     return
-    }
-
-    if ((fullcommand.includes("who is steve")) || (fullcommand.includes("who steve"))) {
-        message.channel.send("A bot that was named after MetalRain682237#4905's gecko named Steve.")
-    // message.channel.send({files: ["./images/gecko2.jpg"]})
-    // message.channel.send({files: ["./images/cat" + [randomNumber] + ".jpg"]})
-    cdcmd(message)
-    return
     }
 
     if (firstcommand.includes("yes")) {
@@ -4109,101 +3684,60 @@ if (firstcommand.includes("!") == 0) {
                 } else if (number > 7){
                 message.channel.send("No, no, nooooooooooo!")
                     }
-                    cdcmd(message)
+                    cdcmd()
                     return
-    }
-
-    if ((fullcommand.includes("night")) || (fullcommand.includes("time for bed"))) {
-            if (number <= 5) {
-        message.channel.send("Goodnight!")
-            } else if (number > 5) {
-            message.channel.send("Nighty night!")
-                }
-                cdcmd(message)
-                return
-    }
-
-    if (((fullcommand.includes("bot")) || (fullcommand.includes("steve"))) && ((fullcommand.includes("suck")) || (fullcommand.includes("bad")) || (fullcommand.includes("hate"))) && ((fullcommand.includes("not")) == false) && ((fullcommand.includes("don")) == false)) {
-        if (number < 5) {
-            message.channel.send("No one likes you either.")
-        } else {
-            message.channel.send("Cool, I hate you.")
-        }
-        cdcmd(message)
-        return
-    }
-
-    if ((firstcommand.includes("hello")) || (fullcommand.includes("hi ")) || (fullcommand.includes("hey ")) || (fullcommand == "hi") || (fullcommand == "hey")) {
-        if (number > 5) {
-        message.channel.send("Hello.")
-        cdcmd(message)
-        return
-        } else {
-            message.channel.send("Hey there, how are you?")
-            db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [1, userid]);
-            db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [(message.channel.id), userid]);
-            cdcmd(message)
-            return
-        }
     }
 
     if ((fullcommand.includes("how are you")) || (fullcommand.includes("how you doing")) || (fullcommand.includes("how goes it"))) {
         message.channel.send("As well as a bot can be, how are you?");
-        db.run(`UPDATE users SET chatnum = ? WHERE userid = ?`, [1, userid]);
-        db.run(`UPDATE users SET chatid = ? WHERE userid = ?`, [(message.channel.id), userid]);
-        cdcmd(message)
-        return
+        db.run(`UPDATE users SET chatnum = ?, chatid = ? WHERE userid = ?`, [1, (message.channel.id), userid]);
+        cdcmd();
+        return;
     }
 
     if (fullcommand.includes("bye") || (fullcommand.includes("see ya")) || (fullcommand.includes("adios")) || (fullcommand.includes("see you"))) {
             if (number >= 6) {
-        message.channel.send("It's about time you left!")
+        message.channel.send("It's about time you left!");
         } else if (number < 6) {
             message.channel.send("Bye bye.")
             }
-            cdcmd(message)
-            return
+            cdcmd();
+            return;
     }
 
     if (((fullcommand.includes("what")) && (fullcommand.includes("up"))) || (fullcommand.includes("sup"))) {
         message.channel.send("The clouds, the same place I am stored.")
-        cdcmd(message)
-        return
+        cdcmd();
+        return;
     }
 
     if ((fullcommand.includes("cat ")) || (fullcommand.includes("kitten"))) {
         message.channel.send("**NO.** Dogs are better.")
-        cdcmd(message)
-        return
+        cdcmd();
+        return;
     }
 
     if ((fullcommand.includes("what")) && (fullcommand.includes("do")) && (fullcommand.includes("today"))) {
         message.channel.send("I've been reading code all day, I need a nap.")
-        cdcmd(message)
-        return
+        cdcmd();
+        return;
     }
 
     if (firstcommand.includes("thank")) {
         message.channel.send("You're welcome!")
-        cdcmd(message)
-        return
-    }
-
-    if (((fullcommand.includes("love")) || (fullcommand.includes("like")) && (fullcommand.includes("steve")) && ((fullcommand.includes("not")) == false) && ((fullcommand.includes("don")) == false))) {
-        message.channel.send("Aww, thank you!")
-        cdcmd(message)
-        return
+        cdcmd();
+        return;
     }
 
     if (fullcommand.includes("stop ")) {
         if (number < 6) {
             message.channel.send("You stop.")
-            cdcmd(message)
-            return
+            cdcmd();
+            return;
         } else {
             message.channel.send("STG.exe has stopped working...")
-            cdcmd(message)
-            return
+            cdcmd();
+            return;
         }
     }
 
@@ -4213,23 +3747,29 @@ if (firstcommand.includes("!") == 0) {
     } else {
         message.channel.send("Did someone call me?")
     }
-        cdcmd(message)
-        return
+        cdcmd();
+        return;
     }
 
     if (((fullcommand.includes("i ")) || (fullcommand.includes("i'm")) || (fullcommand.includes("i`m"))) && ((fullcommand.includes("tired")) || (fullcommand.includes("sleep")))) {
         if (number >= 6) {
-            message.channel.send("Get some rest!")
+            message.channel.send("Get some rest!");
         } else {
-            message.channel.send("I want to sleep, but MetalRain won't let me :(")
+            message.channel.send("I want to sleep, but MetalRain won't let me :(");
         }
-        cdcmd(message)
-        return
+        cdcmd();
+        return;
+    }
+
+    if ((fullcommand.includes("go")) && (fullcommand.includes("home"))) {
+        message.channel.send("No, you go home.");
+        cdcmd();
+        return;
     }
 
 }
 
-function cdcmd(message) {
+function cdcmd() {
     if (directmessage == false) {
     future = new Date();
     if (intletter == "s") {
@@ -4246,6 +3786,11 @@ function cdcmd(message) {
 
 function setpersoncmd(message) {
     message.delete(1)
+    if (message.author.id != MetalRain) {
+        message.channel.send(permissionmsg)
+        botmessageschannel.send(username + " tried to use " + fullcommand)
+        return
+    }
     if (messagementions == true) {
         person = mentionusername
     } else {
@@ -4283,7 +3828,7 @@ function filldogcmd(message) {
     } else {
         doggovalue = "doggoname"
     }
-    let seconduserinfo = `SELECT userid, username, doggoname FROM users WHERE ` + doggovalue +` = ?`
+    let seconduserinfo = `SELECT * FROM users WHERE ` + doggovalue +` = ?`
     db.get(seconduserinfo, [casesecondcommand], (err, row) => {
         if (err) {
             console.log(err)
@@ -4296,16 +3841,13 @@ function filldogcmd(message) {
         username2 = row.username
         doggoname2 = row.doggoname
 
-    db.run(`UPDATE users SET foodnum = ? WHERE userid = ?`, [100, userid2]);
-    db.run(`UPDATE users SET energynum = ? WHERE userid = ?`, [100, userid2]);
-    db.run(`UPDATE users SET playnum = ? WHERE userid = ?`, [100, userid2]);
-    db.run(`UPDATE users SET statsupdatetime = ? WHERE userid = ?`, [todayms, userid2]);
-    message.channel.send("```" + username2 + "'s " + doggoname2 + " stats were filled up.```")
+    db.run(`UPDATE users SET foodnum = ?, energynum = ?, playnum = ?, pupshunger = ?, statsupdatetime = ? WHERE userid = ?`, [100, 100, 100, 100, todayms, userid2]);
+    message.channel.send("```" + username2 + "'s " + doggoname2 + " stats were filled up.```");
     }
 });
     } else {
         var sendingmessage = "```"
-        let alluserinfo = `SELECT userid, doggoname, foodnum, energynum, playnum, statsupdatetime FROM users`
+        let alluserinfo = `SELECT * FROM users`
         db.all(alluserinfo, [], (err, row) => {
             if (err) {
                 console.log(err)
@@ -4320,6 +3862,7 @@ function filldogcmd(message) {
                     foodnum2 = row.foodnum
                     energynum2 = row.energynum
                     playnum2 = row.playnum
+                    pupshunger2 = row.pupshunger
                     if (doggoname2 != "none") {
                     if (foodnum2 < 100) {
                         db.run(`UPDATE users SET foodnum = ? WHERE userid = ?`, [100, userid2]);
@@ -4327,8 +3870,11 @@ function filldogcmd(message) {
                     if (energynum2 < 100) {
                         db.run(`UPDATE users SET energynum = ? WHERE userid = ?`, [100, userid2]);
                     }
-                    if (playnum2 > 100) {
+                    if (playnum2 < 100) {
                         db.run(`UPDATE users SET playnum = ? WHERE userid = ?`, [100, userid2]);
+                    }
+                    if (pupshunger2 < 100) {
+                        db.run(`UPDATE users SET pupshunger = ? WHERE userid = ?`, [100, userid2]);
                     }
                     db.run(`UPDATE users SET statsupdatetime = ? WHERE userid = ?`, [todayms, userid2]);
                     sendingmessage += (doggoname2 + " ")
@@ -4339,19 +3885,18 @@ function filldogcmd(message) {
                     for(let i = 0; i < sendingmessage.length; i += 1975) {
                                 const toSend = sendingmessage.substring(i, Math.min(sendingmessage.length, i + 1975));
                                 message.channel.send(toSend);
-                            }
+                    }
                 }), 3000
             }
         });
     }
 }
 
-function otherdogcmd(message) {
-    message.delete(1)
+function otherdogcmd(message, doggoname, userid, playnum, foodservings, notif, playtimer, exp) {
     if (messagementions == true) {
         username2 = mentionusername
     } else {
-        if ((firstcommand.includes("play")) || (firstcommand.includes("inv")) || (firstcommand.includes("stats")) || (firstcommand.includes("dog"))) {
+        if ((firstcommand.includes("play")) || (firstcommand.includes("inv")) || (firstcommand.includes("stat")) || (firstcommand.includes("dog"))) {
             username2 = twoplus
         } else if ((firstcommand.includes("my"))) {
             username2 = threeplus
@@ -4374,7 +3919,7 @@ function otherdogcmd(message) {
         } else {
             doggovalue = "doggoname"
         }
-    let seconduserinfo = `SELECT userid, username, dmchannelid, cmdchannelid, cmdpassenter, cmdnumber, commandnumber, commandtext, chatid, chatnum, sgscore, rpsbotscore, rpsuserscore, rpsgame, doggocreate, doggocreatedtime, doggoname, currentdoggo, breed, money, foodnum, energynum, poopcooldown, jobcooldown, breedcooldown, statsupdatetime, sleeping, sleeptime, doggosex, foodservings, applytime, appliedjob, currentjob, working, workstarttime, workendtime, status, quit, playnum, sleepstatgain, sleepstatlose, foodstatlose, playstatlose, playstatgain, bed, doggotime, playtime, totalservings, totalworkhours, totalplaytime, totalmoney, cgexp, mdexp, brdexp, ddexp, pdexp, sdexp, salary, naptime, lastinttime, gifttime, giftboxes, killdog, house, notif, privacy, device, playtimer, worktimer, sleeptimer, applytimer, lottery, lotterynumber, lbpoints, pregnant, pregnanttime, pups, pupshunger, bredpups, achievements FROM users WHERE ` + doggovalue +` = ?`
+    let seconduserinfo = `SELECT * FROM users WHERE ` + doggovalue +` = ?`
         db.get(seconduserinfo, [username2], (err, row) => {
             if (err) {
                 console.log(err)
@@ -4383,92 +3928,108 @@ function otherdogcmd(message) {
                 message.channel.send("```" + username2 + " does not currently have a dog.```")
                 return
             } else {
-                // dmchannelid = row.dmchannelid
-                // cmdchannelid = row.cmdchannelid
-                // cmdpassenter = row.cmdpassenter
-                // cmdnumber = row.cmdnumber
-                // commandnumber = row.commandnumber
-                // commandtext = row.commandtext
-                // chatid = row.chatid
-                // chatnum = row.chatnum
-                // sgscore = row.sgscore
-                // rpsbotscore = row.rpsbotscore
-                // rpsuserscore = row.rpsuserscore
-                // rpsgame = row.rpsgame
-                userid2 = row.userid
-                username2 = row.username
-                doggocreate2 = row.doggocreate
-                doggocreatedtime2 = row.doggocreatedtime
-                doggoname2 = row.doggoname
-                currentdoggo2 = row.currentdoggo
-                breed2 = row.breed
-                money2 = row.money
-                foodnum2 = row.foodnum
-                energynum2 = row.energynum
-                poopcooldown2 = row.poopcooldown
-                jobcooldown2 = row.jobcooldown
-                breedcooldown2 = row.breedcooldown
-                statsupdatetime2 = row.statsupdatetime
-                sleeping2 = row.sleeping
-                sleeptime2 = row.sleeptime
-                doggosex2 = row.doggosex
-                foodservings2 = row.foodservings
-                applytime2 = row.applytime
-                appliedjob2 = row.appliedjob
-                currentjob2 = row.currentjob
-                working2 = row.working
-                workstarttime2 = row.workstarttime
-                workendtime2 = row.workendtime
-                status2 = row.status
-                quit2 = row.quit
-                playnum2 = row.playnum
-                sleepstatgain2 = row.sleepstatgain
-                sleepstatlose2 = row.sleepstatlose
-                foodstatlose2 = row.foodstatlose
-                playstatlose2 = row.playstatlose
-                playstatgain2 = row.playstatgain
-                bed2 = row.bed
-                doggotime2 = row.doggotime
-                playtime2 = row.playtime
-                totalservings2 = row.totalservings
-                totalworkhours2 = row.totalworkhours
-                totalplaytime2 = row.totalplaytime
-                totalmoney2 = row.totalmoney
-                cgexp2 = row.cgexp
-                mdexp2 = row.mdexp
-                brdexp2 = row.brdexp
-                ddexp2 = row.ddexp
-                pdexp2 = row.pdexp
-                sdexp2 = row.sdexp
-                salary2 = row.salary
-                naptime2 = row.naptime
-                lastinttime2 = row.lastinttime
-                gifttime2 = row.gifttime
-                giftboxes2 = row.giftboxes
-                killdog2 = row.killdog
-                house2 = row.house
-                notif2 = row.notif
-                privacy2 = row.privacy
-                device2 = row.device
-                playtimer2 = row.playtimer
-                worktimer2 = row.worktimer
-                sleeptimer2 = row.sleeptimer
-                applytimer2 = row.applytimer
-                lottery2 = row.lottery
-                lotterynumber2 = row.lotterynumber
-                lbpoints2 = row.lbpoints
-                pregnant2 = row.pregnant
-                pregnanttime2 = row.pregnanttime
-                pups2 = row.pups
-                pupshunger2 = row.pupshunger
-                bredpups2 = row.bredpups
-                achievements2 = row.achievements
-                achnum2 = row.achnum
+                // var dmchannelid = row.dmchannelid
+                // var cmdchannelid = row.cmdchannelid
+                // var cmdpassenter = row.cmdpassenter
+                // var cmdnumber = row.cmdnumber
+                // var commandnumber = row.commandnumber
+                // var commandtext = row.commandtext
+                // var chatid = row.chatid
+                // var chatnum = row.chatnum
+                // var sgscore = row.sgscore
+                // var rpsbotscore = row.rpsbotscore
+                // var rpsuserscore = row.rpsuserscore
+                // var rpsgame = row.rpsgame
+                var userid2 = row.userid
+                var username2 = row.username
+                var doggocreate2 = row.doggocreate
+                var doggocreatedtime2 = row.doggocreatedtime
+                var doggoname2 = row.doggoname
+                var currentdoggo2 = row.currentdoggo
+                var breed2 = row.breed
+                var money2 = row.money
+                var foodnum2 = row.foodnum
+                var energynum2 = row.energynum
+                var poopcooldown2 = row.poopcooldown
+                var jobcooldown2 = row.jobcooldown
+                var breedcooldown2 = row.breedcooldown
+                var statsupdatetime2 = row.statsupdatetime
+                var sleeping2 = row.sleeping
+                var sleeptime2 = row.sleeptime
+                var doggosex2 = row.doggosex
+                var foodservings2 = row.foodservings
+                var applytime2 = row.applytime
+                var appliedjob2 = row.appliedjob
+                var currentjob2 = row.currentjob
+                var working2 = row.working
+                var workstarttime2 = row.workstarttime
+                var workendtime2 = row.workendtime
+                var status2 = row.status
+                var quit2 = row.quit
+                var playnum2 = row.playnum
+                var sleepstatgain2 = row.sleepstatgain
+                var sleepstatlose2 = row.sleepstatlose
+                var foodstatlose2 = row.foodstatlose
+                var playstatlose2 = row.playstatlose
+                var playstatgain2 = row.playstatgain
+                var bed2 = row.bed
+                var doggotime2 = row.doggotime
+                var playtime2 = row.playtime
+                var totalservings2 = row.totalservings
+                var totalworkhours2 = row.totalworkhours
+                var totalplaytime2 = row.totalplaytime
+                var totalmoney2 = row.totalmoney
+                var rawexp2 = row.exp
+                var exp2 = (rawexp2.split(",").map(Number));
+                var mdexp2 = row.mdexp
+                var brdexp2 = row.brdexp
+                var ddexp2 = row.ddexp
+                var pdexp2 = row.pdexp
+                var sdexp2 = row.sdexp
+                var salary2 = row.salary
+                var naptime2 = row.naptime
+                var lastinttime2 = row.lastinttime
+                var gifttime2 = row.gifttime
+                var giftboxes2 = row.giftboxes
+                var killdog2 = row.killdog
+                var house2 = row.house
+                var notif2 = row.notif
+                var privacy2 = row.privacy
+                var device2 = row.device
+                var playtimer2 = row.playtimer
+                var worktimer2 = row.worktimer
+                var sleeptimer2 = row.sleeptimer
+                var applytimer2 = row.applytimer
+                var lottery2 = row.lottery
+                var lotterynumber2 = row.lotterynumber
+                var lbpoints2 = row.lbpoints
+                var pregnant2 = row.pregnant
+                var pregnanttime2 = row.pregnanttime
+                var pups2 = row.pups
+                var pupshunger2 = row.pupshunger
+                var bredpups2 = row.bredpups
+                var achievements2 = row.achievements
+                var achnum2 = row.achnum
+                var energyshots2 = row.energyshots
+                var shotcd2 = row.shotcd
+                var shotdailycd2 = row.shotdailycd
+                var shotbought2 = row.shotbought
+                var totalshots2 = row.totalshots
+                var geckopoints2 = row.geckopoints
+                var totalplays = row.totalplays
+                var totalfeeds = row.totalfeeds
+                var bathnum2 = row.bathnum
+                var bathstatlose2 = row.bathstatlose
+                var rawnotifmsgs2 = row.notifmsgs
+                var notifmsgs2 = (rawnotifmsgs2.split(","));
+                var streakstart2 = row.streakstart;
             }
 
         if (currentdoggo2 == "regulardoggo") {
             currentdoggo2 = regulardoggo
         }
+
+        var streaklength2 = (Math.floor((todayms - streakstart2) / 86400000));
 
         if (privacy2 == "STRICT") {
             message.channel.send("```" + username2 + "'s dog is private.```")
@@ -4478,83 +4039,42 @@ function otherdogcmd(message) {
             sleepstatlose2 = (Math.round(sleepstatlose2 * 0.9))
         }
 
+        var {jobname, jobnumber, jobsalary, jobtime, jobindex} = jobsobj[currentjob2];
+        var jobname2 = jobname;
+        var jobnumber2 = jobnumber;
+        var jobsalary2 = jobsalary;
+        var jobtime2 = jobtime;
+        var jobindex2 = jobindex;
+        var maxxp2 = false;
+        var workenergy2;
+        var experience2;
+
         if (currentjob2 == "none") {
-            jobname2 = "none"
-            experience2 = 0
+            jobname2 = "none";
+            experience2 = 0;
         } else {
-            if (currentjob2 == "cg") {
-                experience2 = cgexp
-                expname2 = "cgexp"
-                jobname2 = cgname
-                jobsalary2 = cgsalary
-                jobtime2 = cgtime
-                joblength2 = cglength
-                workenergy2 = ((jobtime2 / sleepstatlose2) + 5)
-            } else if (currentjob2 == "md") {
-                experience2 = mdexp
-                expname2 = "mdexp"
-                jobname2 = mdname
-                jobsalary2 = mdsalary
-                jobtime2 = mdtime
-                joblength2 = mdlength
-                workenergy2 = ((jobtime2 / sleepstatlose2) + 5)
-            } else if (currentjob2 == "brd") {
-                experience2 = brdexp
-                expname2 = "brdexp"
-                jobname2 = brdname
-                jobsalary2 = brdsalary
-                jobtime2 = brdtime
-                joblength2 = brdlength
-                workenergy2 = ((jobtime2 / sleepstatlose2) + 5)
-            } else if (currentjob2 == "dd") {
-                experience2 = ddexp
-                expname2 = "ddexp"
-                jobname2 = ddname
-                jobsalary2 = ddsalary
-                jobtime2 = ddtime
-                joblength2 = ddlength
-                workenergy2 = ((jobtime2 / sleepstatlose2) + 5)
-            } else if (currentjob2 == "pd") {
-                experience2 = pdexp
-                expname2 = "pdexp"
-                jobname2 = pdname
-                jobsalary2 = pdsalary
-                jobtime2 = pdtime
-                joblength2 = pdlength
-                workenergy2 = ((jobtime2 / sleepstatlose2) + 5)
-            } else if (currentjob2 == "sd") {
-                experience2 = sdexp
-                expname2 = "sdexp"
-                jobname2 = sdname
-                jobsalary2 = sdsalary
-                jobtime2 = sdtime
-                joblength2 = sdlength
-                workenergy2 = ((jobtime2 / sleepstatlose2) + 5)
+            experience2 = exp2[jobindex2];
+            workenergy2 = ((jobtime2 / sleepstatlose2) + 5)
+            if (pregnant2 == 1) {
+                jobtime2 = (jobtime2 / 2)
+                workenergy2 = (workenergy2 / 2)
+            }
+            if (experience2 >= 490) {
+                maxxp2 = true
             }
         }
+
         explevel2 = ((Math.floor(experience2 / 10)) + 1)
 
-        if (house2 == "onestory") {
-            housename2 = "1 story"
-            visiblehouse2 = story1
-        } else if (house2 == "twostory") {
-            housename2 = "2 story"
-            visiblehouse2 = story2
-        } else if (house2 == "threestory") {
-            housename2 = "3 story"
-            visiblehouse2 = story3
-        } else if (house2 == "box") {
-            housename2 = house2
-            visiblehouse2 = box
-        } else if (house2 == "doghouse") {
-            housename2 = house2
-            visiblehouse2 = doghouse
-        } else if (house2 == "mansion") {
-            housename2 = house2
-            visiblehouse2 = mansion
-        } else if (house2 == "castle") {
-            housename2 = house2
-            visiblehouse2 = castle
+        var {housecost, visiblehouse, housename} = houseobj[house2];
+
+        var housecost2 = housecost;
+        var visiblehouse2 = visiblehouse;
+        var housename2 = housename;
+
+        if (house2 == "none") {
+            housename2 = "none"
+            visiblehouse2 = ""
         }
 
         if ((salary2 == 0) && (currentjob2 != "none")) {
@@ -4570,7 +4090,9 @@ function otherdogcmd(message) {
         }
 
         if ((playtime2 != 0) && (((todayms - playtime2) / 60000) > 20)) {
-            doneplayingcmd(message)
+            var dpresult = doneplayingcmd(message, doggoname, doggoname2, playnum, playnum2, playstatgain, playstatgain2, playtime, playtime2, totalplaytime, totalplaytime2, userid, userid2, 1, notif, notif2, playtimer, playtimer2, status, status2);
+            playnum = dpresult[0];
+            playnum2 = dpresult[1];
         }
 
         if (doggosex2 == "female") {
@@ -4592,213 +4114,35 @@ function otherdogcmd(message) {
             doggoobject2 = "him"
         }
 
-        agetime2 = (Math.round((todayms - doggocreatedtime2)))
-        ageyears2 = (Math.floor((agetime2 / 51840000)))
-        agemonths2 = (Math.floor(((agetime2 - (ageyears2 * 51840000)) / 4320000)))
-        age2 = (ageyears2 + " years " + agemonths2 + " months old")
+        var agetime2 = (Math.round((todayms - doggocreatedtime2)))
+        var ageyears2 = (Math.floor((agetime2 / 51840000)))
+        var agemonths2 = (Math.floor(((agetime2 - (ageyears2 * 51840000)) / 4320000)))
+        var age2 = (ageyears2 + " years " + agemonths2 + " months old")
 
-        if ((todayms >= (statsupdatetime2 + 900000)) || (firstcommand == "//feed")) { //let's the stats update code know to update the stats
-            statsupdate2 = 1;
-        } else {
-            statsupdate2 = 0;
-        }
-        if (statsupdate2 == 1) {
-            realstatsupdatetime2 = statsupdatetime2
-            pupshunger2 -= ((Math.round((todayms - statsupdatetime2) / bpupfoodlosestat)) * pups2)
-            if (pupshunger2 < 0) {
-                pupshunger2 = 0
-            }
-            db.run(`UPDATE users SET pupshunger = ? WHERE userid = ?`, [pupshunger2, userid2]);
-            if (sleeping2 == 1) {
-                if (energynum2 < 100) {
-                    energynum2 += (Math.round((todayms - statsupdatetime2) / sleepstatgain2))
-                if (energynum2 < 0) {
-                    energynum2 = 0
-                } else if (energynum2 > 100) {
-                    energynum2 = 100
-                    }
-                }
-                
-                if (foodnum2 > 0) {
-                    foodnum2 -= (Math.round((todayms - statsupdatetime2) / (foodstatlose2 * 3)))
-                if (foodnum2 < 0) {
-                    foodnum2 = 0
-                    }
-                }
-                if (status2 != "playing") {
-                if (playnum2 > 0) {
-                    playnum2 -= (Math.round((todayms - statsupdatetime2) / playstatlose2))
-                if (playnum2 < 0) {
-                    playnum2 = 0
-                    }
-                }
-                }
-                statsupdatetime2 = todayms;
-                db.run(`UPDATE users SET statsupdatetime = ? WHERE userid = ?`, [statsupdatetime2, userid2]);
-                db.run(`UPDATE users SET energynum = ? WHERE userid = ?`, [energynum2, userid2]);
-                db.run(`UPDATE users SET foodnum = ? WHERE userid = ?`, [foodnum2, userid2]);
-                db.run(`UPDATE users SET playnum = ? WHERE userid = ?`, [playnum2, userid2]);
-            } else if (sleeping2 == 0) {
-                if ((todayms < naptime2) || (naptime2 < todayms)) {
-                    if (todayms > naptime2) {
-                        statsupdatetime2 = (todayms - (naptime2 - statsupdatetime2))
-                    }
-                    if (energynum2 > 0) {
-                    energynum2 -= (Math.round((todayms - statsupdatetime2) / sleepstatlose2))
-                    if (energynum2 < 0) {
-                    energynum2 = 0
-                    } else if (energynum2 > 100) {
-                        energynum2 = 100
-                    }
-                }
-                }
-                statsupdatetime2 = realstatsupdatetime2
-                if (foodnum2 > 0) {
-                    foodnum2 -= (Math.round((todayms - statsupdatetime2) / foodstatlose2))
-                    if (foodnum2 < 0) {
-                    foodnum2 = 0
-                    }
-                }
-                if (status2 != "playing") {
-                if (playnum2 > 0) {
-                    playnum2 -= (Math.round((todayms - statsupdatetime2) / (playstatlose2 * 1.2)))
-                if (playnum2 < 0) {
-                    playnum2 = 0
-                    }
-                }
-                }
-                statsupdatetime2 = todayms;
-                db.run(`UPDATE users SET statsupdatetime = ? WHERE userid = ?`, [statsupdatetime2, userid2]);
-                db.run(`UPDATE users SET energynum = ? WHERE userid = ?`, [energynum2, userid2]);
-                db.run(`UPDATE users SET foodnum = ? WHERE userid = ?`, [foodnum2, userid2]);
-                db.run(`UPDATE users SET playnum = ? WHERE userid = ?`, [playnum2, userid2]);
-            }
-        }
+        var upresult = updatestats(firstcommand, secondcommand, statsupdatetime2, sleeping2, naptime2, energynum2, foodnum2, playnum2, status2, sleepstatgain2, sleepstatlose2, foodstatlose2, playstatlose2, pupshunger2, pups2, bathnum2, bathstatlose2, userid2);
+        statsupdatetime2 = upresult[0];
+        energynum2 = upresult[1];
+        foodnum2 = upresult[2];
+        playnum2 = upresult[3];
+        status2 = upresult[4];
+        pupshunger2 = upresult[5];
+        bathnum2 = upresult[6];
 
-    happinessnum2 = 100;
-    happinessnum2 -= Math.round((100 - energynum2) / 3)
-    happinessnum2 -= Math.round((100 - foodnum2) / 3)
-    happinessnum2 -= Math.round((100 - playnum2) / 3)
+        var wantsall2 = getwants(status2, playnum2, foodnum2, energynum2, bathnum2);
 
-    if (energynum2 >= 95) {
-        energy2 = statbar10
-    } else if (energynum2 >= 85) {
-        energy2= statbar9
-    } else if (energynum2 >= 75) {
-        energy2= statbar8
-    } else if (energynum2 >= 65) {
-        energy2= statbar7
-    } else if (energynum2 >= 55) {
-        energy2= statbar6
-    } else if (energynum2 >= 45) {
-        energy2= statbar5
-    } else if (energynum2 >= 35) {
-        energy2= statbar4
-    } else if (energynum2 >= 25) {
-        energy2= statbar3
-    } else if (energynum2 >= 15) {
-        energy2= statbar2
-    } else if ((energynum2 >= 5) && (energynum2 < 15)) {
-        energy2= statbar1
-    } else if (energynum2 < 5) {
-        energy2= statbar0
-    }
+        var happinessnum2 = 100;
+        happinessnum2 -= Math.round((100 - energynum2) / 3)
+        happinessnum2 -= Math.round((100 - foodnum2) / 3)
+        happinessnum2 -= Math.round((100 - playnum2) / 3)
 
-    if (foodnum2 >= 95) {
-        food2= statbar10
-    } else if (foodnum2 >= 85) {
-        food2= statbar9
-    } else if (foodnum2 >= 75) {
-        food2= statbar8
-    } else if (foodnum2 >= 65) {
-        food2= statbar7
-    } else if (foodnum2 >= 55) {
-        food2= statbar6
-    } else if (foodnum2 >= 45) {
-        food2= statbar5
-    } else if (foodnum2 >= 35) {
-        food2= statbar4
-    } else if (foodnum2 >= 25) {
-        food2= statbar3
-    } else if (foodnum2 >= 15) {
-        food2= statbar2
-    } else if ((foodnum2 >= 5) && (foodnum2 < 15)) {
-        food2= statbar1
-    } else if (foodnum2 < 5) {
-        food2= statbar0
-    }
+        var barsresult = getstatbars(happinessnum2, foodnum2, energynum2, playnum2, pupshunger2);
+        var happiness2 = barsresult[0];
+        var food2 = barsresult[1];
+        var energy2 = barsresult[2];
+        var play2 = barsresult[3];
+        var pupshungerbar2 = barsresult[4];
 
-    if (playnum2 >= 95) {
-        play2 = statbar10
-    } else if (playnum2 >= 85) {
-        play2 = statbar9
-    } else if (playnum2 >= 75) {
-        play2 = statbar8
-    } else if (playnum2 >= 65) {
-        play2 = statbar7
-    } else if (playnum2 >= 55) {
-        play2 = statbar6
-    } else if (playnum2 >= 45) {
-        play2 = statbar5
-    } else if (playnum2 >= 35) {
-        play2 = statbar4
-    } else if (playnum2 >= 25) {
-        play2 = statbar3
-    } else if (playnum2 >= 15) {
-        play2 = statbar2
-    } else if ((playnum2 >= 5) && (playnum2 < 15)) {
-        play2 = statbar1
-    } else if (playnum2 < 5) {
-        play2 = statbar0
-    }
-
-    if (happinessnum2 >= 95) {
-        happiness2= statbar10
-    } else if (happinessnum2 >= 85) {
-        happiness2= statbar9
-    } else if (happinessnum2 >= 75) {
-        happiness2= statbar8
-    } else if (happinessnum2 >= 65) {
-        happiness2= statbar7
-    } else if (happinessnum2 >= 55) {
-        happiness2= statbar6
-    } else if (happinessnum2 >= 45) {
-        happiness2= statbar5
-    } else if (happinessnum2 >= 35) {
-        happiness2= statbar4
-    } else if (happinessnum2 >= 25) {
-        happiness2= statbar3
-    } else if (happinessnum2 >= 15) {
-        happiness2= statbar2
-    } else if ((happinessnum2 >= 5) && (happinessnum2 < 15)) {
-        happiness2= statbar1
-    } else if (happinessnum2 < 5) {
-        happiness2= statbar0
-    }
-
-    if (pupshunger2 >= 95) {
-        pupshungerbar2 = statbar10
-    } else if (pupshunger2 >= 85) {
-        pupshungerbar2 = statbar9
-    } else if (pupshunger2 >= 75) {
-        pupshungerbar2 = statbar8
-    } else if (pupshunger2 >= 65) {
-        pupshungerbar2 = statbar7
-    } else if (pupshunger2 >= 55) {
-        pupshungerbar2 = statbar6
-    } else if (pupshunger2 >= 45) {
-        pupshungerbar2 = statbar5
-    } else if (pupshunger2 >= 35) {
-        pupshungerbar2 = statbar4
-    } else if (pupshunger2 >= 25) {
-        pupshungerbar2 = statbar3
-    } else if (pupshunger2 >= 15) {
-        pupshungerbar2 = statbar2
-    } else if ((pupshunger2 >= 5) && (pupshunger2 < 15)) {
-        pupshungerbar2 = statbar1
-    } else if (pupshunger2 < 5) {
-        pupshungerbar2 = statbar0
-    }
+    message.delete(1).then(() => {
 
     if ((firstcommand == "//feed") || (firstcommand == "//play")) {
         stopcode = 0
@@ -4827,35 +4171,6 @@ function otherdogcmd(message) {
         }
     }
 
-    wants12 = "none"
-    wants22 = "none"
-    wants32 = "none"
-    wantsall2 = "none"
-    if ((playnum2 <= 35) && (status2 != "playing")) {
-        wants12 = "to play"
-        wantsall2 = ("" + wants12 + "")
-    }
-    if (foodnum2 <= 35) {
-        if (wants12 != "none") {
-            wants22 = "food"
-            wantsall2 = ("" + wants12 + ", " + wants22 + "")
-        } else if (wants12 == "none") {
-            wants12 = "food"
-            wantsall2 = ("" + wants12 + "")
-        }
-    }
-    if (energynum2 <= 35) {
-        if (wants22 != "none") {
-            wants32 = "to sleep"
-            wantsall2 = ("" + wants12 + ", " + wants22 + ", " + wants32 + "")
-        } else if (wants12 != "none") {
-            wants22 = "to sleep"
-            wantsall2 = ("" + wants12 + ", " + wants22 + "")
-        } else if (wants32 == "none") {
-            wants12 = "to sleep"
-            wantsall2 = ("" + wants12 + "")
-        }
-    }
     if (firstcommand.includes("//dog")) {
         if (working2 == 1) {
             if (todayms > workendtime2) {
@@ -4908,79 +4223,27 @@ function otherdogcmd(message) {
         }
         if (device == "PC") {
             if (currentjob2 != "none") {
-                message.channel.send("```" + username2 + "'s " + doggoname2 + ":\n\n" + currentdoggo2 + "\n\nAge:         " + age2 + "\nGender:      " + doggosex2 + "\nStatus:      " + status2 + "\nHappiness:   " + happiness2 + "  (" + happinessnum2 + "/100)\nHunger:      " + food2 + "  (" + foodnum2 + "/100)\nEnergy:      " + energy2 + "  (" + energynum2 + "/100)\nPlay Number: " + play2 + "  (" + playnum2 + "/100)\nWants:       " + wantsall2 + "\nMoney:       $" + (money2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         Level "+ explevel2 + " " + jobname2 + " ($" + salary2 + "/hour)```")
+                message.channel.send("```" + username2 + "'s " + doggoname2 + ":\n\n" + currentdoggo2 + "\n\nAge:         " + age2 + " (" + streaklength2 + " day streak)\nGender:      " + doggosex2 + "\nStatus:      " + status2 + "\nHappiness:   " + happiness2 + "  (" + happinessnum2 + "/100)\nHunger:      " + food2 + "  (" + foodnum2 + "/100)\nEnergy:      " + energy2 + "  (" + energynum2 + "/100)\nPlay Number: " + play2 + "  (" + playnum2 + "/100)\nWants:       " + wantsall2 + "\nMoney:       $" + (money2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         Level "+ explevel2 + " " + jobname2 + " ($" + salary2 + "/hour)```")
             } else {
-                message.channel.send("```" + username2 + "'s " + doggoname2 + ":\n\n" + currentdoggo2 + "\n\nAge:         " + age2 + "\nGender:      " + doggosex2 + "\nStatus:      " + status2 + "\nHappiness:   " + happiness2 + "  (" + happinessnum2 + "/100)\nHunger:      " + food2 + "  (" + foodnum2 + "/100)\nEnergy:      " + energy2 + "  (" + energynum2 + "/100)\nPlay Number: " + play2 + "  (" + playnum2 + "/100)\nWants:       " + wantsall2 + "\nMoney:       $" + (money2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         none```")
+                message.channel.send("```" + username2 + "'s " + doggoname2 + ":\n\n" + currentdoggo2 + "\n\nAge:         " + age2 + " (" + streaklength2 + " day streak)\nGender:      " + doggosex2 + "\nStatus:      " + status2 + "\nHappiness:   " + happiness2 + "  (" + happinessnum2 + "/100)\nHunger:      " + food2 + "  (" + foodnum2 + "/100)\nEnergy:      " + energy2 + "  (" + energynum2 + "/100)\nPlay Number: " + play2 + "  (" + playnum2 + "/100)\nWants:       " + wantsall2 + "\nMoney:       $" + (money2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         none```")
             }
         } else if (device == "MOBILE") {
             if (currentjob2 != "none") {
-                message.channel.send("```" + username2 + "'s " + doggoname2 + ":\n\n" + currentdoggo2 + "\n\nAge:         " + age2 + "\nGender:      " + doggosex2 + "\nStatus:      " + status2 + "\n\nHappiness:  " + happiness2 + "(" + happinessnum2 + "/100)\n\nHunger:     " + food2 + "(" + foodnum2 + "/100)\n\nEnergy:     " + energy2 + "(" + energynum2 + "/100)\n\nPlay Number:" + play2 + "(" + playnum2 + "/100)\n\nWants:       " + wantsall2 + "\nMoney:       $" + (money2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         Level "+ explevel2 + " " + jobname2 + " ($" + salary2 + "/hour)```")
+                message.channel.send("```" + username2 + "'s " + doggoname2 + ":\n\n" + currentdoggo2 + "\n\nAge:         " + age2 + " (" + streaklength2 + " day streak)\nGender:      " + doggosex2 + "\nStatus:      " + status2 + "\n\nHappiness:  " + happiness2 + "(" + happinessnum2 + "/100)\n\nHunger:     " + food2 + "(" + foodnum2 + "/100)\n\nEnergy:     " + energy2 + "(" + energynum2 + "/100)\n\nPlay Number:" + play2 + "(" + playnum2 + "/100)\n\nWants:       " + wantsall2 + "\nMoney:       $" + (money2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         Level "+ explevel2 + " " + jobname2 + " ($" + salary2 + "/hour)```")
             } else {
-                message.channel.send("```" + username2 + "'s " + doggoname2 + ":\n\n" + currentdoggo2 + "\n\nAge:         " + age2 + "\nGender:      " + doggosex2 + "\nStatus:      " + status2 + "\n\nHappiness:  " + happiness2 + "(" + happinessnum2 + "/100)\n\nHunger:     " + food2 + "(" + foodnum2 + "/100)\n\nEnergy:     " + energy2 + "(" + energynum2 + "/100)\n\nPlay Number:" + play2 + "(" + playnum2 + "/100)\n\nWants:       " + wantsall2 + "\nMoney:       $" + (money2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         none```")
+                message.channel.send("```" + username2 + "'s " + doggoname2 + ":\n\n" + currentdoggo2 + "\n\nAge:         " + age2 + " (" + streaklength2 + " day streak)\nGender:      " + doggosex2 + "\nStatus:      " + status2 + "\n\nHappiness:  " + happiness2 + "(" + happinessnum2 + "/100)\n\nHunger:     " + food2 + "(" + foodnum2 + "/100)\n\nEnergy:     " + energy2 + "(" + energynum2 + "/100)\n\nPlay Number:" + play2 + "(" + playnum2 + "/100)\n\nWants:       " + wantsall2 + "\nMoney:       $" + (money2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nJob:         none```")
             }
         }
     }
     if (firstcommand.includes("//stat")) {
-        message.channel.send("```" + username2 + "'s " + doggoname2 + "'s Stats:\n\nHappiness:   " + happiness2 + "  (" + happinessnum2 + "/100)\nHunger:      " + food2 + "  (" + foodnum2 + "/100)\nEnergy:      " + energy2 + "  (" + energynum2 + "/100)\nPlay Number: " + play2 + "  (" + playnum2 + "/100)\n\nEnergy Gain Rate:      +1 / " + (Math.round((sleepstatgain2 / 60000) * 100) / 100) + " min      (" + (Math.ceil(((sleepstatgain2 / 60000) * 100) / 60)) + " hours to fill energy bar)\nEnergy Lose Rate:      -1 / " + (Math.round((sleepstatlose2 / 60000) * 100) / 100) + " min    (" + (Math.ceil(((sleepstatlose2 / 60000) * 100) / 60)) + " hours to deplete energy bar)\nFood Lose Rate Asleep: -1 / " + (Math.round(((foodstatlose2 * 3) / 60000) * 100) / 100) + " min     (" + (Math.round((((foodstatlose2 * 3) / 60000) * 100) / 60)) + " hours to deplete food bar)\nFood Lose Rate Awake:  -1 / " + (Math.round((foodstatlose2 / 60000) * 100) / 100) + " min      (" + (Math.round(((foodstatlose2 / 60000) * 100) / 60)) + " hours to deplete food bar)\nPlay Lose Rate Asleep: -1 / " + (Math.round((playstatlose2 / 60000) * 100) / 100) + " min   (" + (Math.round(((playstatlose2 / 60000) * 100) / 60)) + " hours to deplete play number)\nPlay Lose Rate Awake:  -1 / " + (Math.round(((playstatlose2 * 1.2) / 60000) * 100) / 100) + " min      (" + (Math.round(((playstatlose2 / 60000) * 100) / 60)) + " hours to deplete play number)\nPlay Gain Rate:        +1 / " + (Math.round((playstatgain2 / 60000) * 100) / 100) + " min    (" + (Math.round((playstatgain2 / 60000) * 100)) + " minutes to fill play number)\n\nTotal income:                    $" + (totalmoney2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal hours worked:              " + (totalworkhours2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal minutes played:            " + (totalplaytime2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal servings of food eaten:    " + (totalservings2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "```")
+        message.channel.send("```" + username2 + "'s " + doggoname2 + "'s Stats:\n\nHappiness:   " + happiness2 + "  (" + happinessnum2 + "/100)\nHunger:      " + food2 + "  (" + foodnum2 + "/100)\nEnergy:      " + energy2 + "  (" + energynum2 + "/100)\nPlay Number: " + play2 + "  (" + playnum2 + "/100)\n\nEnergy Gain Rate:      +1 / " + (Math.round((sleepstatgain2 / 60000) * 100) / 100) + " min      (" + (Math.ceil(((sleepstatgain2 / 60000) * 100) / 60)) + " hours to fill energy bar)\nEnergy Lose Rate:      -1 / " + (Math.round((sleepstatlose2 / 60000) * 100) / 100) + " min    (" + (Math.ceil(((sleepstatlose2 / 60000) * 100) / 60)) + " hours to deplete energy bar)\nFood Lose Rate Asleep: -1 / " + (Math.round(((foodstatlose2 * 3) / 60000) * 100) / 100) + " min     (" + (Math.round((((foodstatlose2 * 3) / 60000) * 100) / 60)) + " hours to deplete food bar)\nFood Lose Rate Awake:  -1 / " + (Math.round((foodstatlose2 / 60000) * 100) / 100) + " min      (" + (Math.round(((foodstatlose2 / 60000) * 100) / 60)) + " hours to deplete food bar)\nPlay Lose Rate Asleep: -1 / " + (Math.round((playstatlose2 / 60000) * 100) / 100) + " min   (" + (Math.round(((playstatlose2 / 60000) * 100) / 60)) + " hours to deplete play number)\nPlay Lose Rate Awake:  -1 / " + (Math.round(((playstatlose2 * 1.2) / 60000) * 100) / 100) + " min      (" + (Math.round(((playstatlose2 / 60000) * 100) / 60)) + " hours to deplete play number)\nPlay Gain Rate:        +1 / " + (Math.round((playstatgain2 / 60000) * 100) / 100) + " min    (" + (Math.round((playstatgain2 / 60000) * 100)) + " minutes to fill play number)\n\nTotal income:                    $" + (totalmoney2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal hours worked:              " + (totalworkhours2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal minutes played:            " + (totalplaytime2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal servings of food eaten:    " + (totalservings2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nTotal energy shots drank:        " + (totalshots2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "```")
     }
     if ((firstcommand == "//my") && ((secondcommand == "job") || (secondcommand == "jobs"))) {
-            var cgs = 0
-            var mds = 0
-            var brds = 0
-            var dds = 0
-            var pds = 0
-            var sds = 0
-            var cgsn = (((Math.floor(cgexp2/10) + 1).toString().length))
-            if (cgsn == 3) {
-                cgs = "  "
-            } else if (cgsn == 2) {
-                cgs = "   "
-            } else if (cgsn = 1) {
-                cgs = "    "
-            }
-            var mdsn = (((Math.floor(mdexp2/10) + 1).toString().length))
-            if (mdsn == 3) {
-                mds = "  "
-            } else if (mdsn == 2) {
-                mds = "   "
-            } else if (mdsn = 1) {
-                mds = "    "
-            }
-            var brdsn = (((Math.floor(brdexp2/10) + 1).toString().length))
-            if (brdsn == 3) {
-                brds = "  "
-            } else if (brdsn == 2) {
-                brds = "   "
-            } else if (brdsn = 1) {
-                brds = "    "
-            }
-            var ddsn = (((Math.floor(ddexp2/10) + 1).toString().length))
-            if (ddsn == 3) {
-                dds = "  "
-            } else if (ddsn == 2) {
-                dds = "   "
-            } else if (ddsn = 1) {
-                dds = "    "
-            }
-            var pdsn = (((Math.floor(pdexp2/10) + 1).toString().length))
-            if (pdsn == 3) {
-                pds = "  "
-            } else if (pdsn == 2) {
-                pds = "   "
-            } else if (pdsn = 1) {
-                pds = "    "
-            }
-            var sdsn = (((Math.floor(sdexp2/10) + 1).toString().length))
-            if (sdsn == 3) {
-                sds = "  "
-            } else if (sdsn == 2) {
-                sds = "   "
-            } else if (sdsn = 1) {
-                sds = "    "
-            }
-        message.channel.send("```" + username2 + "'s " + doggoname2 + "'s Jobs:\n\nCrossing Guard Dog:          Level " + (Math.floor(cgexp2/10) + 1) + cgs + "(" + cgexp2 + " XP)\nMail Delivery Dog:           Level " + (Math.floor(mdexp2/10) + 1) + mds + "(" + mdexp2 + " XP)\nBaseball Retrieving Dog:     Level " + (Math.floor(brdexp2/10) + 1) + brds + "(" + brdexp2 + " XP)\nDrug Detection Dog:          Level " + (Math.floor(ddexp2/10) + 1) + dds + "(" + ddexp2 + " XP)\nK-9 Police Dog:              Level " + (Math.floor(pdexp2/10) + 1) + pds + "(" + pdexp2 + " XP)\nSled Dog:                    Level " + (Math.floor(sdexp2/10) + 1) + sds + "(" + sdexp2 + " XP)```")
+        var toSend = myjobslist(doggoname2, exp2);
+            message.channel.send(toSend);
+            return;
     }
-    if ((firstcommand.includes("//my")) && (secondcommand.includes("fam"))) {
+    if ((firstcommand.includes("//my")) && (secondcommand != undefined) && (secondcommand.includes("fam"))) {
         if (pups2 > 0) {
             message.channel.send("```" + username2 + "'s " + doggoname2 + "'s Family:\n\n" + dogandpup + "  x" + pups2 + "\n\nPuppies' hunger:   " + pupshungerbar2 + "  (" + pupshunger2 + "/100)" + "```")
         } else if (pups <= 0) {
@@ -4989,7 +4252,8 @@ function otherdogcmd(message) {
         return
     }
     if (firstcommand.includes("//inv")) {
-        message.channel.send("```" + username2 + "'s " + doggoname2 + "'s Inventory:\n\nMoney:           $" + money2 + "\nFood servings:   " + foodservings2 + "\nHouse:           " + housename2 + "\nBed:             " + bed2 + "\nGift Boxes:      " + giftboxes2 + "```")
+        message.channel.send("```" + username2 + "'s " + doggoname2 + "'s Inventory:\n\nMoney:           $" + (money2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nFood servings:   " + (foodservings2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nEnergy shots:    " + (energyshots2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\nHouse:           " + housename2 + "\nBed:             " + bed2 + "\nGift Boxes:      " + giftboxes2 + "```")
+        return
     }
     if (firstcommand == "//feed") {
         if (privacy2 == "MODERATE") {
@@ -5006,7 +4270,9 @@ function otherdogcmd(message) {
         return
     }
     if (foodservings >= commandnumber) {
-        doneplayingcmd(message)
+        var dpresult = doneplayingcmd(message, doggoname, doggoname2, playnum, playnum2, playstatgain, playstatgain2, playtime, playtime2, totalplaytime, totalplaytime2, userid, userid2, 0, notif, notif2, playtimer, playtimer2, status, status2);
+        playnum = dpresult[0];
+        playnum2 = dpresult[1];
         energynum2 += (5 * commandnumber)
         foodnum2 += (50 * commandnumber)
         if (foodnum2 > 100) {
@@ -5016,11 +4282,13 @@ function otherdogcmd(message) {
             energynum2 = 100
         }
         totalservings2 += commandnumber
-        foodservings -= commandnumber;
+        foodservings -= commandnumber
+        totalfeeds += 1
         db.run(`UPDATE users SET totalservings = ? WHERE userid = ?`, [totalservings2, userid2]);
         db.run(`UPDATE users SET energynum = ? WHERE userid = ?`, [energynum2, userid2]);
         db.run(`UPDATE users SET foodnum = ? WHERE userid = ?`, [foodnum2, userid2]);
         db.run(`UPDATE users SET foodservings = ? WHERE userid = ?`, [foodservings, userid2]);
+        db.run(`UPDATE users SET totalfeeds = ? WHERE userid = ?`, [totalfeeds, userid]);
         if (sleeping2 == 1) {
             message.channel.send("```" + eatingdoggo + "\n\n" + doggoname +  " woke up " + username2 + "'s " + doggoname2 + " and fed " + doggoobject2 + " " + commandnumber + " serving(s) of food.```")
         } else if ((sleeping2 == 0) && (working2 == 0)) {
@@ -5028,8 +4296,14 @@ function otherdogcmd(message) {
         } else if (working2 == 1) {
             message.channel.send("```" + eatingdoggo + "\n\n" + doggoname + " fed " + username2 + "'s " + doggoname2 + " " + commandnumber + " serving(s) of food while on " + doggowords2 + " lunch break.```")
         }
+        if (notifmsgs2[0] == "none") {
+            notifmsgs2 = new Array();
+        }
+        notifmsgs2.push("" + doggoname + " fed you while you were gone.");
+        var strnotifmsgs = notifmsgs2.toString();
+        db.run(`UPDATE users SET notifmsgs = ? WHERE userid = ?`, [strnotifmsgs, userid2]);
         newanum = 3
-        achievementscmd(message)
+        achievementscmd(message, achievements, exp, money, giftboxes, foodservings, achnum, "none", pups, newanum, doggoname, userid);
     } else if (foodservings < 1) {
         message.channel.send("```" + doggoname + " doesn't have any food to give to " + doggoname2 + ".```")
     }
@@ -5048,6 +4322,8 @@ function otherdogcmd(message) {
             return
         }
     if ((working2 == 0) && (sleeping2 == 0)) {
+        totalplays += 1
+        totalplays2 += 1
         notifnumber = (todayms + (Math.round(((100 - playnum) * 12000))))
         notifnumber2 = (todayms + (Math.round(((100 - playnum2) * 12000))))
         db.run(`UPDATE users SET status = ? WHERE userid = ?`, ["playing", userid]);
@@ -5056,31 +4332,52 @@ function otherdogcmd(message) {
         db.run(`UPDATE users SET playtime = ? WHERE userid = ?`, [todayms, userid2]);
         db.run(`UPDATE users SET playtimer = ? WHERE userid = ?`, [notifnumber, userid]);
         db.run(`UPDATE users SET playtimer = ? WHERE userid = ?`, [notifnumber2, userid2]);
+        db.run(`UPDATE users SET totalplays = ? WHERE userid = ?`, [totalplays, userid]);
+        db.run(`UPDATE users SET totalplays = ? WHERE userid = ?`, [totalplays2, userid2]);
         if (number <= 3) {
              message.channel.send("```" + doggoname +" and " + doggoname2 + " are playing around at the dog park.```")
-        } else if ((number > 3) && (number < 7)) {
+        } else if ((number > 3) && (number < 6)) {
             message.channel.send("```" + doggoname + " and " + doggoname2 + " are racing each other around the block.```")
-        } else if (number > 6) {
+        } else if ((number > 5) && (number < 8)) {
             message.channel.send("```" + doggoname + " is chasing squirrels while " + doggoname2 + " decides to run into trees.```")
+        } else if (number > 7) {
+            message.channel.send("```" + doggoname + " and " + doggoname2 + " are chasing after drones.```")
         }
+        // if (number <= 5) {
+        //     setTimeout(() => {
+        //         var msgtosend = ("Went to the park today. It was good to play and catch up with " + doggoname2 + "");
+        //         dogagram(userid, doggoname, msgtosend);
+        //     }, 900000);
+        // }
+        if (notifmsgs2[0] == "none") {
+            notifmsgs2 = new Array();
+        }
+        notifmsgs2.push("" + doggoname + " played with you while you were gone.");
+        var strnotifmsgs = notifmsgs2.toString();
+        db.run(`UPDATE users SET notifmsgs = ? WHERE userid = ?`, ["none", strnotifmsgs]);
         newanum = 4
-        achievementscmd(message)
+        achievementscmd(message, achievements, exp, money, giftboxes, foodservings, achnum, "none", pups, newanum, doggoname, userid);
     } else if (working2 == 1) {
-        message.channel.send("```" + doggoname2 + " can't play while at work.```")
+        message.channel.send("```" + doggoname2 + " can't play while at work.```");
     } else if (sleeping2 == 1) {
-        message.channel.send("```" + doggoname2 + " didn't want to play because " + doggonoun2 + " was tired.```")
+        message.channel.send("```" + doggoname2 + " didn't want to play because " + doggonoun2 + " was tired.```");
     }
 }
 });
+});
 }
 
-function doneplayingcmd(message) {
+function doneplayingcmd(message, doggoname, doggoname2, playnum, playnum2, playstatgain, playstatgain2, playtime, playtime2, totalplaytime, totalplaytime2, userid, userid2, fpplay, notif, notif2, playtimer, playtimer2, status, status2) {
     var playminutes = 0
     var playminutes2 = 0
     var beforeplaynum = 0
     var beforeplaynum2 = 0
+    if (fpplay != 1) {
     if ((playtime != 0) && (playtime < todayms)) {
         beforeplaynum = playnum
+        if (playnum < 0) {
+            playnum = 0;
+        }
         playnum += (Math.round((todayms - playtime) / playstatgain))
         if (playnum > 100) {
             playnum = 100
@@ -5089,24 +4386,24 @@ function doneplayingcmd(message) {
             status = "awake"
             db.run(`UPDATE users SET status = ? WHERE userid = ?`, ["awake", userid]);
         }
-        playminutes = (Math.round((todayms - playtime) / 60000))
+        playminutes = (Math.round((100 - beforeplaynum) / 5))
         if (playminutes > 20) {
             totalplaytime += 20
         } else {
             totalplaytime += playminutes
         }
-        db.run(`UPDATE users SET playtime = ? WHERE userid = ?`, [0, userid]);
-        db.run(`UPDATE users SET playnum = ? WHERE userid = ?`, [playnum, userid]);
-        db.run(`UPDATE users SET totalplaytime = ? WHERE userid = ?`, [totalplaytime, userid]);
+        db.run(`UPDATE users SET playtime = ?, playnum = ?, totalplaytime = ? WHERE userid = ?`, [0, playnum, totalplaytime, userid]);
         if ((notif == "ON") && (playtimer != 0)) {
             db.run(`UPDATE users SET playtimer = ? WHERE userid = ?`, [0, userid]);
         }
         message.channel.send("```" + doggoname + " played for " + (Math.round((todayms - playtime) / 60000)) + " minutes.```")
     }
+    }
     if (username2 == "none") {
-        return
+        return [playnum, playnum2];
     }
     if ((playtime2 != 0) && (playtime2 < todayms)) {
+        beforeplaynum2 = playnum2
         playnum2 += (Math.round((todayms - playtime2) / playstatgain2))
         if (playnum2 > 100) {
             playnum2 = 100;
@@ -5114,7 +4411,7 @@ function doneplayingcmd(message) {
         if (status2 == "playing") {
             status2 = "awake";
         }
-        playminutes2 += (Math.round((todayms - playtime2) / 60000))
+        playminutes2 += (Math.round((100 - beforeplaynum2) / 5))
         if (playminutes2 > 20) {
             totalplaytime2 += 20
         } else {
@@ -5129,10 +4426,10 @@ function doneplayingcmd(message) {
         }
         message.channel.send("```" + doggoname2 + " played for " + (Math.round((todayms - playtime2) / 60000)) + " minutes.```")
     }
-            
+    return [playnum, playnum2];
 }
 
-function serverinfocmd(message) {
+function serverinfocmd(message, firstcommand, fullcommand, userid) {
     message.delete(1)
     if (userid != MetalRain) {
         message.channel.send(permissionmsg)
@@ -5151,15 +4448,19 @@ function serverinfocmd(message) {
     }
 }
 
-function opengiftcmd(message) {
+function opengiftcmd(message, thirdcommand, money, totalmoney, giftboxes, foodservings, experience, exp, currentjob, jobindex, doggoname, playnum, playstatgain, playtime, totalplaytime, maxxp, playtimer, userid) {
     let db = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
-    doneplayingcmd(message)
+    var dpresult = doneplayingcmd(message, doggoname, "none", playnum, playnum2, playstatgain, 0, playtime, 0, totalplaytime, 0, userid, 0, 0, notif, 0, playtimer, 0, status, 0);
+    playnum = dpresult[0];
     var giftnum = (Math.round((Math.random() * 3)))
     var giftitemnum = (Math.ceil(Math.random() * 3))
     var gift = 0
-    giftmoney = 0
-    giftfoodservings = 0
-    giftxp = 0
+    var giftmoney = 0
+    var giftfoodservings = 0
+    var giftxp = 0
+    if (experience >= 490) {
+        maxxp = true
+    }
     if (todayms > gifttime) {
         giftboxes += (boxprice);
         db.run(`UPDATE users SET gifttime = ? WHERE userid = ?`, [(todayms + 86400000), userid]);
@@ -5176,37 +4477,33 @@ function opengiftcmd(message) {
             money += gift
             totalmoney += gift
             giftboxes -= 1;
-            db.run(`UPDATE users SET giftboxes = ? WHERE userid = ?`, [giftboxes, userid]);
-            db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
-            db.run(`UPDATE users SET totalmoney = ? WHERE userid = ?`, [totalmoney, userid]);
             message.channel.send("```" + doggoname + " got $" + gift + " from the gift box.```")
         } else if (giftnum == 2) {
             gift = (giftitemnum * 3)
             foodservings += gift
             giftboxes -= 1;
-            db.run(`UPDATE users SET giftboxes = ? WHERE userid = ?`, [giftboxes, userid]);
-            db.run(`UPDATE users SET foodservings = ? WHERE userid = ?`, [foodservings, userid]);
             message.channel.send("```" + doggoname + " got " + gift + " servings of food from the gift box.```")
         } else if (giftnum == 3) {
-            if (currentjob == "none") {
+            if ((currentjob == "none") || (maxxp == true)) {
             gift = (giftitemnum * 50)
             money += gift
             totalmoney += gift
             giftboxes -= 1;
-            db.run(`UPDATE users SET giftboxes = ? WHERE userid = ?`, [giftboxes, userid]);
-            db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
-            db.run(`UPDATE users SET totalmoney = ? WHERE userid = ?`, [totalmoney, userid]);
             message.channel.send("```" + doggoname + " got $" + gift + " from the gift box.```")
             return
-            } else if (currentjob != "none") {
+            } else if ((currentjob != "none") && (maxxp == false)) {
             gift = giftitemnum
             experience += gift
             giftboxes -= 1;
-            db.run(`UPDATE users SET giftboxes = ? WHERE userid = ?`, [giftboxes, userid]);
-            db.run(`UPDATE users SET ` + expname +` = ? WHERE userid = ?`, [experience, userid]);
+            if (experience > 490) {
+                experience = 490
+            }
             message.channel.send("```" + doggoname + " got " + gift + " XP applied to " + doggowords + " current job from the gift box.```")
         }
         }
+        exp[jobindex] = experience;
+        var expstr = exp.toString();
+        db.run(`UPDATE users SET giftboxes = ?, money = ?, totalmoney = ?, foodservings = ?, exp = ? WHERE userid = ?`, [giftboxes, money, totalmoney, foodservings, expstr, userid]);
     } else if (thirdcommand == "all") {
     do {
         giftnum = (Math.ceil((Math.random() * 3)))
@@ -5226,11 +4523,11 @@ function opengiftcmd(message) {
         giftfoodservings += gift
         giftboxes -= 1;
     } else if (giftnum == 3) {
-        if (currentjob == "none") {
+        if ((currentjob == "none") || (maxxp == true)) {
         gift = (giftitemnum * 50)
         giftmoney += gift
         giftboxes -= 1;
-        } else if (currentjob != "none") {
+        } else if ((currentjob != "none") && (maxxp = false)) {
         gift = giftitemnum
         giftxp += gift
         giftboxes -= 1;
@@ -5250,17 +4547,16 @@ function opengiftcmd(message) {
     totalmoney += giftmoney
     foodservings += giftfoodservings
     experience += giftxp
-    db.run(`UPDATE users SET giftboxes = ? WHERE userid = ?`, [giftboxes, userid]);
-    db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
-    db.run(`UPDATE users SET totalmoney = ? WHERE userid = ?`, [totalmoney, userid]);
-    db.run(`UPDATE users SET foodservings = ? WHERE userid = ?`, [foodservings, userid]);
-    if (currentjob != "none") {
-        db.run(`UPDATE users SET ` + expname +` = ? WHERE userid = ?`, [experience, userid]);
-    }   
+    if (experience > 490) {
+        experience = 490
+    }
+    exp[jobindex] = experience;
+    var expstr = exp.toString();
+    db.run(`UPDATE users SET giftboxes = ?, money = ?, totalmoney = ?, foodservings = ?, exp = ? WHERE userid = ?`, [giftboxes, money, totalmoney, foodservings, expstr, userid]);
 }
 }
 
-function giftcmd(message) {
+function giftcmd(message, firstcommand, secondcommand, casesecondcommand, thirdcommand, threeplus) {
     var otherchannel = false
     var numgifts = 1
     var nummm = 1
@@ -5315,7 +4611,7 @@ function giftcmd(message) {
     } else {
         doggovalue = "doggoname"
     }
-    let seconduserinfo = `SELECT userid, username, doggoname, giftboxes FROM users WHERE ` + doggovalue +` = ?`
+    let seconduserinfo = `SELECT * FROM users WHERE ` + doggovalue +` = ?`
     db.get(seconduserinfo, [casesecondcommand], (err, row) => {
         if (err) {
             console.log(err)
@@ -5346,7 +4642,7 @@ function giftcmd(message) {
         } else {
             numgifts = 1
         }
-        let alluserinfo = `SELECT userid, username, doggoname, giftboxes FROM users`
+        let alluserinfo = `SELECT * FROM users`
         db.all(alluserinfo, [], (err, row) => {
         if (err) {
             console.log(err)
@@ -5378,7 +4674,7 @@ function giftcmd(message) {
     }
 }
 
-function echocmd(message) {
+function echocmd(message, firstcommand, secondcommand, thirdcommand, casecommand, fullcommand) {
     message.delete(1)
     if (secondcommand === undefined) {
         message.channel.send("```Please specify a channel ID or type what you want to send.```")
@@ -5450,7 +4746,7 @@ function killdogcmd(message) {
     } else {
         doggovalue = "doggoname"
     }
-    let seconduserinfo = `SELECT userid, username, doggoname FROM users WHERE ` + doggovalue +` = ?`
+    let seconduserinfo = `SELECT * FROM users WHERE ` + doggovalue +` = ?`
     db.get(seconduserinfo, [casesecondcommand], (err, row) => {
         if (err) {
             console.log(err)
@@ -5463,13 +4759,6 @@ function killdogcmd(message) {
         username2 = row.username
         doggoname2 = row.doggoname
 
-    db.run(`UPDATE users SET foodnum = ? WHERE userid = ?`, [100, userid2]);
-    db.run(`UPDATE users SET energynum = ? WHERE userid = ?`, [100, userid2]);
-    db.run(`UPDATE users SET playnum = ? WHERE userid = ?`, [100, userid2]);
-    db.run(`UPDATE users SET statsupdatetime = ? WHERE userid = ?`, [todayms, userid2]);
-    message.channel.send("```" + username2 + "'s " + doggoname2 + " stats were filled up.```")
-    }
-});
         if (firstcommand.includes("kill")) {
         db.run(`UPDATE users SET killdog = ? WHERE userid = ?`, [1, username2]);
         message.channel.send("```Destroying " + username2 + "'s " + doggoname2 + " in 10 seconds...```")
@@ -5478,16 +4767,18 @@ function killdogcmd(message) {
         db.run(`UPDATE users SET killdog = ? WHERE userid = ?`, [0, username2]);
         message.channel.send("```" + username2 + "'s " + doggoname2 + " was revived!```")
         }
+    }
+    });   
 }
 
-function setstatuscmd(message) {
+function setstatuscmd(message, secondcommand, fullcommand) {
     message.delete(1)
     if (userid != MetalRain) {
         message.channel.send(permissionmsg)
         botmessageschannel.send(username + " tried to use " + fullcommand)
         return
     }
-    if (secondcommand.includes("test")) {
+    if ((secondcommand != undefined) && (secondcommand.includes("test"))) {
         const testchannel = client.channels.get("640046708830633985")
         const doggogame1 = client.channels.get("625531951977332741")
         const doggogame2 = client.channels.get("625531987230457877")
@@ -5509,7 +4800,7 @@ function setstatuscmd(message) {
                 message.channel.send("```Channel not found.```")
                 return
         }
-    } else if (secondcommand.includes("on")) {
+    } else if ((secondcommand != undefined) && (secondcommand.includes("on"))) {
         const testchannel = client.channels.get("640046708830633985")
         const doggogame1 = client.channels.get("625531951977332741")
         const doggogame2 = client.channels.get("625531987230457877")
@@ -5531,7 +4822,7 @@ function setstatuscmd(message) {
             message.channel.send("```Channel not found.```")
             return
         }
-    } else if (secondcommand.includes("off")) {
+    } else if ((secondcommand != undefined) && (secondcommand.includes("off"))) {
         const testchannel = client.channels.get("640046708830633985")
         const doggogame1 = client.channels.get("625531951977332741")
         const doggogame2 = client.channels.get("625531987230457877")
@@ -5630,7 +4921,7 @@ function getdmcmd(message) {
 
 }
 
-function salecmd(message) {
+function salecmd(message, firstcommand, secondcommand, thirdcommand, fourthcommand) {
     let db = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
     message.delete(1)
     if (userid != MetalRain) {
@@ -5720,7 +5011,7 @@ function salecmd(message) {
     }
 }
 
-function earnboostcmd(message) {
+function earnboostcmd(message, firstcommand, secondcommand, thirdcommand, fourthcommand) {
     let db = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
     message.delete(1)
     if (userid != MetalRain) {
@@ -5809,7 +5100,7 @@ function earnboostcmd(message) {
     }
 }
 
-function boxeventcmd(message) {
+function boxeventcmd(message, firstcommand, secondcommand, thirdcommand, fourthcommand) {
     let db = new sqlite3.Database('./STG.db', sqlite3.OPEN_READWRITE);
     message.delete(1)
     if (userid != MetalRain) {
@@ -5914,7 +5205,7 @@ function dmmessagecmd(message) {
             if (row.dmchannelid == 0) {
             db.run(`UPDATE users SET dmchannelid = ? WHERE userid = ?`, [(message.channel.id), userid]);
             }
-            talkcmd(message)
+            talkcmd(message, fullcommand, splitcommand, chatid, chatnum, userid);
         });
         return
     number = (Math.ceil(Math.random() * 10))
@@ -5959,501 +5250,123 @@ function botstatuscmd(message) {
     }
 }
 
-function dogleaderboardcmd(message) {
-    message.delete(1)
-    if (firstcommand == "//lb") {
-    var sendingmessage = "```Overall Leaderboard:\n\n"
-    var sendingmessage1 = "```Total Income Leaderboard:\n\n"
-    var sendingmessage2 = "```Total Work Hours Leaderboard:\n\n"
-    var sendingmessage3 = "```Total Play Time Minutes:\n\n"
-    var sendingmessage4 = "```Total Servings Eaten:\n\n"
-    var points = 10
-    var place = 1
-    if ((secondcommand == "income") || (secondcommand == "money")) {
-        let moneyuserinfo = `SELECT userid, doggoname, totalmoney, lbpoints FROM users ORDER BY totalmoney DESC`
-        db.all(moneyuserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
-            }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    userid2 = row.userid
-                    doggoname2 = row.doggoname
-                    lbpoints2 = row.lbpoints
-                    totalmoney2 = (row.totalmoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                    if (doggoname2.length == 2) {
-                        space = "      "
-                    } else if (doggoname2.length == 3) {
-                        space = "     "
-                    } else if (doggoname2.length == 4) {
-                        space = "    "
-                    } else if (doggoname2.length == 5) {
-                        space = "   "
-                    } else if (doggoname2.length == 6) {
-                        space = "  "
-                    } else if (doggoname2.length == 7) {
-                        space = " "
-                    }
-                    if ((doggoname2 != "none") && (totalmoney2 != 0)) {
-                    lbpoints2 = points
-                    sendingmessage1 += (place + ":   " + doggoname2 + ":" + space + totalmoney2 + "\n")
-                    place += 1
-                    }
-                });
-            }
-        });
-        setTimeout(() => {
-            sendingmessage1 += "```"
-            for(let i = 0; i < sendingmessage1.length; i += 1975) {
-                        const toSend = sendingmessage1.substring(i, Math.min(sendingmessage1.length, i + 1975));
-                        message.channel.send(toSend);
-            }
-        }, 3000);
-        return
-    } else if (secondcommand == "work") {
-        points = 10
-        place = 1
-        let workuserinfo = `SELECT userid, doggoname, totalworkhours, lbpoints FROM users ORDER BY totalworkhours DESC`
-        db.all(workuserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
-            }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    userid2 = row.userid
-                    doggoname2 = row.doggoname
-                    lbpoints2 = row.lbpoints
-                    totalworkhours2 = (row.totalworkhours.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                    if (doggoname2.length == 2) {
-                        space = "      "
-                    } else if (doggoname2.length == 3) {
-                        space = "     "
-                    } else if (doggoname2.length == 4) {
-                        space = "    "
-                    } else if (doggoname2.length == 5) {
-                        space = "   "
-                    } else if (doggoname2.length == 6) {
-                        space = "  "
-                    } else if (doggoname2.length == 7) {
-                        space = " "
-                    }
-                    if ((doggoname2 != "none") && (totalworkhours2 != 0)) {
-                    lbpoints2 += points
-                    sendingmessage2 += (place + ":   " + doggoname2 + ":" + space + totalworkhours2 + "\n")
-                    place += 1
-                    }
-                });
-            }
-        });
-        setTimeout(() => {
-            sendingmessage2 += "```"
-            for(let i = 0; i < sendingmessage2.length; i += 1975) {
-                        const toSend = sendingmessage2.substring(i, Math.min(sendingmessage2.length, i + 1975));
-                        message.channel.send(toSend);
-            }
-        }, 3000);
-        return
-    } else if (secondcommand == "play") {
-        points = 10
-        place = 1
-        let playuserinfo = `SELECT userid, doggoname, totalplaytime, lbpoints FROM users ORDER BY totalplaytime DESC`
-        db.all(playuserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
-            }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    userid2 = row.userid
-                    doggoname2 = row.doggoname
-                    lbpoints2 = row.lbpoints
-                    totalplaytime2 = (row.totalplaytime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                    if (doggoname2.length == 2) {
-                        space = "      "
-                    } else if (doggoname2.length == 3) {
-                        space = "     "
-                    } else if (doggoname2.length == 4) {
-                        space = "    "
-                    } else if (doggoname2.length == 5) {
-                        space = "   "
-                    } else if (doggoname2.length == 6) {
-                        space = "  "
-                    } else if (doggoname2.length == 7) {
-                        space = " "
-                    }
-                    if ((doggoname2 != "none") && (totalplaytime2 != 0)) {
-                    lbpoints2 += points
-                    sendingmessage3 += (place + ":   " + doggoname2 + ":" + space + totalplaytime2 + "\n")
-                    place += 1
-                    }
-                });
-            }
-        });
-        setTimeout(() => {
-            sendingmessage3 += "```"
-            for(let i = 0; i < sendingmessage3.length; i += 1975) {
-                        const toSend = sendingmessage3.substring(i, Math.min(sendingmessage3.length, i + 1975));
-                        message.channel.send(toSend);
-            }
-        }, 3000);
-        return
-    } else if (secondcommand == "food") {
-        points = 10
-        place = 1
-        let servingsuserinfo = `SELECT userid, doggoname, totalservings, lbpoints FROM users ORDER BY totalservings DESC`
-        db.all(servingsuserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
-            }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    userid2 = row.userid
-                    doggoname2 = row.doggoname
-                    lbpoints2 = row.lbpoints
-                    totalservings2 = (row.totalservings.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                    if (doggoname2.length == 2) {
-                        space = "      "
-                    } else if (doggoname2.length == 3) {
-                        space = "     "
-                    } else if (doggoname2.length == 4) {
-                        space = "    "
-                    } else if (doggoname2.length == 5) {
-                        space = "   "
-                    } else if (doggoname2.length == 6) {
-                        space = "  "
-                    } else if (doggoname2.length == 7) {
-                        space = " "
-                    }
-                    if ((doggoname2 != "none") && (totalservings2 != 0)) {
-                    lbpoints2 += points
-                    sendingmessage4 += (place + ":   " + doggoname2 + ":" + space + totalservings2 + "\n")
-                    place += 1
-                    }
-                });
-            }
-        });
-        setTimeout(() => {
-            sendingmessage4 += "```"
-            for(let i = 0; i < sendingmessage4.length; i += 1975) {
-                        const toSend = sendingmessage4.substring(i, Math.min(sendingmessage4.length, i + 1975));
-                        message.channel.send(toSend);
-            }
-        }, 3000);
-        return
-    } else {
-        let lbuserinfo = `SELECT userid, doggoname, lbpoints FROM users ORDER BY lbpoints DESC`
-        db.all(lbuserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
-            }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    userid2 = row.userid
-                    doggoname2 = row.doggoname
-                    lbpoints2 = row.lbpoints
-                    lbpoints2 = (row.lbpoints.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                    if (doggoname2.length == 2) {
-                        space = "      "
-                    } else if (doggoname2.length == 3) {
-                        space = "     "
-                    } else if (doggoname2.length == 4) {
-                        space = "    "
-                    } else if (doggoname2.length == 5) {
-                        space = "   "
-                    } else if (doggoname2.length == 6) {
-                        space = "  "
-                    } else if (doggoname2.length == 7) {
-                        space = " "
-                    }
-                    if (doggoname2 != "none") {
-                    sendingmessage += (place + ":   " + doggoname2 + ":" + space + lbpoints2 + "\n")
-                    place += 1
-                    }
-                });
-            }
-        });
-        setTimeout(() => {
-            sendingmessage += "```"
-            for(let i = 0; i < sendingmessage.length; i += 1975) {
-                        const toSend = sendingmessage.substring(i, Math.min(sendingmessage.length, i + 1975));
-                        message.channel.send(toSend);
-            }
-        }, 3000);
-        return
-    }
-    } else if (firstcommand == "//ulb") {
-        if (userid != MetalRain) {
-            message.channel.send(permissionmsg)
-            botmessageschannel.send(username + " tried to use " + fullcommand)
-            return
+async function doglb(message) {
+    message.delete(1);
+    let lbarray = new Array();
+    let namearray = new Array();
+    let pointarray = new Array();
+    let i = 0;
+    lbarray[0] = "```Total Income Leaderboard:\n\n";
+    lbarray[1] = "```Total Work Hours Leaderboard:\n\n";
+    lbarray[2] = "```Total Play Time Minutes:\n\n";
+    lbarray[3] = "```Total Servings Eaten:\n\n";
+    lbarray[4] = "```Overall Leaderboard:\n\n";
+    let lbnames = ["totalmoney", "totalworkhours", "totalplaytime", "totalservings", "lbpoints"];
+    do {
+        let result = await calclbs(lbnames, lbarray, i, namearray, pointarray);
+            lbarray = result[0];
+            namearray = result[1];
+            pointarray = result[2];
+            i ++;
+        if (i == 4) {
+            await addpoints(namearray, pointarray);
         }
-    var sendingmessage = "```Overall Leaderboard:\n\n"
-    var sendingmessage1 = "```Total Income Leaderboard:\n\n"
-    var sendingmessage2 = "```Total Work Hours Leaderboard:\n\n"
-    var sendingmessage3 = "```Total Play Time Minutes:\n\n"
-    var sendingmessage4 = "```Total Servings Eaten:\n\n"
-    var points = 10
-    var place = 1
-    if ((secondcommand == "income") || (secondcommand == "money")) {
-        let moneyuserinfo = `SELECT userid, doggoname, totalmoney, lbpoints FROM users ORDER BY totalmoney DESC`
-        db.all(moneyuserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
+        if (i == 5) {
+            for (let index = 0; index < lbarray.length; index++) {
+                message.channel.send(lbarray[index]);
             }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    userid2 = row.userid
-                    doggoname2 = row.doggoname
-                    lbpoints2 = row.lbpoints
-                    totalmoney2 = (row.totalmoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                    if (doggoname2.length == 2) {
-                        space = "      "
-                    } else if (doggoname2.length == 3) {
-                        space = "     "
-                    } else if (doggoname2.length == 4) {
-                        space = "    "
-                    } else if (doggoname2.length == 5) {
-                        space = "   "
-                    } else if (doggoname2.length == 6) {
-                        space = "  "
-                    } else if (doggoname2.length == 7) {
-                        space = " "
-                    }
-                    if ((doggoname2 != "none") && (totalmoney2 != 0)) {
-                    lbpoints2 = points
-                    sendingmessage1 += (place + ":   " + doggoname2 + ":" + space + totalmoney2 + "\n")
-                    db.run(`UPDATE users SET lbpoints = ? WHERE userid = ?`, [lbpoints2, userid2]);
-                    place += 1
-                    if (points > 0) {
-                       points -= 1 
-                    }
-                    }
-                });
-            }
-        });
-        setTimeout(() => {
-            sendingmessage1 += "```"
-            for(let i = 0; i < sendingmessage1.length; i += 1975) {
-                        const toSend = sendingmessage1.substring(i, Math.min(sendingmessage1.length, i + 1975));
-                        message.channel.send(toSend);
-            }
-        }, 3000);
-        return
-    } else if (secondcommand == "work") {
-        points = 10
-        place = 1
-        let workuserinfo = `SELECT userid, doggoname, totalworkhours, lbpoints FROM users ORDER BY totalworkhours DESC`
-        db.all(workuserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
-            }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    userid2 = row.userid
-                    doggoname2 = row.doggoname
-                    lbpoints2 = row.lbpoints
-                    totalworkhours2 = (row.totalworkhours.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                    if (doggoname2.length == 2) {
-                        space = "      "
-                    } else if (doggoname2.length == 3) {
-                        space = "     "
-                    } else if (doggoname2.length == 4) {
-                        space = "    "
-                    } else if (doggoname2.length == 5) {
-                        space = "   "
-                    } else if (doggoname2.length == 6) {
-                        space = "  "
-                    } else if (doggoname2.length == 7) {
-                        space = " "
-                    }
-                    if ((doggoname2 != "none") && (totalworkhours2 != 0)) {
-                    lbpoints2 += points
-                    sendingmessage2 += (place + ":   " + doggoname2 + ":" + space + totalworkhours2 + "\n")
-                    db.run(`UPDATE users SET lbpoints = ? WHERE userid = ?`, [lbpoints2, userid2]);
-                    place += 1
-                    if (points > 0) {
-                       points -= 1 
-                    }
-                    }
-                });
-            }
-        });
-        setTimeout(() => {
-            sendingmessage2 += "```"
-            for(let i = 0; i < sendingmessage2.length; i += 1975) {
-                        const toSend = sendingmessage2.substring(i, Math.min(sendingmessage2.length, i + 1975));
-                        message.channel.send(toSend);
-            }
-        }, 3000);
-        return
-    } else if (secondcommand == "play") {
-        points = 10
-        place = 1
-        let playuserinfo = `SELECT userid, doggoname, totalplaytime, lbpoints FROM users ORDER BY totalplaytime DESC`
-        db.all(playuserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
-            }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    userid2 = row.userid
-                    doggoname2 = row.doggoname
-                    lbpoints2 = row.lbpoints
-                    totalplaytime2 = (row.totalplaytime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                    if (doggoname2.length == 2) {
-                        space = "      "
-                    } else if (doggoname2.length == 3) {
-                        space = "     "
-                    } else if (doggoname2.length == 4) {
-                        space = "    "
-                    } else if (doggoname2.length == 5) {
-                        space = "   "
-                    } else if (doggoname2.length == 6) {
-                        space = "  "
-                    } else if (doggoname2.length == 7) {
-                        space = " "
-                    }
-                    if ((doggoname2 != "none") && (totalplaytime2 != 0)) {
-                    lbpoints2 += points
-                    sendingmessage3 += (place + ":   " + doggoname2 + ":" + space + totalplaytime2 + "\n")
-                    db.run(`UPDATE users SET lbpoints = ? WHERE userid = ?`, [lbpoints2, userid2]);
-                    place += 1
-                    if (points > 0) {
-                       points -= 1 
-                    }
-                    }
-                });
-            }
-        });
-        setTimeout(() => {
-            sendingmessage3 += "```"
-            for(let i = 0; i < sendingmessage3.length; i += 1975) {
-                        const toSend = sendingmessage3.substring(i, Math.min(sendingmessage3.length, i + 1975));
-                        message.channel.send(toSend);
-            }
-        }, 3000);
-        return
-    } else if ((secondcommand == "food") || (secondcommand == "eat")) {
-        points = 10
-        place = 1
-        let servingsuserinfo = `SELECT userid, doggoname, totalservings, lbpoints FROM users ORDER BY totalservings DESC`
-        db.all(servingsuserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
-            }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    userid2 = row.userid
-                    doggoname2 = row.doggoname
-                    lbpoints2 = row.lbpoints
-                    totalservings2 = (row.totalservings.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                    if (doggoname2.length == 2) {
-                        space = "      "
-                    } else if (doggoname2.length == 3) {
-                        space = "     "
-                    } else if (doggoname2.length == 4) {
-                        space = "    "
-                    } else if (doggoname2.length == 5) {
-                        space = "   "
-                    } else if (doggoname2.length == 6) {
-                        space = "  "
-                    } else if (doggoname2.length == 7) {
-                        space = " "
-                    }
-                    if ((doggoname2 != "none") && (totalservings2 != 0)) {
-                    lbpoints2 += points
-                    sendingmessage4 += (place + ":   " + doggoname2 + ":" + space + totalservings2 + "\n")
-                    db.run(`UPDATE users SET lbpoints = ? WHERE userid = ?`, [lbpoints2, userid2]);
-                    place += 1
-                    if (points > 0) {
-                       points -= 1 
-                    }
-                    }
-                });
-            }
-        });
-        setTimeout(() => {
-            sendingmessage4 += "```"
-            for(let i = 0; i < sendingmessage4.length; i += 1975) {
-                        const toSend = sendingmessage4.substring(i, Math.min(sendingmessage4.length, i + 1975));
-                        message.channel.send(toSend);
-            }
-        }, 3000);
-        return
-    } else {
-        let lbuserinfo = `SELECT userid, doggoname, lbpoints FROM users ORDER BY lbpoints DESC`
-        db.all(lbuserinfo, [], (err, row) => {
-            if (err) {
-                console.log(err)
-            }
-            if (row === undefined) {
-                console.log("error")
-                return
-            } else {
-                row.forEach((row) => {
-                    userid2 = row.userid
-                    doggoname2 = row.doggoname
-                    lbpoints2 = row.lbpoints
-                    lbpoints2 = (row.lbpoints.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                    if (doggoname2.length == 2) {
-                        space = "      "
-                    } else if (doggoname2.length == 3) {
-                        space = "     "
-                    } else if (doggoname2.length == 4) {
-                        space = "    "
-                    } else if (doggoname2.length == 5) {
-                        space = "   "
-                    } else if (doggoname2.length == 6) {
-                        space = "  "
-                    } else if (doggoname2.length == 7) {
-                        space = " "
-                    }
-                    if (doggoname2 != "none") {
-                    sendingmessage += (place + ":   " + doggoname2 + ":" + space + lbpoints2 + "\n")
-                    place += 1
-                    }
-                });
-            }
-        });
-        setTimeout(() => {
-            sendingmessage += "```"
-            for(let i = 0; i < sendingmessage.length; i += 1975) {
-                        const toSend = sendingmessage.substring(i, Math.min(sendingmessage.length, i + 1975));
-                        message.channel.send(toSend);
-            }
-        }, 3000);
-        return
-    }
-    }
+        }
+    } while (i < 5);
 }
 
-function achievementscmd(message) {
+async function calclbs(lbnames, lbarray, i, namearray, pointarray) {
+    return new Promise(resolve => {
+    let i2 = 0;
+    let place = 1;
+    let points = 10;
+    let getlbstats = `SELECT * FROM users ORDER BY ${lbnames[i]} DESC`;
+    db.all(getlbstats, [], (err, row) => {
+        if (err) {
+            console.log(err)
+        }
+        if (row === undefined) {
+            console.log("error");
+            botmessageschannel.send("Error getting leaderboards");
+            return
+        } else {
+        do {
+            let value;
+            var lbpoints2 = 0;
+            userid2 = row[i2].userid;
+            doggoname2 = row[i2].doggoname;
+            totalmoney = row[i2].totalmoney;
+            totalmoney2 = (totalmoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            totalworkhours2 = row[i2].totalworkhours;
+            totalplaytime = row[i2].totalplaytime;
+            totalplaytime2 = (totalplaytime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            totalservings2 = row[i2].totalservings;
+            lbpoints = row[i2].lbpoints;
+            if (lbnames[i] == "totalmoney") {
+                value = totalmoney2;
+            } else if (lbnames[i] == "totalworkhours") {
+                value = totalworkhours2;
+            } else if (lbnames[i] == "totalplaytime") {
+                value = totalplaytime2;
+            } else if (lbnames[i] == "totalservings") {
+                value = totalservings2;
+            } else if (lbnames[i] == "lbpoints") {
+                value = lbpoints;
+            }
+            var ind = namearray.indexOf(userid2);
+            if (ind == -1) {
+                namearray.push(userid2);
+                pointarray.push(0);
+                lbpoints2 = 0;
+                ind = (namearray.length - 1)
+            } else {
+                lbpoints2 = pointarray[ind];
+            }
+            if (doggoname2.length >= 12) {
+                doggoname2 = doggoname2.substring(0, 12);
+            }
+            var space = (new Array(15 - (doggoname2.length)).join(" "));
+            if (place.toString().length == 1) {
+                space2 = ":   "
+            } else if (place.toString().length == 2) {
+                space2 = ":  "
+            }
+            if ((doggoname2 != "none") && (totalmoney > 10) && (userid2 != MetalRain)) {
+                lbpoints2 += points;
+                lbarray[i] += (place + space2 + doggoname2 + ":" + space + value + "\n");
+                place += 1;
+                pointarray[ind] = lbpoints2;
+                if (points > 0) {
+                    points --;
+                }
+            }
+            i2 ++;
+            if (i2 == (row.length)) {
+                lbarray[i] += "```";
+                resolve([lbarray, namearray, pointarray]);
+            }
+        } while (i2 < (row.length));
+        }
+        });
+    });
+}
+
+async function addpoints(namearray, pointarray) {
+    return new Promise(resolve => {
+        var i = 0;
+    do {
+        db.run(`UPDATE users SET lbpoints = ? WHERE userid = ?`, [pointarray[i], namearray[i]]);
+        i ++;
+    } while (i < namearray.length);
+    resolve("done");
+    });
+}
+
+function achievementscmd(message, achievements, exp, money, giftboxes, foodservings, achnum, house, pups, newanum, doggoname, userid) {
     var tempachievements = ""
     var achievementsmessage = ""
     var achievementsnum = 0
@@ -6466,9 +5379,40 @@ function achievementscmd(message) {
     var achddexp = 0
     var achpdexp = 0
     var achsdexp = 0
+    var cgexp = exp[0];
+    var mdexp = exp[1];
+    var brdexp = exp[2];
+    var ddexp = exp[3];
+    var pdexp = exp[4];
+    var sdexp = exp[5];
 
-    if ((mdexp >= 10) && (!achievements.includes("st"))) {
-        tempachievements += "st"
+    if ((cgexp >= 10) && (!achievements.includes("sfcw"))) {
+        tempachievements += "sfcw"
+        achievementsmessage += (safercrosswalks + "\n")
+        achievementsnum += 1
+        achcgexp += 5
+    }
+    if ((cgexp >= 40) && (!achievements.includes("csv"))) {
+        tempachievements += "csv"
+        achievementsmessage += (childsaver + "\n")
+        achievementsnum += 1
+        achcgexp += 10
+    }
+    if ((cgexp >= 90) && (!achievements.includes("csm"))) {
+        tempachievements += "csm"
+        achievementsmessage += (carstoppingmaster + "\n")
+        achievementsnum += 1
+        achcgexp += 15
+    }
+    if ((cgexp >= 190) && (!achievements.includes("ecg"))) {
+        tempachievements += "ecg"
+        achievementsmessage += (elitecg + "\n")
+        achievementsnum += 1
+        achmoney += 5000
+    }
+
+    if ((mdexp >= 10) && (!achievements.includes("spts"))) {
+        tempachievements += "spts"
         achievementsmessage += (shipthis + "\n")
         achievementsnum += 1
         achmdexp += 5
@@ -6477,13 +5421,13 @@ function achievementscmd(message) {
         tempachievements += "mama"
         achievementsmessage += (mailmaster + "\n")
         achievementsnum += 1
-        achmdexp += 5
+        achmdexp += 10
     }
-    if ((mdexp >= 90) && (!achievements.includes("sc"))) {
-        tempachievements += "sc"
+    if ((mdexp >= 90) && (!achievements.includes("sacs"))) {
+        tempachievements += "sacs"
         achievementsmessage += (santaclaus + "\n")
         achievementsnum += 1
-        achmdexp += 5
+        achmdexp += 15
     }
     if ((mdexp >= 190) && (!achievements.includes("emd"))) {
         tempachievements += "emd"
@@ -6492,23 +5436,23 @@ function achievementscmd(message) {
         achmoney += 5000
     }
 
-    if ((brdexp >= 10) && (!achievements.includes("ll"))) {
-        tempachievements += "ll"
+    if ((brdexp >= 10) && (!achievements.includes("lele"))) {
+        tempachievements += "lele"
         achievementsmessage += (littleleague + "\n")
         achievementsnum += 1
         achbrdexp += 5
     }
-    if ((brdexp >= 40) && (!achievements.includes("ml"))) {
-        tempachievements += "ml"
+    if ((brdexp >= 40) && (!achievements.includes("mrle"))) {
+        tempachievements += "mrle"
         achievementsmessage += (majorleague + "\n")
         achievementsnum += 1
-        achbrdexp += 5
+        achbrdexp += 10
     }
-    if ((brdexp >= 90) && (!achievements.includes("gs"))) {
-        tempachievements += "gs"
+    if ((brdexp >= 90) && (!achievements.includes("gdsm"))) {
+        tempachievements += "gdsm"
         achievementsmessage += (grandslam + "\n")
         achievementsnum += 1
-        achbrdexp += 5
+        achbrdexp += 15
     }
     if ((brdexp >= 190) && (!achievements.includes("ebrd"))) {
         tempachievements += "ebrd"
@@ -6517,9 +5461,9 @@ function achievementscmd(message) {
         achmoney += 5000
     }
 
-    if ((ddexp >= 10) && (!achievements.includes("fb"))) {
-        tempachievements += "fb"
-        achievementsmessage += (firstbust + "\n")
+    if ((ddexp >= 10) && (!achievements.includes("ftbt"))) {
+        tempachievements += "ftbt"
+        achievementsmessage += (veryfirstbust + "\n")
         achievementsnum += 1
         achddexp += 5
     }
@@ -6527,13 +5471,13 @@ function achievementscmd(message) {
         tempachievements += "majb"
         achievementsmessage += (majorbust + "\n")
         achievementsnum += 1
-        achddexp += 5
+        achddexp += 10
     }
     if ((ddexp >= 90) && (!achievements.includes("mas"))) {
         tempachievements += "mas"
         achievementsmessage += (mastersniffer + "\n")
         achievementsnum += 1
-        achddexp += 5
+        achddexp += 15
     }
     if ((ddexp >= 190) && (!achievements.includes("edd"))) {
         tempachievements += "edd"
@@ -6552,13 +5496,13 @@ function achievementscmd(message) {
         tempachievements += "cap"
         achievementsmessage += (captain + "\n")
         achievementsnum += 1
-        achpdexp += 5
+        achpdexp += 10
     }
     if ((pdexp >= 90) && (!achievements.includes("gen"))) {
         tempachievements += "gen"
         achievementsmessage += (general + "\n")
         achievementsnum += 1
-        achpdexp += 5
+        achpdexp += 15
     }
     if ((pdexp >= 190) && (!achievements.includes("epd"))) {
         tempachievements += "epd"
@@ -6567,23 +5511,23 @@ function achievementscmd(message) {
         achmoney += 5000
     }
 
-    if ((sdexp >= 10) && (!achievements.includes("fw"))) {
-        tempachievements += "fw"
+    if ((sdexp >= 10) && (!achievements.includes("fwin"))) {
+        tempachievements += "fwin"
         achievementsmessage += (firstwin + "\n")
         achievementsnum += 1
         achsdexp += 5
     }
-    if ((sdexp >= 40) && (!achievements.includes("rc"))) {
-        tempachievements += "rc"
+    if ((sdexp >= 40) && (!achievements.includes("recn"))) {
+        tempachievements += "recn"
         achievementsmessage += (racechampion + "\n")
         achievementsnum += 1
-        achsdexp += 5
+        achsdexp += 10
     }
     if ((sdexp >= 90) && (!achievements.includes("mute"))) {
         tempachievements += "mute"
         achievementsmessage += (malamute + "\n")
         achievementsnum += 1
-        achsdexp += 5
+        achsdexp += 15
     }
     if ((sdexp >= 190) && (!achievements.includes("esd"))) {
         tempachievements += "esd"
@@ -6592,8 +5536,8 @@ function achievementscmd(message) {
         achmoney += 5000
     }
 
-    if ((money >= 500) && (!achievements.includes("mm"))) {
-        tempachievements += "mm"
+    if ((money >= 500) && (!achievements.includes("mgmy"))) {
+        tempachievements += "mgmy"
         achievementsmessage += (makingmoney + "\n")
         achievementsnum += 1
         achmoney += 250
@@ -6604,33 +5548,33 @@ function achievementscmd(message) {
         achievementsnum += 1
         achmoney + 500
     }
-    if ((money >= 10000) && (!achievements.includes("bb"))) {
-        tempachievements += "bb"
+    if ((money >= 10000) && (!achievements.includes("bgbs"))) {
+        tempachievements += "bgbs"
         achievementsmessage += (bigbucks + "\n")
         achievementsnum += 1
         achmoney += 2500
     }
-    if ((money >= 100000) && (!achievements.includes("cc"))) {
-        tempachievements += "cc"
+    if ((money >= 100000) && (!achievements.includes("cecr"))) {
+        tempachievements += "cecr"
         achievementsmessage += (castlecrasher + "\n")
         achievementsnum += 1
         achmoney += 10000
     }
 
-    if ((pups >= 1) && (!achievements.includes("ft"))) {
-        tempachievements += "ft"
+    if ((pups >= 1) && (!achievements.includes("fyte"))) {
+        tempachievements += "fyte"
         achievementsmessage += (familytime + "\n")
         achievementsnum += 1
         achfoodservings += 10
     }
-    if ((pups >= 10) && (!achievements.includes("dl"))) {
-        tempachievements += "dl"
+    if ((pups >= 10) && (!achievements.includes("dglr"))) {
+        tempachievements += "dglr"
         achievementsmessage += (doglover + "\n")
         achievementsnum += 1
         achfoodservings += 25
     }
-    if ((pups >= 20) && (!achievements.includes("da"))) {
-        tempachievements += "da"
+    if ((pups >= 20) && (!achievements.includes("dgae"))) {
+        tempachievements += "dgae"
         achievementsmessage += (dogapocalypse + "\n")
         achievementsnum += 1
         achfoodservings += 100
@@ -6642,8 +5586,8 @@ function achievementscmd(message) {
         achievementsnum += 1
         achboxes += 5
     }
-    if (((newanum == 2) || (house != "none")) && (!achievements.includes("hh"))) {
-        tempachievements += "hh"
+    if (((newanum == 2) || (house != "none")) && (!achievements.includes("hehr"))) {
+        tempachievements += "hehr"
         achievementsmessage += (househunter + "\n")
         achievementsnum += 1
         achboxes += 10
@@ -6654,8 +5598,8 @@ function achievementscmd(message) {
         achievementsnum += 1
         achmoney += 250
     }
-    if ((newanum == 4) && (!achievements.includes("tp"))) {
-        tempachievements += "tp"
+    if ((newanum == 4) && (!achievements.includes("tmpr"))) {
+        tempachievements += "tmpr"
         achievementsmessage += (teamplayer + "\n")
         achievementsnum += 1
         achmoney += 250
@@ -6669,8 +5613,9 @@ function achievementscmd(message) {
         }
         if (achmoney > 0) {
             money += achmoney
+            totalmoney += achmoney
             achievementsmessage += ("+$" + (achmoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")) + "\n")
-            db.run(`UPDATE users SET money = ? WHERE userid = ?`, [money, userid]);
+            db.run(`UPDATE users SET money = ?, totalmoney = ? WHERE userid = ?`, [money, totalmoney, userid]);
         }
         if (achfoodservings > 0) {
             foodservings += achfoodservings
@@ -6682,45 +5627,488 @@ function achievementscmd(message) {
             achievementsmessage += ("+" + achboxes + " gift boxes\n")
             db.run(`UPDATE users SET giftboxes = ? WHERE userid = ?`, [giftboxes, userid]);
         }
-        if (achcgexp > 0) {
-            cgexp += achcgexp
+        if (cgexp > 0) {
+            exp[0] += achcgexp
             achievementsmessage += ("+" + achcgexp + " crossing guard dog xp\n")
-            db.run(`UPDATE users SET cgexp = ? WHERE userid = ?`, [cgexp, userid]);
         }
         if (achmdexp > 0) {
-            mdexp += achmdexp
+            exp[1] += achmdexp
             achievementsmessage += ("+" + achmdexp + " mail delivery dog xp\n")
-            db.run(`UPDATE users SET mdexp = ? WHERE userid = ?`, [mdexp, userid]);
         }
         if (achbrdexp > 0) {
-            brdexp += achbrdexp
+            exp[2] += achbrdexp
             achievementsmessage += ("+" + achbrdexp + " baseball retrieving dog xp\n")
-            db.run(`UPDATE users SET brdexp = ? WHERE userid = ?`, [brdexp, userid]);
         }
         if (achddexp > 0) {
-            ddexp += achddexp
+            exp[3] += achddexp
             achievementsmessage += ("+" + achddexp + " drug detection dog xp\n")
-            db.run(`UPDATE users SET ddexp = ? WHERE userid = ?`, [ddexp, userid]);
         }
         if (achpdexp > 0) {
-            pdexp += achpdexp
+            exp[4] += achpdexp
             achievementsmessage += ("+" + achpdexp + " k-9 police dog xp\n")
-            db.run(`UPDATE users SET pdexp = ? WHERE userid = ?`, [pdexp, userid]); 
         }
         if (achsdexp > 0) {
-            sdexp += achsdexp
+            exp[5] += achsdexp
             achievementsmessage += ("+" + achsdexp + " sled dog xp\n")
-            db.run(`UPDATE users SET sdexp = ? WHERE userid = ?`, [sdexp, userid]);
         }
-        message.channel.send("```" + doggoname + " earned " + achievementsnum + " achievement(s)!\nNew chievements:\n\n" + achievementsmessage + "```")
-        db.run(`UPDATE users SET achievements = ? WHERE userid = ?`, [achievements, userid]);
-        db.run(`UPDATE users SET achnum = ? WHERE userid = ?`, [achnum, userid]);
+        var expstr = exp.toString();
+        message.channel.send("```" + doggoname + " earned " + achievementsnum + " achievement(s)!\nNew achievements:\n\n" + achievementsmessage + "```")
+        db.run(`UPDATE users SET achievements = ?, achnum = ?, exp = ? WHERE userid = ?`, [achievements, achnum, expstr, userid]);
     }
-    newanum = 0
 }
 
-function getachievementscmd(message) {
+function getachievementscmd(message, achievements, doggoname) {
+    var achievementsmessage = ""
+    var achievementsnum = 0
 
+    if (achievements.includes("sfcw")) {
+        achievementsmessage += (safercrosswalks + "\n")
+        achievementsnum += 1
+    }
+    if (achievements.includes("csv")) {
+        achievementsmessage += (childsaver + "\n")
+        achievementsnum += 1
+    }
+    if (achievements.includes("csm")) {
+        achievementsmessage += (carstoppingmaster + "\n")
+        achievementsnum += 1
+    }
+    if (achievements.includes("ecg")) {
+        achievementsmessage += (elitecg + "\n")
+        achievementsnum += 1
+    }
+
+    if (achievements.includes("spts")) {
+        achievementsmessage += (shipthis + "\n")
+        achievementsnum += 1
+    }
+    if (achievements.includes("mama")) {
+        achievementsmessage += (mailmaster + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("sacs"))) {
+        achievementsmessage += (santaclaus + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("emd"))) {
+        achievementsmessage += (elitemd + "\n")
+        achievementsnum += 1
+    }
+
+    if ((achievements.includes("lele"))) {
+        achievementsmessage += (littleleague + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("mrle"))) {
+        achievementsmessage += (majorleague + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("gdsm"))) {
+        achievementsmessage += (grandslam + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("ebrd"))) {
+        achievementsmessage += (elitebrd + "\n")
+        achievementsnum += 1
+    }
+
+    if ((achievements.includes("ftbt"))) {
+        achievementsmessage += (veryfirstbust + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("majb"))) {
+        achievementsmessage += (majorbust + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("mas"))) {
+        achievementsmessage += (mastersniffer + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("edd"))) {
+        achievementsmessage += (elitedd + "\n")
+        achievementsnum += 1
+    }
+
+    if ((achievements.includes("liet"))) {
+        achievementsmessage += (lieutenant + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("cap"))) {
+        achievementsmessage += (captain + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("gen"))) {
+        achievementsmessage += (general + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("epd"))) {
+        achievementsmessage += (elitepd + "\n")
+        achievementsnum += 1
+    }
+
+    if ((achievements.includes("fwin"))) {
+        achievementsmessage += (firstwin + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("recn"))) {
+        achievementsmessage += (racechampion + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("mute"))) {
+        achievementsmessage += (malamute + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("esd"))) {
+        achievementsmessage += (elitesd + "\n")
+        achievementsnum += 1
+    }
+
+    if ((achievements.includes("mgmy"))) {
+        achievementsmessage += (makingmoney + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("foak"))) {
+        achievementsmessage += (fourofakind + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("bgbs"))) {
+        achievementsmessage += (bigbucks + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("cecr"))) {
+        achievementsmessage += (castlecrasher + "\n")
+        achievementsnum += 1
+    }
+
+    if ((achievements.includes("fyte"))) {
+        achievementsmessage += (familytime + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("dglr"))) {
+        achievementsmessage += (doglover + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("dgae"))) {
+        achievementsmessage += (dogapocalypse + "\n")
+        achievementsnum += 1
+    }
+
+    if ((achievements.includes("noob"))) {
+        achievementsmessage += (imbroke + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("hehr"))) {
+        achievementsmessage += (househunter + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("sic"))) {
+        achievementsmessage += (sharingcaring + "\n")
+        achievementsnum += 1
+    }
+    if ((achievements.includes("tmpr"))) {
+        achievementsmessage += (teamplayer + "\n")
+        achievementsnum += 1
+    }
+    if (achievementsnum > 0) {
+    message.channel.send("```" + doggoname + "'s Achievements (" + achievementsnum + "/" + maxachievements + ")\n\n" + achievementsmessage + "```")
+    } else {
+        message.channel.send("```" + doggoname + " doesn't have any achievements.```")
+    }
+    return
+}
+
+function alldogscmd(message) {
+    var sendingmessage = ""
+    let lbuserinfo = `SELECT * FROM users ORDER BY status`
+        db.all(lbuserinfo, [], (err, row) => {
+            if (err) {
+                console.log(err)
+            }
+            if (row === undefined) {
+                console.log("error")
+                return
+            } else {
+                var i = 0;
+                do {
+                    var userid2 = row[i].userid;
+                    var doggoname2 = row[i].doggoname;
+                    var privacy2 = row[i].privacy;
+                    var status2 = row[i].status;
+                    var energynum2 = row[i].energynum;
+                    var foodnum2 = row[i].foodnum;
+                    var playnum2 = row[i].playnum;
+                    var statsupdatetime2 = row[i].statsupdatetime;
+                    var sleeping2 = row[i].sleeping;
+                    var sleepstatgain2 = row[i].sleepstatgain;
+                    var sleepstatlose2 = row[i].sleepstatlose;
+                    var foodstatlose2 = row[i].foodstatlose;
+                    var playstatlose2 = row[i].playstatlose;
+                    var pupshunger2 = row[i].pupshunger;
+                    var pups2 = row[i].pups;
+                    var bathnum2 = row[i].bathnum;
+                    var bathstatlose2 = row[i].bathstatlose;
+
+                    var upresult = updatestats("//feed", "blank", statsupdatetime2, sleeping2, naptime2, energynum2, foodnum2, playnum2, status2, sleepstatgain2, sleepstatlose2, foodstatlose2, playstatlose2, pupshunger2, pups2, bathnum2, bathstatlose2, userid2);
+                    statsupdatetime2 = upresult[0];
+                    energynum2 = upresult[1];
+                    foodnum2 = upresult[2];
+                    playnum2 = upresult[3];
+                    status2 = upresult[4];
+                    pupshunger2 = upresult[5];
+                    bathnum2 = upresult[6];
+
+                    var wantsall2 = getwants(status2, playnum2, foodnum2, energynum2, bathnum2);
+                    if (doggoname2.length >= 9) {
+                        doggoname2 = doggoname2.substring(0, 9);
+                    }
+
+                    var space = (new Array(12 - (doggoname2.length)).join(" "));
+                    var space2 = (new Array(14 - (status2.length)).join(" "));
+
+                    if ((doggoname2 != "none") && (privacy2 != "STRICT")) {
+                        sendingmessage += (doggoname2 + space + status2 + space2 + wantsall2 + "\n");
+                    }
+                    if (i == (row.length - 1)) {
+                    sendingmessage = ("```All dogs:\nName       Status       Wants\n\n" + sendingmessage + "```");
+                    for(let i = 0; i < sendingmessage.length; i += 1975) {
+                                const toSend = sendingmessage.substring(i, Math.min(sendingmessage.length, i + 1975));
+                                message.channel.send(toSend);
+                    }
+                    }
+                    i ++;
+                } while (i < row.length);
+            }
+        });
+}
+
+function getwants(status, playnum, foodnum, energynum, bathnum) {
+        var wants1 = "none"
+        var wants2 = "none"
+        var wants3 = "none"
+        var wants4 = "none"
+        var wantsall = "none"
+        if ((playnum <= 35) && (status != "playing")) {
+            wants1 = "to play";
+            wantsall = ("" + wants1 + "");
+        }
+        if (foodnum <= 35) {
+            if (wants1 != "none") {
+                wants2 = "food";
+                wantsall = ("" + wants1 + ", " + wants2 + "");
+            } else if (wants1 == "none") {
+                wants1 = "food";
+                wantsall = ("" + wants1 + "");
+            }
+        }
+        if (energynum <= 35) {
+            if (wants2 != "none") {
+                wants3 = "sleep";
+                wantsall = ("" + wants1 + ", " + wants2 + ", " + wants3 + "");
+            } else if (wants1 != "none") {
+                wants2 = "sleep";
+                wantsall = ("" + wants1 + ", " + wants2 + "");
+            } else if (wants3 == "none") {
+                wants1 = "sleep";
+                wantsall = ("" + wants1 + "");
+            }
+        }
+        if (bathnum <= 15) {
+            if (wants3 != "none") {
+                wants4 = "a bath";
+                wantsall = ("" + wants1 + ", " + wants2 + ", " + wants3 + ", " + wants4 + "");
+            } else if (wants2 != "none") {
+                wants3 = "a bath";
+                wantsall = ("" + wants1 + ", " + wants2 + ", " + wants3 + "");
+            } else if (wants1 != "none") {
+                wants2 = "a bath";
+                wantsall = ("" + wants1 + ", " + wants2 + "");
+            } else if (wants4 == "none") {
+                wants1 = "a bath";
+                wantsall = ("" + wants1 + "");
+            }
+        }
+        return wantsall;
+}
+
+function getsalary(nameOfJobs, experiences) {
+    var jobarray = new Array();
+    var i = 0;
+    do {
+        var {jobsalary} = jobsobj[(nameOfJobs[i])];
+        var experience = (experiences[i]);
+        var salary = ((jobsalary) + (Math.floor(experience / 10)) * (0.1 * jobsalary));
+        jobarray.push(salary);
+        i ++;
+    } while (i < nameOfJobs.length);
+    return jobarray;
+}
+
+function myjobslist(doggoname, exp) {
+            var cgs = new Array(2);
+            var mds = new Array(2);
+            var brds = new Array(2);
+            var dds = new Array(2);
+            var pds = new Array(2);
+            var sds = new Array(2);
+            var cgsn = (((Math.floor((exp[0])/10) + 1).toString().length));
+            var cglevel = (Math.floor((exp[0])/10) + 1);
+            cgs[0] = (new Array(7 - cgsn).join(" "));
+            cgs[1] = (new Array(8 - (exp[0].toString().length)).join(" "));
+
+            var mdsn = (((Math.floor((exp[1])/10) + 1).toString().length));
+            var mdlevel = (Math.floor((exp[1])/10) + 1);
+            mds[0] = (new Array(7 - mdsn).join(" "));
+            mds[1] = (new Array(8 - (exp[1].toString().length)).join(" "));
+
+            var brdsn = (((Math.floor((exp[2])/10) + 1).toString().length));
+            var brdlevel = (Math.floor((exp[2])/10) + 1);
+            brds[0] = (new Array(7 - brdsn).join(" "));
+            brds[1] = (new Array(8 - (exp[2].toString().length)).join(" "));
+
+            var ddsn = (((Math.floor((exp[3])/10) + 1).toString().length));
+            var ddlevel = (Math.floor((exp[3])/10) + 1);
+            dds[0] = (new Array(7 - ddsn).join(" "));
+            dds[1] = (new Array(8 - (exp[3].toString().length)).join(" "));
+
+            var pdsn = (((Math.floor((exp[4])/10) + 1).toString().length));
+            var pdlevel = (Math.floor((exp[4])/10) + 1);
+            pds[0] = (new Array(7 - pdsn).join(" "));
+            pds[1] = (new Array(8 - (exp[4].toString().length)).join(" "));
+
+            var sdsn = (((Math.floor((exp[5])/10) + 1).toString().length));
+            var sdlevel = (Math.floor((exp[5])/10) + 1);
+            sds[0] = (new Array(7 - sdsn).join(" "));
+            sds[1] = (new Array(8 - (exp[5].toString().length)).join(" "));
+            
+            var salaries = getsalary(["cg", "md", "brd", "dd", "pd", "sd"], exp);
+            var totalxp = ((exp[0]) + (exp[1]) + (exp[2]) + (exp[3]) + (exp[4]) + (exp[5]));
+            return ("```" + doggoname + "'s Jobs:     (" + totalxp + "/2,940 XP)\n\nCrossing Guard Dog:          Level " + cglevel + cgs[0] + "(" + (exp[0]) + " XP)" + cgs[1] + "$" + (salaries[0]) + "/hour\nMail Delivery Dog:           Level " + mdlevel + mds[0] + "(" + (exp[1]) + " XP)" + mds[1] + "$" + (salaries[1]) + "/hour\nBaseball Retrieving Dog:     Level " + brdlevel + brds[0] + "(" + (exp[2]) + " XP)" + brds[1] + "$" + (salaries[2]) + "/hour\nDrug Detection Dog:          Level " + ddlevel + dds[0] + "(" + (exp[3]) + " XP)" + dds[1] + "$" + (salaries[3]) + "/hour\nK-9 Police Dog:              Level " + pdlevel + pds[0] + "(" + (exp[4]) + " XP)" + pds[1] +  "$" + (salaries[4]) + "/hour\nSled Dog:                    Level " + sdlevel + sds[0] +"(" + [exp[5]] + " XP)" + sds[1] +  "$" + (salaries[5]) + "/hour```");
+}
+
+function updatestats(firstcommand, secondcommand, statsupdatetime, sleeping, naptime, energynum, foodnum, playnum, status, sleepstatgain, sleepstatlose, foodstatlose, playstatlose, pupshunger, pups, bathnum, bathstatlose, userid) {
+    var realstatsupdatetime;
+    if ((todayms >= (statsupdatetime + 900000)) || (firstcommand.includes("wake")) || (firstcommand.includes("sleep")) || (firstcommand.includes("play")) || (firstcommand.includes("eat")) || ((firstcommand.includes("feed")) && ((secondcommand == "fam") || (secondcommand == "family")))) { //let's the stats update code know to update the stats
+            statsupdate = 1;
+        } else {
+            statsupdate = 0;
+        }
+        if (statsupdate == 1) {
+            realstatsupdatetime = statsupdatetime;
+            pupshunger -= ((Math.round((todayms - statsupdatetime) / bpupfoodlosestat)) * pups)
+            if (pupshunger < 0) {
+                pupshunger = 0
+            }
+            bathnum -= (Math.round((todayms - statsupdatetime) / bathstatlose))
+            if (sleeping == 1) {
+                if (energynum < 100) {
+                    energynum += (Math.round((todayms - statsupdatetime) / sleepstatgain))
+                if (energynum < 0) {
+                    energynum = 0
+                } else if (energynum > 100) {
+                    energynum = 100
+                    }
+                }
+                if (foodnum > 0) {
+                    foodnum -= (Math.round((todayms - statsupdatetime) / (foodstatlose * 3)))
+                if (foodnum < 0) {
+                    foodnum = 0
+                    }
+                }
+                if (status != "playing") {
+                if (playnum > 0) {
+                    playnum -= (Math.round((todayms - statsupdatetime) / playstatlose))
+                if (playnum < 0) {
+                    playnum = 0
+                    }
+                }
+                }
+            } else if (sleeping == 0) {
+                    if ((todayms > naptime) && (naptime != 0)) {
+                        statsupdatetime = (todayms - (naptime - statsupdatetime))
+                    }
+                    if (energynum > 0) {
+                    energynum -= (Math.round((todayms - statsupdatetime) / sleepstatlose))
+                    if (energynum < 0) {
+                    energynum = 0
+                    } else if (energynum > 100) {
+                        energynum = 100
+                    }
+                }
+                statsupdatetime = realstatsupdatetime;
+                if (foodnum > 0) {
+                    foodnum -= (Math.round((todayms - statsupdatetime) / foodstatlose))
+                    if (foodnum < 0) {
+                    foodnum = 0
+                    }
+                }
+                if (status != "playing") {
+                if (playnum > 0) {
+                    playnum -= (Math.round((todayms - statsupdatetime) / (playstatlose * 1.2)))
+                if (playnum < 0) {
+                    playnum = 0
+                    }
+                }
+                }
+            }
+            statsupdatetime = todayms;
+            db.run(`UPDATE users SET energynum = ?, foodnum = ?, playnum = ?, pupshunger = ?, bathnum = ?, statsupdatetime = ? WHERE userid = ?`, [energynum, foodnum, playnum, pupshunger, bathnum, statsupdatetime, userid]);
+        }
+        return [statsupdatetime, energynum, foodnum, playnum, status, pupshunger, bathnum];
+}
+
+function getstatbars(stat1, stat2, stat3, stat4, stat5) {
+    var statbar1 = statbars[(Math.floor((stat1 - (Math.floor(stat1 / 10) * 10)) / 5) + (Math.floor(stat1 / 10)))];
+    var statbar2 = statbars[(Math.floor((stat2 - (Math.floor(stat2 / 10) * 10)) / 5) + (Math.floor(stat2 / 10)))];
+    var statbar3 = statbars[(Math.floor((stat3 - (Math.floor(stat3 / 10) * 10)) / 5) + (Math.floor(stat3 / 10)))];
+    var statbar4 = statbars[(Math.floor((stat4 - (Math.floor(stat4 / 10) * 10)) / 5) + (Math.floor(stat4 / 10)))];
+    var statbar5 = statbars[(Math.floor((stat5 - (Math.floor(stat5 / 10) * 10)) / 5) + (Math.floor(stat5 / 10)))];
+    return [statbar1, statbar2, statbar3, statbar4, statbar5];
+}
+
+function dogagram(userid, doggoname, msgtosend) {
+    let gramchannel = client.channels.get("673350294075211789");
+    var gramday = new Date;
+    var gramweek = gramday.getDay();
+    var gramhours = gramday.getHours();
+    var gramtime = gramday.getMinutes();
+    var dayofweek = new Array(7);
+    dayofweek[0] = "Sunday";
+    dayofweek[1] = "Monday";
+    dayofweek[2] = "Tuesday";
+    dayofweek[3] = "Wednesday";
+    dayofweek[4] = "Thursday";
+    dayofweek[5] = "Friday";
+    dayofweek[6] = "Saturday";
+    var timetitle = ((dayofweek[gramweek]) + ", at " + gramhours + ":" + gramtime);
+    client.fetchUser(userid).then(user => {
+        var image = user.avatarURL;
+
+        const msgforgram = new Discord.RichEmbed();
+        msgforgram.setColor("#001aff");
+        msgforgram.setAuthor("Dogagram");
+        msgforgram.setThumbnail(image);
+        msgforgram.setTitle(doggoname);
+        msgforgram.addField(timetitle, msgtosend);
+        gramchannel.send(msgforgram).then(msg => {
+            msg.react('❤️');
+        });
+        return;
+    });
+}
+
+function srnotif(message, notifmsgs, userid) {
+    var msgtosend = "```";
+    var i = 0;
+    if (notifmsgs[i] != "none") {
+    do {
+        if (notifmsgs[i] != "none") {
+        msgtosend += (notifmsgs[i] + "\n");
+        }
+        i ++;
+    } while (i < notifmsgs.length);
+    message.channel.send(msgtosend + "```");
+    db.run(`UPDATE users SET notifmsgs = ? WHERE userid = ?`, ["none", userid]);
+}
 }
 
 
@@ -6734,6 +6122,7 @@ function getachievementscmd(message) {
 
 
 
+//7404
 
 
 
@@ -6780,125 +6169,6 @@ function getachievementscmd(message) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
- 
 
 
 
@@ -6909,4 +6179,53 @@ function getachievementscmd(message) {
 
 
 }
-client.login("Token")
+client.on('error', (clienterror) => {
+    console.log(clienterror)
+});
+client.on('typingStart', (channel, typer) => {
+    type(channel, true, typer);
+});
+
+client.on('typingStop', (channel, typer) => {
+    type(channel, false, typer);
+});
+
+function annoy(person, msg, clear) {
+    if (clear == true) {
+        arraypeeps = new Array();
+        arraypeepsparams = new Array();
+    } else {
+        arraypeeps.push(person);
+        arraypeepsparams.push(msg);
+    }
+    return;
+}
+
+function type (message, tf, who) {
+    var i = 0;
+    var found = false;
+    var msgq = false;
+    if (tf == false) {
+        message.stopTyping();
+        return;
+    }
+    {
+        if ((arraypeeps[i] == (who.id)) || (arraypeeps[i] == "all")) {
+            found = true
+            if (arraypeepsparams[i] == "true") {
+                msgq = true;
+            }
+        }
+        i ++;
+    } while ((i < arraypeeps.length) && (found = false));
+    if ((found == true)) {
+        if (msgq == true) {
+            message.send("I see you typing" + who.tag).then(msgg => {msgg.delete(5000)});
+        } else {
+            message.startTyping();
+        }
+        return;
+    }
+    return;
+}
+client.login("token")
